@@ -3301,7 +3301,7 @@
                                 <h1>New Arrivals 2024</h1>
                                 <p>Gemstones for Wife</p>
                             </div>
-                            <img src="images/banner/Gemstone Ladies Ring.jpg" alt="">
+                            <img src="assets/images/banner/Gemstone Ladies Ring.jpg" alt="">
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-12">
@@ -3310,7 +3310,7 @@
                                 <h1>Featured Products 2024</h1>
                                 <p>Wedding Ring</p>
                             </div>
-                            <img src="images/banner/Wedding Ring.jpg" alt="">
+                            <img src="assets/images/banner/Wedding Ring.jpg" alt="">
                         </div>
                     </div>
                 </div>
@@ -3366,7 +3366,7 @@
                         </div>
                         <div class="col-lg-4 col-md-6 col-sm-7">
                             <div class="image-container">
-                                <img src="images/logo/Logo-Photoroom.png-Photoroom.png" alt="">
+                                <img src="assets/images/logo/Logo-Photoroom.png-Photoroom.png" alt="">
                             </div>
                         </div>
                         </div>
@@ -3427,22 +3427,22 @@
                                             <li>
                                                 <a href="#tab1" class="nav-link active" data-toggle="tab" role="tab"
                                                     aria-controls="tab1" aria-selected="false"><img
-                                                        src="images/product/70.jpg" alt=""></a>
+                                                        src="assets/images/product/70.jpg" alt=""></a>
                                             </li>
                                             <li>
                                                 <a href="#tab2" class="nav-link" data-toggle="tab" role="tab"
                                                     aria-controls="tab2" aria-selected="false"><img
-                                                        src="images/product/71.jpg" alt=""></a>
+                                                        src="assets/images/product/71.jpg" alt=""></a>
                                             </li>
                                             <li>
                                                 <a href="#tab3" class="nav-link button_three" data-toggle="tab"
                                                     role="tab" aria-controls="tab3" aria-selected="false"><img
-                                                        src="images/product/72.jpg" alt=""></a>
+                                                        src="assets/images/product/72.jpg" alt=""></a>
                                             </li>
                                             <li>
                                                 <a href="#tab4" class="nav-link" data-toggle="tab" role="tab"
                                                     aria-controls="tab4" aria-selected="false"><img
-                                                        src="images/product/73.jpg" alt=""></a>
+                                                        src="assets/images/product/73.jpg" alt=""></a>
                                             </li>
                                         </ul>
                                     </div>
