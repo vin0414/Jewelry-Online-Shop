@@ -1,325 +1,3508 @@
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to CodeIgniter 4!</title>
-    <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="shortcut icon" type="image/png" href="/favicon.ico">
+    <title>NASSER GOLDSMITH & JEWELRY STORE</title>
+    <link rel="shortcut icon" href="assets/Diamond Ring.ico" type="image/x-icon">
+    <!-- CSS only -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 
-    <!-- STYLES -->
-
-    <style {csp-style-nonce}>
-        * {
-            transition: background-color 300ms ease, color 300ms ease;
-        }
-        *:focus {
-            background-color: rgba(221, 72, 20, .2);
-            outline: none;
-        }
-        html, body {
-            color: rgba(33, 37, 41, 1);
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji";
-            font-size: 16px;
-            margin: 0;
-            padding: 0;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            text-rendering: optimizeLegibility;
-        }
-        header {
-            background-color: rgba(247, 248, 249, 1);
-            padding: .4rem 0 0;
-        }
-        .menu {
-            padding: .4rem 2rem;
-        }
-        header ul {
-            border-bottom: 1px solid rgba(242, 242, 242, 1);
-            list-style-type: none;
-            margin: 0;
-            overflow: hidden;
-            padding: 0;
-            text-align: right;
-        }
-        header li {
-            display: inline-block;
-        }
-        header li a {
-            border-radius: 5px;
-            color: rgba(0, 0, 0, .5);
-            display: block;
-            height: 44px;
-            text-decoration: none;
-        }
-        header li.menu-item a {
-            border-radius: 5px;
-            margin: 5px 0;
-            height: 38px;
-            line-height: 36px;
-            padding: .4rem .65rem;
-            text-align: center;
-        }
-        header li.menu-item a:hover,
-        header li.menu-item a:focus {
-            background-color: rgba(221, 72, 20, .2);
-            color: rgba(221, 72, 20, 1);
-        }
-        header .logo {
-            float: left;
-            height: 44px;
-            padding: .4rem .5rem;
-        }
-        header .menu-toggle {
-            display: none;
-            float: right;
-            font-size: 2rem;
-            font-weight: bold;
-        }
-        header .menu-toggle button {
-            background-color: rgba(221, 72, 20, .6);
-            border: none;
-            border-radius: 3px;
-            color: rgba(255, 255, 255, 1);
-            cursor: pointer;
-            font: inherit;
-            font-size: 1.3rem;
-            height: 36px;
-            padding: 0;
-            margin: 11px 0;
-            overflow: visible;
-            width: 40px;
-        }
-        header .menu-toggle button:hover,
-        header .menu-toggle button:focus {
-            background-color: rgba(221, 72, 20, .8);
-            color: rgba(255, 255, 255, .8);
-        }
-        header .heroe {
-            margin: 0 auto;
-            max-width: 1100px;
-            padding: 1rem 1.75rem 1.75rem 1.75rem;
-        }
-        header .heroe h1 {
-            font-size: 2.5rem;
-            font-weight: 500;
-        }
-        header .heroe h2 {
-            font-size: 1.5rem;
-            font-weight: 300;
-        }
-        section {
-            margin: 0 auto;
-            max-width: 1100px;
-            padding: 2.5rem 1.75rem 3.5rem 1.75rem;
-        }
-        section h1 {
-            margin-bottom: 2.5rem;
-        }
-        section h2 {
-            font-size: 120%;
-            line-height: 2.5rem;
-            padding-top: 1.5rem;
-        }
-        section pre {
-            background-color: rgba(247, 248, 249, 1);
-            border: 1px solid rgba(242, 242, 242, 1);
-            display: block;
-            font-size: .9rem;
-            margin: 2rem 0;
-            padding: 1rem 1.5rem;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-        section code {
-            display: block;
-        }
-        section a {
-            color: rgba(221, 72, 20, 1);
-        }
-        section svg {
-            margin-bottom: -5px;
-            margin-right: 5px;
-            width: 25px;
-        }
-        .further {
-            background-color: rgba(247, 248, 249, 1);
-            border-bottom: 1px solid rgba(242, 242, 242, 1);
-            border-top: 1px solid rgba(242, 242, 242, 1);
-        }
-        .further h2:first-of-type {
-            padding-top: 0;
-        }
-        footer {
-            background-color: rgba(221, 72, 20, .8);
-            text-align: center;
-        }
-        footer .environment {
-            color: rgba(255, 255, 255, 1);
-            padding: 2rem 1.75rem;
-        }
-        footer .copyrights {
-            background-color: rgba(62, 62, 62, 1);
-            color: rgba(200, 200, 200, 1);
-            padding: .25rem 1.75rem;
-        }
-        @media (max-width: 629px) {
-            header ul {
-                padding: 0;
-            }
-            header .menu-toggle {
-                padding: 0 1rem;
-            }
-            header .menu-item {
-                background-color: rgba(244, 245, 246, 1);
-                border-top: 1px solid rgba(242, 242, 242, 1);
-                margin: 0 15px;
-                width: calc(100% - 30px);
-            }
-            header .menu-toggle {
-                display: block;
-            }
-            header .hidden {
-                display: none;
-            }
-            header li.menu-item a {
-                background-color: rgba(221, 72, 20, .1);
-            }
-            header li.menu-item a:hover,
-            header li.menu-item a:focus {
-                background-color: rgba(221, 72, 20, .7);
-                color: rgba(255, 255, 255, .8);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="assets/style.css">
 </head>
+
 <body>
+    <div class="home_black_version">
+        <header class="header_area header_black">
+            <!-- header top starts -->
+            <div class="header_top">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-lg-6 col-md-6">
+                            <div class="social_icone">
+                                <ul>
+                                    <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                    <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                                    <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-lg-6 col-md-6">
+                            <div class="top_right text-right">
+                                <ul>
+                                    <li class="top_links">
+                                        <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                        <ul class="dropdown_links">
+                                            <li><a href="#">Checkout</a></li>
+                                            <li><a href="#">My Account</a></li>
+                                            <li><a href="ShoppingCart.html">Shopping Cart</a></li>
+                                            <li><a href="#">Wishlist</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- header top ends -->
 
-<!-- HEADER: MENU + HEROE SECTION -->
-<header>
+            <!-- header middle starts -->
+            <div class="header_middel">
+                <div class="container">
+                    <div class="row align-items-center">
 
-    <div class="menu">
-        <ul>
-            <li class="logo">
-                <a href="https://codeigniter.com" target="_blank">
-                    <svg role="img" aria-label="Visit CodeIgniter.com official website!" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2100 500" height="44"><path fill="#dd4814" d="M148.2 411c-20.53-9.07-34.48-28.61-36.31-50.99 1.2-23.02 13.36-44.06 32.67-56.61-3.17 7.73-2.4 16.53 2 23.6 5.01 7 13.63 10.36 22.07 8.61 12.02-3.38 19.06-15.86 15.68-27.89-1.2-4.21-3.6-8.03-6.88-10.91-13.6-11.06-20.43-28.44-18-45.81 2.33-9.2 7.42-17.52 14.61-23.8-5.4 14.4 9.83 28.61 20.05 35.6 18.14 10.88 35.6 22.84 52.32 35.81 18.27 14.4 28.23 36.94 26.67 60-4.11 24.54-21.47 44.8-45.13 52.4 47.33-10.53 96.13-48.13 97.06-101.46-.93-42.67-26.4-80.96-65.33-98.4h-1.73c.86 2.09 1.28 4.34 1.2 6.61.13-1.47.13-2.93 0-4.4.21 1.73.21 3.47 0 5.2-2.96 12.13-15.2 19.6-27.36 16.64-4.86-1.2-9.2-3.93-12.32-7.87-15.6-20 0-42.76 2.61-64.76 1.6-28.13-11.25-55.02-34.05-71.46 11.41 19.02-3.79 44-14.84 58.21-11.07 14.21-27.07 24.8-40.11 37.2-14.05 13.07-26.93 27.44-38.49 42.8-24.99 30.53-34.8 70.8-26.67 109.4 11.15 37.2 42.07 65.15 80.2 72.4h.21l-.13-.12Zm324.56-159.8q0-17.92 6.16-35.56 6.44-17.92 18.48-31.92t29.68-22.68q17.64-8.96 40.04-8.96 26.6 0 45.36 12.04 19.04 12.04 28 31.36l-15.4 9.52q-4.76-9.8-11.76-16.52-6.72-6.72-14.56-10.92-7.84-4.2-16.24-5.88-8.4-1.96-16.52-1.96-17.92 0-31.64 7.28-13.72 7.28-23.24 19.04-9.24 11.76-14 26.6-4.76 14.56-4.76 29.68 0 16.52 5.6 31.64 5.88 15.12 15.68 26.88 10.08 11.48 23.52 18.48 13.72 6.72 29.68 6.72 8.4 0 17.08-1.96 8.96-2.24 17.08-6.72 8.4-4.76 15.4-11.48 7-7 11.76-16.8l16.24 8.4q-4.76 11.2-13.44 19.88-8.68 8.4-19.32 14.28-10.64 5.88-22.68 8.96-11.76 3.08-23.24 3.08-20.44 0-37.52-8.96-17.08-8.96-29.4-23.24-12.32-14.56-19.32-32.76-6.72-18.48-6.72-37.52Zm263.48 103.6q-15.96 0-29.12-5.88-13.16-6.16-22.96-16.52-9.52-10.36-14.84-24.08Q664 294.6 664 279.48q0-15.4 5.32-29.12 5.6-13.72 15.12-24.08 9.8-10.36 22.96-16.52t28.84-6.16q15.68 0 28.84 6.16 13.44 6.16 22.96 16.52 9.8 10.36 15.12 24.08 5.6 13.72 5.6 29.12 0 15.12-5.32 28.84t-15.12 24.08q-9.52 10.36-22.96 16.52-13.16 5.88-29.12 5.88Zm-52.92-75.04q0 12.32 4.2 22.96 4.2 10.36 11.2 18.48 7.28 7.84 16.8 12.32 9.8 4.48 20.72 4.48 10.92 0 20.44-4.48 9.8-4.76 17.08-12.6 7.28-8.12 11.48-18.76 4.2-10.64 4.2-22.96 0-12.04-4.2-22.68-4.2-10.92-11.48-18.76-7.28-8.12-17.08-12.6-9.52-4.76-20.44-4.76-10.92 0-20.44 4.76-9.52 4.48-16.8 12.6-7.28 8.12-11.48 19.04-4.2 10.64-4.2 22.96ZM900.6 354.8q-15.12 0-28-6.16-12.88-6.44-22.12-16.8t-14.56-23.8q-5.04-13.72-5.04-28.56 0-15.4 5.04-29.12 5.04-14 13.72-24.36 8.96-10.36 21-16.24 12.32-6.16 26.88-6.16 18.48 0 32.76 9.8 14.28 9.52 22.4 23.24V147.6h19.04v179.76q0 7.84 6.72 7.84V352q-4.2.84-6.72.84-6.72 0-11.76-4.2-5.04-4.48-5.04-10.64v-14.28Q946.24 338 931.4 346.4t-30.8 8.4Zm4.2-16.8q7 0 14.84-2.8 8.12-2.8 15.12-7.56 7-5.04 11.76-11.48 5.04-6.72 6.16-14.28V256.8q-2.8-7.56-8.12-14-5.32-6.72-12.32-11.76-6.72-5.04-14.56-7.84-7.84-2.8-15.4-2.8-11.76 0-21.28 5.04-9.52 5.04-16.52 13.44-6.72 8.12-10.36 18.76-3.64 10.64-3.64 21.84 0 11.76 4.2 22.4 4.2 10.64 11.48 18.76 7.28 7.84 17.08 12.6Q893.32 338 904.8 338Zm173.04 16.8q-15.96 0-29.4-5.88-13.16-6.16-22.96-16.52-9.8-10.64-15.4-24.36-5.32-13.72-5.32-29.4 0-15.4 5.32-28.84 5.6-13.72 15.12-23.8 9.8-10.36 23.24-16.24 13.44-6.16 29.12-6.16 15.96 0 29.12 6.16 13.44 5.88 22.96 16.24 9.52 10.36 14.84 23.8 5.32 13.44 5.32 28.56v4.48q0 2.24-.28 3.08h-124.88q.84 11.76 5.32 21.84 4.76 9.8 12.04 17.08 7.28 7.28 16.52 11.48 9.52 3.92 20.16 3.92 7 0 14-1.96t12.88-5.32q5.88-3.36 10.64-8.12 4.76-5.04 7.28-10.92l16.52 4.48q-3.36 8.12-9.52 14.84-6.16 6.44-14.28 11.48-8.12 4.76-17.92 7.56-9.8 2.52-20.44 2.52Zm-53.48-83.44h107.24q-.84-11.76-5.6-21.28-4.48-9.8-11.76-16.8-7-7-16.52-10.92-9.24-3.92-19.88-3.92-10.64 0-20.16 3.92t-16.8 10.92q-7 7-11.48 16.8-4.2 9.8-5.04 21.28Zm193.2 80.64h-38.64V153.2h38.64V352Zm93.52.84q-14.84 0-26.88-5.88t-21-15.96q-8.68-10.36-13.44-23.8-4.76-13.44-4.76-28.56 0-15.96 5.04-29.68 5.04-13.72 14-24.08 8.96-10.36 21.56-16.24 12.6-5.88 27.72-5.88 17.08 0 29.96 7.84 12.88 7.56 21.28 20.44v-25.76h32.76V345q0 16.24-6.16 29.12-6.16 12.88-17.08 21.84-10.64 8.96-25.76 13.72-14.84 4.76-32.48 4.76-24.08 0-40.6-7.84-16.24-8.12-28-22.68l20.44-19.88q8.4 10.36 21 16.24 12.88 5.88 27.16 5.88 8.68 0 16.52-2.24 8.12-2.52 14.28-7.56 6.16-5.04 9.52-12.88 3.64-7.84 3.64-18.48v-18.48q-7.28 12.6-20.44 19.6-13.16 6.72-28.28 6.72Zm12.6-29.96q6.16 0 11.76-1.96t10.36-5.32q4.76-3.36 8.4-7.84 3.64-4.48 5.6-9.52v-35q-5.04-12.88-15.96-20.72-10.64-7.84-22.4-7.84-8.68 0-15.68 3.92-7 3.64-12.04 10.08-5.04 6.16-7.84 14.28-2.52 8.12-2.52 16.8 0 8.96 3.08 16.8t8.4 13.72q5.6 5.88 12.88 9.24 7.28 3.36 15.96 3.36Zm243.88-62.44V352h-37.52v-82.32q0-17.64-6.16-25.76-6.16-8.12-17.08-8.12-5.6 0-11.48 2.24-5.88 2.24-11.2 6.44-5.04 3.92-9.24 9.52t-6.16 12.32V352h-37.52V205.28h33.88v27.16q8.12-14 23.52-21.84t34.72-7.84q13.72 0 22.4 5.04 8.68 5.04 13.44 13.16 4.76 8.12 6.44 18.48 1.96 10.36 1.96 21Zm70.28 91.56h-37.52V205.28h37.52V352Zm0-167.16h-37.52V147.6h37.52v37.24Zm114.24 129.92 7.56 29.68q-7.56 3.36-18.48 6.72-10.92 3.36-22.96 3.36-7.84 0-14.84-1.96-6.72-1.96-12.04-6.16-5.04-4.48-8.12-11.2-3.08-7-3.08-16.8v-84.28h-19.32v-28.84h19.32v-47.6h37.52v47.6h30.8v28.84h-30.8v71.68q0 7.84 3.92 11.2 4.2 3.08 10.08 3.08t11.48-1.96q5.6-1.96 8.96-3.36Zm91.56 40.04q-17.64 0-31.92-5.88-14.28-6.16-24.36-16.52t-15.68-24.08q-5.32-13.72-5.32-28.84 0-15.68 5.32-29.4 5.32-14 15.4-24.36 10.08-10.64 24.36-16.8 14.56-6.16 32.48-6.16 17.92 0 31.92 6.16 14.28 6.16 24.08 16.52 10.08 10.36 15.12 24.08 5.32 13.72 5.32 28.56 0 3.64-.28 7 0 3.36-.56 5.6h-113.4q.84 8.68 4.2 15.4 3.36 6.72 8.68 11.48 5.32 4.76 12.04 7.28 6.72 2.52 14 2.52 11.2 0 21-5.32 10.08-5.6 13.72-14.56l32.2 8.96q-8.12 16.8-26.04 27.72-17.64 10.64-42.28 10.64Zm-38.08-88.48h76.16q-1.4-16.52-12.32-26.32-10.64-10.08-26.04-10.08-7.56 0-14.28 2.8-6.44 2.52-11.48 7.28t-8.4 11.48q-3.08 6.72-3.64 14.84Zm225.12-62.72v34.16q-17.08.28-30.52 6.72-13.44 6.16-19.32 18.76V352h-37.52V205.28h34.44v31.36q3.92-7.56 9.24-13.44 5.32-6.16 11.48-10.64t12.32-6.72q6.44-2.52 12.32-2.52h4.48q1.68 0 3.08.28Z"/></svg>
-                </a>
-            </li>
-            <li class="menu-toggle">
-                <button onclick="toggleMenu();">&#9776;</button>
-            </li>
-            <li class="menu-item hidden"><a href="#">Home</a></li>
-            <li class="menu-item hidden"><a href="https://codeigniter4.github.io/userguide/" target="_blank">Docs</a>
-            </li>
-            <li class="menu-item hidden"><a href="https://forum.codeigniter.com/" target="_blank">Community</a></li>
-            <li class="menu-item hidden"><a
-                    href="https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md" target="_blank">Contribute</a>
-            </li>
-        </ul>
+                        <div class="col-lg-5">
+                            <div class="home_contact">
+                                <div class="contact_icone">
+                                    
+                                </div>
+                                <div class="contact_box">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-2 col-md-3 col-4">
+                            <div class="logo">
+                                <a href="/"><img src="assets/images/logo/LOGO2-Photoroom.jpg" alt=""></a>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-5 col-md-7 col-6">
+                            <div class="middel_right">
+                                <div class="search_btn">
+                                    <a href="#"><i class="ion-ios-search-strong"></i></a>
+                                    <div class="dropdown_search">
+                                        <form action="#">
+                                            <input type="text" placeholder="Search Product ....">
+                                            <button type="submit"><i class="ion-ios-search-strong"></i></button>
+                                        </form>
+                                    </div>
+                                </div>
+                                <div class="cart_link">
+                                    <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity">Rs.
+                                            67,598</span><i class="ion-chevron-down"></i></a>
+                                    <span class="cart_quantity">2</span>
+
+                                    <!-- mini cart -->
+                                    <div class="mini_cart">
+                                        <div class="cart_close">
+                                            <div class="cart_text">
+                                                <h3>cart</h3>
+                                            </div>
+                                            <div class="mini_cart_close">
+                                                <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#"><img src="assets/images/nav-product/product.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">Earings</a>
+                                                <span class="quantity">Qty : 1</span>
+                                                <span class="price_cart">Rs. 54,599</span>
+                                            </div>
+                                            <div class="cart_remove">
+                                                <a href="#"><i class="ion-android-close"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="cart_item">
+                                            <div class="cart_img">
+                                                <a href="#"><img src="assets/images/nav-product/product2.jpg" alt=""></a>
+                                            </div>
+                                            <div class="cart_info">
+                                                <a href="#">Bracelet</a>
+                                                <span class="quantity">Qty : 1</span>
+                                                <span class="price_cart">Rs. 12,999</span>
+                                            </div>
+                                            <div class="cart_remove">
+                                                <a href="#"><i class="ion-android-close"></i></a>
+                                            </div>
+                                        </div>
+                                        <div class="cart_total">
+                                            <span>Subtotal : </span>
+                                            <span>Rs. 67,598</span>
+                                        </div>
+                                        <div class="mini_cart_footer">
+                                            <div class="cart_button view_cart">
+                                                <button onclick="viewCart()">View Cart</button>
+                                                <div id="cartModal">
+                                                    <div id="cartContent">
+                                                        <span id="closeCart">&times;</span>
+                                                        <h2>Your Cart</h2>
+                                                        <ul id="cartItems"></ul>
+                                                    </div>
+                                                </div>
+
+                                                <script src="script.js"></script>
+                                            </div>
+                                            <div class="cart_button checkout">
+                                                <a href="#" class="active">Checkout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- mini cart ends  -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- header middle ends -->
+
+            <!-- header bottom starts -->
+
+            <div class="header_bottom sticky-header">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="main_menu_inner">
+                                <div class="logo_sticky">
+                                    <a href="/"><img src="assets/images/logo/LOGO2-Photoroom.jpg" alt=""></a>
+                                </div>
+                                <div class="main_menu">
+                                    <nav>
+                                        <ul>
+                                            <li class="active">
+                                                <a href="/">Home</a>
+                                            </li>
+                                            <li>
+                                                <a href="#">Category <i class="ion-chevron-down"></i></a>
+                                                <ul class="mega_menu">
+                                                    <li>
+                                                        <a href="#">Women</a>
+                                                        <ul>
+                                                            <li><a href="#">Earring</a></li>
+                                                            <li><a href="#">Pendant</a></li>
+                                                            <li><a href="#">Rings</a></li>
+                                                            <li><a href="#">Chain</a></li>
+                                                            <li><a href="#">Bangles</a></li>
+                                                        </ul>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#">Men</a>
+                                                        <ul>
+                                                            <li><a href="#">Ring</a></li>
+                                                            <li><a href="#">Pendant</a></li>
+                                                            <li><a href="#">Bracelet</a></li>
+                                                            <li><a href="#">Chain</a></li>
+                                                        </ul>
+                                                    </li>
+                                                </ul>
+                                            </li>
+                                            <li><a href="<?=site_url('AboutUs')?>">About Us</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- header bottom ends -->
+        </header>
+
+        <!-- slider section starts -->
+        <div class="slider_area slider_black owl-carousel">
+            <div class="single_slider" data-bgimg="assets/images/slider/1.png">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -20% off this week</p>
+                                <h1>Necklace</h1>
+                                <span>22 Carat gold necklace for wedding</span>
+                                <p class="slider_price">starting at <span>Rs. 75,999</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_slider" data-bgimg="assets/images/slider/2.jpg">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -40% off this week</p>
+                                <h1>Earings and Pendant</h1>
+                                <span>Complete bridal set with white pearls</span>
+                                <p class="slider_price">starting at <span>Rs. 89,499</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="single_slider" data-bgimg="assets/images/slider/3.jpg">
+                <div class="container">
+                    <div class="row align-items-center">
+                        <div class="col-12">
+                            <div class="slider_content">
+                                <p>exclusive offer -10% off this week</p>
+                                <h1>Wedding Rings</h1>
+                                <span>Nasser Special wedding rings for couples.</span>
+                                <p class="slider_price">starting at <span>Rs. 14,999</span></p>
+                                <a href="#" class="button">Shop Now</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- slider section ends -->
+        <!-- banner section starts -->
+        <!-- banner section ends -->
+        <!-- product section area starts  -->
+
+        <section class="product_section p_section1 product_black_section">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="product_area">
+                            <div class="product_tab_button">
+                                <ul class="nav" role="tablist">
+                                    <li>
+                                        <a href="#featured" class="active" data-toggle="tab" role="tab"
+                                            aria-controls="featured" aria-selected="true">Featured</a>
+                                    </li>
+                                    <li>
+                                        <a href="#arrivals" data-toggle="tab" role="tab" aria-controls="arrivals"
+                                            aria-selected="false">New Arrivals</a>
+                                    </li>
+                                    <li>
+                                        <a href="#onsale" data-toggle="tab" role="tab" aria-controls="onsale"
+                                            aria-selected="false">On-Sale</a>
+                                    </li>
+
+                                </ul>
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane fade show active" id="featured" role="tabpane1">
+                                    <div class="product_container">
+                                        <div class="custom-row product_column3">
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="assets/images/product/Carousel 1.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 1(1).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Bracelet</a>
+                                                        </div>
+                                                        <h3><a href="#">Bangles</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="assets/images/product/Carousel 2.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="assets/images/product/Carousel 2(2).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Necklace</a>
+                                                        </div>
+                                                        <h3><a href="#">3Layer Necklace</a></h3>
+                                                        <div class="price_box">
+
+                                                            <span class="current_price">Rs. 45015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="assets/images/product/Carousel 3.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="assets/images/product/Carousel 3(3).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring</a>
+                                                        </div>
+                                                        <h3><a href="#">Diamond Set</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 75654</span>
+                                                            <span class="current_price">Rs. 74015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="assets/images/product/Carousel 4.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="assets/images/product/Carousel 4(4).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Clover Earrings</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/Carousel 5.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 5(5).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring</a>
+                                                        </div>
+                                                        <h3><a href="#">Gemstones</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/Carousel 6.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 6(6).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring</a>
+                                                        </div>
+                                                        <h3><a href="#">Diamond Wedding Ring</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/Carousel 11.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 11(11).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring</a>
+                                                        </div>
+                                                        <h3><a href="#">Blue Sapphire Diamond Yellow Gold Ring</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/Carousel 12.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 12(12).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring</a>
+                                                        </div>
+                                                        <h3><a href="#">Blue Sapphire Diamond Yellow Gold Ring</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/Carousel 7.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 7(7).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Black Moissanite Diamond Set</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/Carousel 8.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 8(8).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring</a>
+                                                        </div>
+                                                        <h3><a href="#">Moissanite Engagement Ring</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/Carousel 9.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 9(9).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">South Sea Pearl Diamond Set</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/Carousel 10.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/Carousel 10(10).jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Pendant</a>
+                                                        </div>
+                                                        <h3><a href="#">Rose Diamond Pendant</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="arrivals" role="tabpane1">
+                                    <div class="product_container">
+                                        <div class="custom-row product_column3">
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/25.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/26.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Necklace</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/27.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/28.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Earrings</a></h3>
+                                                        <div class="price_box">
+
+                                                            <span class="current_price">Rs. 45015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/29.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/30.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Bracelet</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 75654</span>
+                                                            <span class="current_price">Rs. 74015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/31.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/32.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Bangles</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/33.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/34.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Gemstones</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/35.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/36.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Wedding set</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/37.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/38.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Nose Pin</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/39.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/40.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Diamonds</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/41.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/42.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Ring</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/43.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/44.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Couple Ring</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/45.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/46.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Bracelet</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/47.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/48.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Necklace Set</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="onsale" role="tabpane1">
+                                    <div class="product_container">
+                                        <div class="custom-row product_column3">
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/49.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/50.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Necklace</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/2.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/3.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Earrings</a></h3>
+                                                        <div class="price_box">
+
+                                                            <span class="current_price">Rs. 45015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/4.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/5.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Bracelet</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 75654</span>
+                                                            <span class="current_price">Rs. 74015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/6.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/7.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Bangles</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/8.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/9.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Gemstones</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/10.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/11.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Wedding set</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/12.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/13.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Nose Pin</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/14.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/15.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Diamonds</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/16.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/17.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Ring</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/20.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/21.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Couple Ring</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/70.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/28.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Bracelet</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="custom-col-5">
+                                                <div class="single_product">
+                                                    <div class="product_thumb">
+                                                        <a href="#" class="primary_img"><img src="images/product/71.jpg"
+                                                                alt="product1"></a>
+                                                        <a href="#" class="secondary_img"><img
+                                                                src="images/product/72.jpg" alt="product1"></a>
+                                                        <div class="quick_button">
+                                                            <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                                data-placement="top"
+                                                                data-original-title="quick view">Quick View</a>
+                                                        </div>
+                                                    </div>
+                                                    <div class="product_content">
+                                                        <div class="tag_cate">
+                                                            <a href="#">Ring, Necklace</a>
+                                                            <a href="#">Earrings</a>
+                                                        </div>
+                                                        <h3><a href="#">Necklace Set</a></h3>
+                                                        <div class="price_box">
+                                                            <span class="old_price">Rs. 45654</span>
+                                                            <span class="current_price">Rs. 44015</span>
+                                                        </div>
+                                                        <div class="product_hover">
+                                                            <div class="product_ratings">
+                                                                <ul>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                    <li><a href="#"><i
+                                                                                class="ion-ios-star-outline"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                            <div class="product_desc">
+                                                                <p>This is a gold ring with diamond and Lorem ipsum
+                                                                    dolor sit amet.</p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top"
+                                                                            title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart"><a href="#"
+                                                                            title="Add to Cart">Add to Cart</a></li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- product section area sends -->
+
+        <!-- banner full width start -->
+        <section class="banner_fullwidth black_fullwidth">
+            <div class="container">
+                <div class="row align-items-center">
+                    <div class="col-12">
+                        <div class="banner_text">
+                            <a href="#">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- banner full width end -->
+
+        <!-- product section area starts  -->
+        <section class="product_section p_section1 product_black_section bottom">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_title">
+                            <h2>Products</h2>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <div class="product-area">
+                            <div class="product_container bottom">
+                                <div class="custom-row product_row1">
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/71.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/72.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/4.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/5.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/10.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/11.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/24.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/22.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/26.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/27.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/28.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/29.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/32.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/33.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/34.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/35.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/38.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/39.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/40.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/41.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="custom-col-5">
+                                        <div class="single_product">
+                                            <div class="product_thumb">
+                                                <a href="#" class="primary_img"><img src="images/product/42.jpg"
+                                                        alt="product1"></a>
+                                                <a href="#" class="secondary_img"><img src="images/product/43.jpg"
+                                                        alt="product1"></a>
+                                                <div class="quick_button">
+                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
+                                                        data-placement="top" data-original-title="quick view">Quick
+                                                        View</a>
+                                                </div>
+                                            </div>
+                                            <div class="product_content">
+                                                <div class="tag_cate">
+                                                    <!-- make this corection in all products above -->
+                                                    <a href="#">Ring, Necklace,</a>
+                                                    <a href="#">Earrings</a>
+                                                </div>
+                                                <h3><a href="#">Necklace Set</a></h3>
+                                                <div class="price_box">
+                                                    <span class="old_price">Rs. 45654</span>
+                                                    <span class="current_price">Rs. 44015</span>
+                                                </div>
+                                                <div class="product_hover">
+                                                    <div class="product_ratings">
+                                                        <ul>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                            <li><a href="#"><i class="ion-ios-star-outline"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                    <div class="product_desc">
+                                                        <p>This is a gold ring with diamond and Lorem ipsum
+                                                            dolor sit amet.</p>
+                                                    </div>
+                                                    <div class="action_links">
+                                                        <ul>
+                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                    data-toggle="tooltip"><span
+                                                                        class="ion-heart"></span></a></li>
+                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                    to Cart</a></li>
+                                                            <li><a href="#" title="Compare"><i
+                                                                        class="ion-ios-settings-strong"></i></a>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- product section area ends  -->
+        <!-- blog section starts -->
+        <!-- blog section ends -->
+
+        <!-- subscribe section ends -->
+        <!-- banner area starts  -->
+        <section class="banner_section banner_section_five">
+            <div class="container-fluid p-0">
+                <div class="row no-gutters">
+                    <div class="col-lg-6 col-md-12">
+                        <div class="port-box">
+                            <div class="text-overlay">
+                                <h1>New Arrivals 2024</h1>
+                                <p>Gemstones for Wife</p>
+                            </div>
+                            <img src="images/banner/Gemstone Ladies Ring.jpg" alt="">
+                        </div>
+                    </div>
+                    <div class="col-lg-6 col-md-12">
+                        <div class="port-box">
+                            <div class="text-overlay">
+                                <h1>Featured Products 2024</h1>
+                                <p>Wedding Ring</p>
+                            </div>
+                            <img src="images/banner/Wedding Ring.jpg" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- banner area ends -->
+
+        <!-- footer section starts -->
+        <footer class="footer_widgets footer_black">
+            <div class="container">
+                <div class="footer_top">
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6 col-sm-8">
+                            <div class="widgets_container contact_us">
+                                <h3>About Nasser Goldsmith & Jewelry </h3>
+                                <div class="footer_contact">
+                                    <p>Address : 148 Granja St. Brgy. 7, Lucena City, Quezon Province</p>
+                                    <p>Phone : <a href="tel:(+63)888888885555">(+63)888888885555</a></p>
+                                    <p>Email : robinnasser@gmail.com</p>
+                                    <ul>
+                                        <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                        <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                                        <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-4 col-6">
+                            <div class="widgets_container widget_menu">
+                                <h3>Information</h3>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="AboutUs.html">About Us</a></li>
+                                        <li><a href="Contact.html">Contact</a></li>
+                                        <li><a href="FAQ's.html">FAQs</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-2 col-md-6 col-sm-5 col-6">
+                            <div class="widgets_container widget_menu">
+                                <h3>My Account</h3>
+                                <div class="footer_menu">
+                                    <ul>
+                                        <li><a href="#">My Account</a></li>
+                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="#">Wishlist</a></li>
+                                        <li><a href="#">Portfolio</a></li>
+                                        <li><a href="#">Checkout</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6 col-sm-7">
+                            <div class="image-container">
+                                <img src="images/logo/Logo-Photoroom.png-Photoroom.png" alt="">
+                            </div>
+                        </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="footer_bottom">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="copyright_area">
+                                <p>Copyright &copy; 2024 <a href="#">NASSER GOLDSMITH & JEWELRY</a> All rights Reserved.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </footer>
+        <!-- footer section ends -->
     </div>
 
-    <div class="heroe">
-
-        <h1>Welcome to CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
-
-        <h2>The small framework with powerful features</h2>
-
+    <!-- modal section starts -->
+    <div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <div class="modal_body">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-lg-5 col-md-5 col-sm-12">
+                                <div class="modal_tab">
+                                    <div class="tab-content product-details-large">
+                                        <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                            <div class="modal_tab_img">
+                                                <a href="#"><img src="images/product/70.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab2" role="tabpanel">
+                                            <div class="modal_tab_img">
+                                                <a href="#"><img src="images/product/71.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab3" role="tabpanel">
+                                            <div class="modal_tab_img">
+                                                <a href="#"><img src="images/product/72.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                        <div class="tab-pane fade" id="tab4" role="tabpanel">
+                                            <div class="modal_tab_img">
+                                                <a href="#"><img src="images/product/73.jpg" alt=""></a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="modal_tab_button">
+                                        <ul class="nav product_navactive owl-carousel" role="tablist">
+                                            <li>
+                                                <a href="#tab1" class="nav-link active" data-toggle="tab" role="tab"
+                                                    aria-controls="tab1" aria-selected="false"><img
+                                                        src="images/product/70.jpg" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab2" class="nav-link" data-toggle="tab" role="tab"
+                                                    aria-controls="tab2" aria-selected="false"><img
+                                                        src="images/product/71.jpg" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab3" class="nav-link button_three" data-toggle="tab"
+                                                    role="tab" aria-controls="tab3" aria-selected="false"><img
+                                                        src="images/product/72.jpg" alt=""></a>
+                                            </li>
+                                            <li>
+                                                <a href="#tab4" class="nav-link" data-toggle="tab" role="tab"
+                                                    aria-controls="tab4" aria-selected="false"><img
+                                                        src="images/product/73.jpg" alt=""></a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-7 col-md-7 col-sm-12">
+                                <div class="modal_right">
+                                    <div class="modal_title mb-10">
+                                        <h2>Women's Necklace</h2>
+                                    </div>
+                                    <div class="modal_price mb-10">
+                                        <span class="new_price">Rs. 51164</span>
+                                        <span class="old_price">Rs. 54164</span>
+                                    </div>
+                                    <div class="see_all">
+                                        <a href="#">See All Features</a>
+                                    </div>
+                                    <div class="modal_add_to_cart mb-15">
+                                        <form action="#">
+                                            <input type="number" min="0" max="100" step="1">
+                                            <button type="submit">Add To Cart</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal_description mb-15">
+                                        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ducimus quibusdam
+                                            nisi voluptas consequatur tempora, recusandae nemo blanditiis eaque odit
+                                            voluptatibus voluptatem, ipsa incidunt fugiat a.</p>
+                                    </div>
+                                    <div class="modal_social">
+                                        <h2>Share this Product</h2>
+                                        <ul>
+                                            <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                                            <li><a href="#"><i class="ion-social-instagram"></i></a></li>
+                                            <li><a href="#"><i class="ion-social-youtube"></i></a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
+    <!-- modal section ends -->
 
-</header>
 
-<!-- CONTENT -->
 
-<section>
 
-    <h1>About this page</h1>
 
-    <p>The page you are looking at is being generated dynamically by CodeIgniter.</p>
 
-    <p>If you would like to edit this page you will find it located at:</p>
 
-    <pre><code>app/Views/welcome_message.php</code></pre>
+    <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+    <!-- JavaScript Bundle with Popper.js -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
-    <p>The corresponding controller for this page can be found at:</p>
-
-    <pre><code>app/Controllers/Home.php</code></pre>
-
-</section>
-
-<div class="further">
-
-    <section>
-
-        <h1>Go further</h1>
-
-        <h2>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><rect x='32' y='96' width='64' height='368' rx='16' ry='16' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px'/><line x1='112' y1='224' x2='240' y2='224' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/><line x1='112' y1='400' x2='240' y2='400' style='fill:none;stroke:#000;stroke-linecap:round;stroke-linejoin:round;stroke-width:32px'/><rect x='112' y='160' width='128' height='304' rx='16' ry='16' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px'/><rect x='256' y='48' width='96' height='416' rx='16' ry='16' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px'/><path d='M422.46,96.11l-40.4,4.25c-11.12,1.17-19.18,11.57-17.93,23.1l34.92,321.59c1.26,11.53,11.37,20,22.49,18.84l40.4-4.25c11.12-1.17,19.18-11.57,17.93-23.1L445,115C443.69,103.42,433.58,94.94,422.46,96.11Z' style='fill:none;stroke:#000;stroke-linejoin:round;stroke-width:32px'/></svg>
-            Learn
-        </h2>
-
-        <p>The User Guide contains an introduction, tutorial, a number of "how to"
-            guides, and then reference documentation for the components that make up
-            the framework. Check the <a href="https://codeigniter4.github.io/userguide"
-            target="_blank">User Guide</a> !</p>
-
-        <h2>
-            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><path d='M431,320.6c-1-3.6,1.2-8.6,3.3-12.2a33.68,33.68,0,0,1,2.1-3.1A162,162,0,0,0,464,215c.3-92.2-77.5-167-173.7-167C206.4,48,136.4,105.1,120,180.9a160.7,160.7,0,0,0-3.7,34.2c0,92.3,74.8,169.1,171,169.1,15.3,0,35.9-4.6,47.2-7.7s22.5-7.2,25.4-8.3a26.44,26.44,0,0,1,9.3-1.7,26,26,0,0,1,10.1,2L436,388.6a13.52,13.52,0,0,0,3.9,1,8,8,0,0,0,8-8,12.85,12.85,0,0,0-.5-2.7Z' style='fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px'/><path d='M66.46,232a146.23,146.23,0,0,0,6.39,152.67c2.31,3.49,3.61,6.19,3.21,8s-11.93,61.87-11.93,61.87a8,8,0,0,0,2.71,7.68A8.17,8.17,0,0,0,72,464a7.26,7.26,0,0,0,2.91-.6l56.21-22a15.7,15.7,0,0,1,12,.2c18.94,7.38,39.88,12,60.83,12A159.21,159.21,0,0,0,284,432.11' style='fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px'/></svg>
-            Discuss
-        </h2>
-
-        <p>CodeIgniter is a community-developed open source project, with several
-             venues for the community members to gather and exchange ideas. View all
-             the threads on <a href="https://forum.codeigniter.com/"
-             target="_blank">CodeIgniter's forum</a>, or <a href="https://join.slack.com/t/codeigniterchat/shared_invite/zt-rl30zw00-obL1Hr1q1ATvkzVkFp8S0Q"
-             target="_blank">chat on Slack</a> !</p>
-
-        <h2>
-             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'><line x1='176' y1='48' x2='336' y2='48' style='fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px'/><line x1='118' y1='304' x2='394' y2='304' style='fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px'/><path d='M208,48v93.48a64.09,64.09,0,0,1-9.88,34.18L73.21,373.49C48.4,412.78,76.63,464,123.08,464H388.92c46.45,0,74.68-51.22,49.87-90.51L313.87,175.66A64.09,64.09,0,0,1,304,141.48V48' style='fill:none;stroke:#000;stroke-linecap:round;stroke-miterlimit:10;stroke-width:32px'/></svg>
-             Contribute
-        </h2>
-
-        <p>CodeIgniter is a community driven project and accepts contributions
-             of code and documentation from the community. Why not
-             <a href="https://codeigniter.com/contribute" target="_blank">
-             join us</a> ?</p>
-
-    </section>
-
-</div>
-
-<!-- FOOTER: DEBUG INFO + COPYRIGHTS -->
-
-<footer>
-    <div class="environment">
-
-        <p>Page rendered in {elapsed_time} seconds</p>
-
-        <p>Environment: <?= ENVIRONMENT ?></p>
-
-    </div>
-
-    <div class="copyrights">
-
-        <p>&copy; <?= date('Y') ?> CodeIgniter Foundation. CodeIgniter is open source project released under the MIT
-            open source licence.</p>
-
-    </div>
-
-</footer>
-
-<!-- SCRIPTS -->
-
-<script>
-    function toggleMenu() {
-        var menuItems = document.getElementsByClassName('menu-item');
-        for (var i = 0; i < menuItems.length; i++) {
-            var menuItem = menuItems[i];
-            menuItem.classList.toggle("hidden");
-        }
-    }
-</script>
-
-<!-- -->
-
+    <script src="assets/main.js"></script>
 </body>
+
 </html>
