@@ -103,30 +103,7 @@
                                             <li class="active">
                                                 <a href="javascript:void(0);">Product Details</a>
                                             </li>
-                                            <li>
-                                                <a href="#">Category <i class="ion-chevron-down"></i></a>
-                                                <ul class="mega_menu">
-                                                    <li>
-                                                        <a href="#">Women</a>
-                                                        <ul>
-                                                            <li><a href="#">Earring</a></li>
-                                                            <li><a href="#">Pendant</a></li>
-                                                            <li><a href="#">Rings</a></li>
-                                                            <li><a href="#">Chain</a></li>
-                                                            <li><a href="#">Bangles</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Men</a>
-                                                        <ul>
-                                                            <li><a href="#">Ring</a></li>
-                                                            <li><a href="#">Pendant</a></li>
-                                                            <li><a href="#">Bracelet</a></li>
-                                                            <li><a href="#">Chain</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
-                                            </li>
+                                            <li><a href="<?=site_url('shop')?>">Shop Now</a></li>
                                             <li><a href="<?=site_url('AboutUs')?>">About Us</a></li>
                                         </ul>
                                     </nav>

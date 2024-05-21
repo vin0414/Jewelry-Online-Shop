@@ -129,12 +129,12 @@
                                             <span>Subtotal : </span>
                                             <span>PhP <?php echo number_format($total,2) ?></span>
                                         </div>
-                                        <?php } ?>
                                         <div class="mini_cart_footer">
                                             <div class="cart_button checkout">
                                                 <a href="<?=site_url('customer/check-out')?>" class="active">Check Out</a>
                                             </div>
                                         </div>
+                                        <?php } ?>
                                     </div>
                                     <!-- mini cart ends  -->
                                 </div>
@@ -163,28 +163,7 @@
                                                 <a href="/">Home</a>
                                             </li>
                                             <li>
-                                                <a href="#">Category <i class="ion-chevron-down"></i></a>
-                                                <ul class="mega_menu">
-                                                    <li>
-                                                        <a href="#">Women</a>
-                                                        <ul>
-                                                            <li><a href="#">Earring</a></li>
-                                                            <li><a href="#">Pendant</a></li>
-                                                            <li><a href="#">Rings</a></li>
-                                                            <li><a href="#">Chain</a></li>
-                                                            <li><a href="#">Bangles</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#">Men</a>
-                                                        <ul>
-                                                            <li><a href="#">Ring</a></li>
-                                                            <li><a href="#">Pendant</a></li>
-                                                            <li><a href="#">Bracelet</a></li>
-                                                            <li><a href="#">Chain</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul>
+                                                <a href="<?=site_url('shop')?>">Shop Now</a>
                                             </li>
                                             <li><a href="<?=site_url('AboutUs')?>">About Us</a></li>
                                         </ul>
