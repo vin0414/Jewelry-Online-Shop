@@ -78,59 +78,6 @@
                                 <a href="/"><img src="<?=base_url('assets/images/logo/LOGO2-Photoroom.jpg')?>" alt=""></a>
                             </div>
                         </div>
-
-                        <div class="col-lg-5 col-md-7 col-6">
-                            <div class="middel_right">
-                                <div class="search_btn">
-                                    <a href="#"><i class="ion-ios-search-strong"></i></a>
-                                    <div class="dropdown_search">
-                                        <form action="#">
-                                            <input type="text" placeholder="Search Product ....">
-                                            <button type="submit"><i class="ion-ios-search-strong"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
-                                <div class="cart_link">
-                                    <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity">PhP 0.00</span><i class="ion-chevron-down"></i></a>
-                                    <span class="cart_quantity">0</span>
-
-                                    <!-- mini cart -->
-                                    <div class="mini_cart">
-                                        <div class="cart_close">
-                                            <div class="cart_text">
-                                                <h3>cart</h3>
-                                            </div>
-                                            <div class="mini_cart_close">
-                                                <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="cart_item">
-                                            <div class="cart_img">
-                                                <a href="#"><img src="assets/images/nav-product/product.jpg" alt=""></a>
-                                            </div>
-                                            <div class="cart_info">
-                                                <a href="#">Earings</a>
-                                                <span class="quantity">Qty : 1</span>
-                                                <span class="price_cart">Rs. 54,599</span>
-                                            </div>
-                                            <div class="cart_remove">
-                                                <a href="#"><i class="ion-android-close"></i></a>
-                                            </div>
-                                        </div>
-                                        <div class="cart_total">
-                                            <span>Subtotal : </span>
-                                            <span>Rs. 67,598</span>
-                                        </div>
-                                        <div class="mini_cart_footer">
-                                            <div class="cart_button checkout">
-                                                <a href="<?=site_url('customer/orders')?>" class="active">View Orders</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <!-- mini cart ends  -->
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -194,10 +141,100 @@
 
         <section class="product_section p_section1 product_black_section">
             <div class="container">
+                <br/>
                 <div class="row">
                     <div class="col-12">
                         <div class="product_area">
-                            
+                            <div class="container">
+                                <div class="row">
+                                    <?php foreach($product as $row): ?>
+                                    <div class="col-lg-5 col-md-5 col-sm-12">
+                                        <div class="modal_tab">
+                                            <div class="tab-content product-details-large">
+                                                <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                                    <div class="modal_tab_img">
+                                                        <a href="#"><img src="<?=base_url('assets/images/product/7.jpg')?>" alt=""></a>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="tab2" role="tabpanel">
+                                                    <div class="modal_tab_img">
+                                                        <a href="#"><img src="<?=base_url('assets/images/product/8.jpg')?>" alt=""></a>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="tab3" role="tabpanel">
+                                                    <div class="modal_tab_img">
+                                                        <a href="#"><img src="<?=base_url('assets/images/product/9.jpg')?>" alt=""></a>
+                                                    </div>
+                                                </div>
+                                                <div class="tab-pane fade" id="tab4" role="tabpanel">
+                                                    <div class="modal_tab_img">
+                                                        <a href="#"><img src="<?=base_url('assets/images/product/6.jpg')?>" alt=""></a>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal_tab_button">
+                                                <ul class="nav product_navactive owl-carousel" role="tablist">
+                                                    <li>
+                                                        <a href="#tab1" class="nav-link active" data-toggle="tab" role="tab"
+                                                            aria-controls="tab1" aria-selected="false"><img
+                                                                src="<?=base_url('assets/images/product/7.jpg')?>" alt=""></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tab2" class="nav-link" data-toggle="tab" role="tab"
+                                                            aria-controls="tab2" aria-selected="false"><img
+                                                                src="<?=base_url('assets/images/product/8.jpg')?>" alt=""></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tab3" class="nav-link button_three" data-toggle="tab"
+                                                            role="tab" aria-controls="tab3" aria-selected="false"><img
+                                                                src="<?=base_url('assets/images/product/9.jpg')?>" alt=""></a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="#tab4" class="nav-link" data-toggle="tab" role="tab"
+                                                            aria-controls="tab4" aria-selected="false"><img
+                                                                src="<?=base_url('assets/images/product/6.jpg')?>" alt=""></a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-7 col-md-7 col-sm-12">
+                                        <div class="modal_right">
+                                            <div class="modal_title mb-10">
+                                                <h2 style="color:#fff;"><?php echo $row->productName ?></h2>
+                                            </div>
+                                            <?php if($row->onSales=="Yes"){ ?>
+                                            <div class="modal_price mb-10">
+                                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
+                                                <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                                            </div>
+                                            <?php }else {?>
+                                            <div class="modal_price mb-10">
+                                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                                            </div>
+                                            <?php } ?>
+                                            <div class="see_all">
+                                                <a href="#">Category : <?php echo $row->CategoryName ?></a>
+                                                <a href="#">Product Type : <?php echo $row->Product_Type ?></a>
+                                            </div>
+                                            <?php if($row->Qty==0){ ?>
+                                                <span class="badge bg-danger text-white" style="padding:10px;">Out of Stock</span>
+                                            <?php }else{ ?>
+                                            <div class="modal_add_to_cart mb-15">
+                                                <form method="post" action="<?=base_url('buy/'.$row->productID)?>">
+                                                    <input type="number" min="0" name="qty" id="qty" max="100" style="color:#fff;" required/>
+                                                    <button type="submit" class="btn">Add To Cart</button>
+                                                </form>
+                                            </div>
+                                            <?php } ?>
+                                            <div class="modal_description mb-15">
+                                                <p><?php echo $row->Description ?></p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <?php endforeach;?>
+                                </div>
+                            </div> 
                         </div>
                     </div>
                 </div>

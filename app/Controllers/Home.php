@@ -41,9 +41,23 @@ class Home extends BaseController
         $builder->WHERE('a.onSales','Yes');
         $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
         $discounted = $builder->get()->getResult();
+        //cart
+        $items = is_array(session('cart'))?array_values(session('cart')):array();
+        $total = $this->total();
 
-        $data = ['products'=>$products,'arrival'=>$newProduct,'feature'=>$feature,'discount'=>$discounted];
+        $data = ['products'=>$products,'arrival'=>$newProduct,'feature'=>$feature,'discount'=>$discounted,'items'=>$items,'total'=>$total];
         return view('welcome_message',$data);
+    }
+
+    private function total()
+    {
+        $s = 0;
+        $items = is_array(session('cart'))?array_values(session('cart')):array();
+        foreach($items as $item)
+        {
+            $s += $item['price']*$item['quantity'];
+        }
+        return $s;
     }
 
     public function about()

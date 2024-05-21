@@ -91,7 +91,7 @@
                                     </div>
                                 </div>
                                 <div class="cart_link">
-                                    <a href="#"><i class="ion-android-cart"></i><span class="cart_text_quantity">PhP 0.00</span><i class="ion-chevron-down"></i></a>
+                                    <a href="javascript:void(0);"><i class="ion-android-cart"></i><span class="cart_text_quantity">PhP <?php echo number_format($total,2) ?></span><i class="ion-chevron-down"></i></a>
                                     <span class="cart_quantity">0</span>
 
                                     <!-- mini cart -->
@@ -104,26 +104,35 @@
                                                 <a href="javascript:void(0)"><i class="ion-android-close"></i></a>
                                             </div>
                                         </div>
+                                        <?php if(empty($items)){ ?>
+                                            <div class="cart_info">
+                                                No Item(s)
+                                            </div>
+                                        <?php }else{?>
+                                        <?php foreach($items as $item): ?>
+                                            <?php $imgURL = "assets/images/product/".$item['photo']; ?>
                                         <div class="cart_item">
                                             <div class="cart_img">
-                                                <a href="#"><img src="assets/images/nav-product/product.jpg" alt=""></a>
+                                                <a href="#"><img src="<?php echo $imgURL ?>" alt=""></a>
                                             </div>
                                             <div class="cart_info">
-                                                <a href="#">Earings</a>
-                                                <span class="quantity">Qty : 1</span>
-                                                <span class="price_cart">Rs. 54,599</span>
+                                                <a href="#"><?=$item['name']?></a>
+                                                <span class="quantity">Qty : <?=$item['quantity']?></span>
+                                                <span class="price_cart">PhP <?=number_format($item['quantity']*$item['price'],2)?></span>
                                             </div>
                                             <div class="cart_remove">
-                                                <a href="#"><i class="ion-android-close"></i></a>
+                                                <a href="<?=site_url('remove/'.$item['id'])?>"><i class="ion-android-close"></i></a>
                                             </div>
                                         </div>
+                                        <?php endforeach;?>
                                         <div class="cart_total">
                                             <span>Subtotal : </span>
-                                            <span>Rs. 67,598</span>
+                                            <span>PhP <?php echo number_format($total,2) ?></span>
                                         </div>
+                                        <?php } ?>
                                         <div class="mini_cart_footer">
                                             <div class="cart_button checkout">
-                                                <a href="<?=site_url('customer/orders')?>" class="active">View Orders</a>
+                                                <a href="<?=site_url('customer/check-out')?>" class="active">Check Out</a>
                                             </div>
                                         </div>
                                     </div>

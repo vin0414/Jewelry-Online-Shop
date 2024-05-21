@@ -10,13 +10,6 @@ class Cart extends BaseController
         $this->db = db_connect();
     }
 
-    public function viewCart()
-    {
-        $data['items'] = is_array(session('cart'))?array_values(session('cart')):array();
-        $data['total'] = $this->total();
-        return view('welcome_message',$data);
-    }
-
     public function productDetails($id)
     {
         $builder = $this->db->table('tblproduct a');
@@ -35,19 +28,20 @@ class Cart extends BaseController
         unset($cart[$index]);
         $session = session();
         $session->set('cart',$cart);
-        return $this->response->redirect(site_url('welcome_message'));
+        return $this->response->redirect(site_url('/'));
     }
 
     public function buy($id)
     {
+        $qty = $this->request->getPost('qty');
         $productModel = new \App\Models\productModel();
-        $product = $productModel->find($id);
+        $product = $productModel->WHERE('productID',$id)->first();
         $item = array(
-            'id'=>$product['productID'],
+            'id'=>$id,
             'name'=>$product['productName'],
             'photo'=>$product['Image'],
             'price'=>$product['UnitPrice'],
-            'quantity'=>$this->request->getGet('qty')
+            'quantity'=>$qty
         );
         $session = session();
         if($session->has('cart'))
@@ -61,7 +55,7 @@ class Cart extends BaseController
             else
             {
                 session()->setFlashdata('fail','Invalid! Item(s) already added in your cart');
-                return redirect()->to('/products')->withInput();
+                return redirect()->to('/')->withInput();
             }
             $session->set('cart',$cart);
         }
@@ -70,7 +64,10 @@ class Cart extends BaseController
             $cart = array($item);
             $session->set('cart',$cart);
         }
-        return $this->response->redirect(site_url('welcome_message'));
+        return $this->response->redirect(site_url('/'));
+        // foreach(session('cart') as $cart) {
+        //     print_r($cart);
+        // }
     }
 
     private function exists($id)
