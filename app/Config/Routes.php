@@ -31,6 +31,7 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/shop', 'Home::store');
+$routes->get('/search-products', 'Home::searchProducts');
 $routes->get('/AboutUs', 'Home::about');
 $routes->get('/register', 'Home::register');
 $routes->post('create-account','Home::createAccount');

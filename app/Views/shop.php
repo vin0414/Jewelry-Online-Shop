@@ -261,11 +261,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <input type="search" class="form-control" style="background-color: #000;color:#fff;" name="search" placeholder="Search"/>
+                        <input type="search" class="form-control" style="background-color: #000;color:#fff;" id="search" name="search" placeholder="Search"/>
                     </div>
                     <div class="col-12">
                         <br/>
-                        <div class="row g-3">
+                        <div class="row g-3" id="loadProducts">
                             <?php foreach($products as $row): ?>
                                 <div class="col-lg-3 form-group">
                                     <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
@@ -385,6 +385,27 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
     <script src="assets/main.js"></script>
+    <script>
+        $('#search').keyup(function(){
+            var val = $(this).val();
+            $('#loadProducts').html("<div><center>Loading...</center></div>");
+            $.ajax({
+                url:"<?=site_url('search-products')?>",method:"GET",
+                data:{keyword:val},
+                success:function(response)
+                {
+                    if(response==="")
+                    {
+                        $('#loadProducts').html("<div><center>Loading...</center></div>");
+                    }
+                    else
+                    {
+                        $('#loadProducts').html(response);
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
