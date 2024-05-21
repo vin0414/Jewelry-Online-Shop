@@ -14,6 +14,7 @@
             background-color:blue;border:1px solid blue;border-radius: 3px 3px;}
         .btn:hover{color:blue;background-color:#ffffff;font-weight:bold;}
         .check-box{width:18px;height:18px;}
+        .alert-danger{background-color:red;padding:20px;color:#ffffff;}
     </style>
 </head>
 <body>

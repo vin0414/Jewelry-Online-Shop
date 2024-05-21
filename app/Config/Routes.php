@@ -31,10 +31,21 @@ $routes->set404Override();
 // route since we don't have to scan directories.
 $routes->get('/', 'Home::index');
 $routes->get('/AboutUs', 'Home::about');
-$routes->get('/sign-in', 'Home::signIn');
 $routes->get('/register', 'Home::register');
 $routes->post('create-account','Home::createAccount');
+$routes->post('/login','Home::Login');
+$routes->get('activate/(:any)','Home::activate/$1');
+$routes->get('sign-out','Home::signOut');
 
+$routes->group('',['filter'=>'customerAuthCheck'],function($routes)
+{
+
+});
+
+$routes->group('',['filter'=>'customerAlreadyLoggedIn'],function($routes)
+{
+    $routes->get('/sign-in', 'Home::signIn');
+});
 /*
  * --------------------------------------------------------------------
  * Additional Routing
