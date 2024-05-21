@@ -12,15 +12,8 @@ class Cart extends BaseController
 
     public function viewCart()
     {
-        $builder = $this->db->table('tblblog a');
-        $builder->select('a.*,b.Fullname');
-        $builder->join('tblaccount b','b.accountID=a.accountID','LEFT');
-        $builder->orderBy('a.blogID','DESC')->limit(3);
-        $blog = $builder->get()->getResult();
-
         $data['items'] = is_array(session('cart'))?array_values(session('cart')):array();
         $data['total'] = $this->total();
-        $data['blog'] = $blog;
         return view('welcome_message',$data);
     }
 
