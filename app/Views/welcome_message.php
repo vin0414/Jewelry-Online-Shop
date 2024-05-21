@@ -92,7 +92,7 @@
                                 </div>
                                 <div class="cart_link">
                                     <a href="javascript:void(0);"><i class="ion-android-cart"></i><span class="cart_text_quantity">PhP <?php echo number_format($total,2) ?></span><i class="ion-chevron-down"></i></a>
-                                    <span class="cart_quantity">0</span>
+                                    <span class="cart_quantity"><?php echo number_format($volume,0) ?></span>
 
                                     <!-- mini cart -->
                                     <div class="mini_cart">

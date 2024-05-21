@@ -871,3 +871,26 @@ INFO - 2024-05-21 08:26:21 --> Session: Class initialized using 'CodeIgniter\Ses
 INFO - 2024-05-21 08:26:22 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-21 08:26:55 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
 INFO - 2024-05-21 08:27:34 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 08:44:42 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-21 08:44:42 --> count(): Argument #1 ($value) must be of type Countable|array, string given
+in APPPATH\Controllers\Home.php on line 60.
+ 1 APPPATH\Controllers\Home.php(60): count('2')
+ 2 APPPATH\Controllers\Home.php(47): App\Controllers\Home->CountItem()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-21 08:45:00 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+CRITICAL - 2024-05-21 08:45:00 --> count(): Argument #1 ($value) must be of type Countable|array, string given
+in APPPATH\Controllers\Home.php on line 60.
+ 1 APPPATH\Controllers\Home.php(60): count('2')
+ 2 APPPATH\Controllers\Home.php(47): App\Controllers\Home->CountItem()
+ 3 SYSTEMPATH\CodeIgniter.php(934): App\Controllers\Home->index()
+ 4 SYSTEMPATH\CodeIgniter.php(499): CodeIgniter\CodeIgniter->runController(Object(App\Controllers\Home))
+ 5 SYSTEMPATH\CodeIgniter.php(368): CodeIgniter\CodeIgniter->handleRequest(null, Object(Config\Cache), false)
+ 6 FCPATH\index.php(67): CodeIgniter\CodeIgniter->run()
+ 7 SYSTEMPATH\Commands\Server\rewrite.php(47): require_once('FCPATH\\index.php')
+INFO - 2024-05-21 08:47:24 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 08:47:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.
+INFO - 2024-05-21 08:47:28 --> Session: Class initialized using 'CodeIgniter\Session\Handlers\FileHandler' driver.

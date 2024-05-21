@@ -44,8 +44,10 @@ class Home extends BaseController
         //cart
         $items = is_array(session('cart'))?array_values(session('cart')):array();
         $total = $this->total();
+        $totalItem = count(is_array(session('cart'))?array_values(session('cart')):array());
 
-        $data = ['products'=>$products,'arrival'=>$newProduct,'feature'=>$feature,'discount'=>$discounted,'items'=>$items,'total'=>$total];
+        $data = ['products'=>$products,'arrival'=>$newProduct,'feature'=>$feature,
+        'discount'=>$discounted,'items'=>$items,'total'=>$total,'volume'=>$totalItem];
         return view('welcome_message',$data);
     }
 
