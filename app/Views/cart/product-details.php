@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NASSER GOLDSMITH & JEWELRY STORE</title>
+    <title>Product Details</title>
     <link rel="shortcut icon" href="<?=base_url('assets/Diamond Ring.ico')?>" type="image/x-icon">
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
@@ -40,11 +40,10 @@
                                         <?php if(empty(session()->get('sess_id'))){ ?>
                                             <a href="<?=site_url('sign-in')?>">Sign-In</a>
                                         <?php }else{ ?>
-                                            <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                            <a href="#"><?php echo session()->get('sess_fullname') ?> <i class="ion-chevron-down"></i></a>
                                             <ul class="dropdown_links">
-                                                <li><a href="<?=site_url('customer/orders')?>">My Orders</a></li>
-                                                <li><a href="<?=site_url('customer/account')?>">My Account</a></li>
-                                                <li><a href="<?=site_url('customer/wish-list')?>">Wishlist</a></li>
+                                                <li><a href="<?=site_url('orders')?>">My Orders</a></li>
+                                                <li><a href="<?=site_url('account')?>">My Account</a></li>
                                                 <li><a href="<?=site_url('sign-out')?>">Sign-out</a></li>
                                             </ul>
                                         <?php } ?>
@@ -190,7 +189,6 @@
                                                 <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
                                             </div>
                                             <?php } ?>
-                                            <p>Available Stocks : <?php echo $row->Qty ?></p>
                                             <p>Category : <?php echo $row->CategoryName ?></p>
                                             <p>Product Type : <?php echo $row->Product_Type ?></p>
                                             <?php if($row->Qty==0){ ?>

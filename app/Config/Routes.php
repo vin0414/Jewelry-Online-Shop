@@ -34,6 +34,7 @@ $routes->get('/shop', 'Home::store');
 $routes->get('/search-products', 'Home::searchProducts');
 $routes->get('/AboutUs', 'Home::about');
 $routes->get('/register', 'Home::register');
+$routes->get('/forgot-password','Home::forgotPassword');
 $routes->post('create-account','Home::createAccount');
 $routes->post('/login','Home::Login');
 $routes->get('activate/(:any)','Home::activate/$1');
@@ -44,7 +45,9 @@ $routes->get('remove/(:any)','Cart::remove/$1');
 
 $routes->group('',['filter'=>'customerAuthCheck'],function($routes)
 {
-
+    $routes->get('check-out','Cart::checkOut');
+    $routes->get('orders','Cart::orders');
+    $routes->get('account','Cart::account');
 });
 
 $routes->group('',['filter'=>'customerAlreadyLoggedIn'],function($routes)

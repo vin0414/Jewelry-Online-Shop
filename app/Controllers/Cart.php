@@ -65,9 +65,6 @@ class Cart extends BaseController
             $session->set('cart',$cart);
         }
         return $this->response->redirect(site_url('/'));
-        // foreach(session('cart') as $cart) {
-        //     print_r($cart);
-        // }
     }
 
     private function exists($id)
@@ -81,5 +78,34 @@ class Cart extends BaseController
             }
         }
         return -1;
+    }
+
+    public function checkOut()
+    {
+        $items = is_array(session('cart'))?array_values(session('cart')):array();
+        $total = $this->total();
+        $data = ['items'=>$items,'total'=>$total];
+        return view('cart/check-out',$data);
+    }
+
+    private function total()
+    {
+        $s = 0;
+        $items = is_array(session('cart'))?array_values(session('cart')):array();
+        foreach($items as $item)
+        {
+            $s += $item['price']*$item['quantity'];
+        }
+        return $s;
+    }
+
+    public function orders()
+    {
+        return view('customer/orders');
+    }
+
+    public function account()
+    {
+        return view('customer/profile');
     }
 }

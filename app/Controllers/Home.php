@@ -146,6 +146,11 @@ class Home extends BaseController
         return view('register');
     }
 
+    public function forgotPassword()
+    {
+        return view('forgot-password');
+    }
+
     public function createAccount()
     {
         $customerModel = new \App\Models\customerModel();
