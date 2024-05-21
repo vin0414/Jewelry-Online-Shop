@@ -17,7 +17,7 @@ class Cart extends BaseController
         return view('welcome_message',$data);
     }
 
-    public function details($id)
+    public function productDetails($id)
     {
         $builder = $this->db->table('tblproduct a');
         $builder->select('a.*,b.CategoryName');
@@ -25,7 +25,7 @@ class Cart extends BaseController
         $builder->WHERE('a.productID',$id);
         $products = $builder->get()->getResult();
         $data = ['product'=>$products];
-        return view('cart/details',$data);
+        return view('cart/product-details',$data);
     }
 
     public function remove($id)

@@ -36,6 +36,7 @@ $routes->post('create-account','Home::createAccount');
 $routes->post('/login','Home::Login');
 $routes->get('activate/(:any)','Home::activate/$1');
 $routes->get('sign-out','Home::signOut');
+$routes->get('cart/details/(:any)','Cart::productDetails/$1');
 
 $routes->group('',['filter'=>'customerAuthCheck'],function($routes)
 {

@@ -281,11 +281,6 @@
                                                             <a href="#" class="secondary_img">
                                                                 <img src="assets/images/product/<?php echo $row->Image ?>"/>
                                                             </a>
-                                                            <div class="quick_button">
-                                                                <a href="#" data-toggle="modal" data-target="#modal_box"
-                                                                    data-placement="top" data-original-title="quick view">Quick
-                                                                    View</a>
-                                                            </div>
                                                         </div>
                                                         <div class="product_content">
                                                             <div class="tag_cate">
@@ -304,8 +299,9 @@
                                                                         <li><a href="#" data-placement="top" title="Add to Wishlist"
                                                                                 data-toggle="tooltip"><span
                                                                                     class="ion-heart"></span></a></li>
-                                                                        <li class="add_to_cart"><a href="#" title="Add to Cart">Add
-                                                                                to Cart</a></li>
+                                                                        <li class="add_to_cart">
+                                                                            <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                                                        </li>
                                                                         <li><a href="#" title="Compare"><i
                                                                                     class="ion-ios-settings-strong"></i></a>
                                                                         </li>
@@ -332,11 +328,6 @@
                                                             <a href="#" class="secondary_img">
                                                                 <img src="assets/images/product/<?php echo $row->Image ?>"/>
                                                             </a>
-                                                            <div class="quick_button">
-                                                                <a href="#" data-toggle="modal" data-target="#modal_box"
-                                                                    data-placement="top" data-original-title="quick view">Quick
-                                                                    View</a>
-                                                            </div>
                                                         </div>
                                                         <div class="product_content">
                                                             <div class="tag_cate">
@@ -355,7 +346,7 @@
                                                                         <li><a href="#" data-placement="top" title="Add to Wishlist"
                                                                                 data-toggle="tooltip"><span
                                                                                     class="ion-heart"></span></a></li>
-                                                                        <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                        <li class="add_to_cart"><a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add
                                                                                 to Cart</a></li>
                                                                         <li><a href="#" title="Compare"><i
                                                                                     class="ion-ios-settings-strong"></i></a>
@@ -383,11 +374,6 @@
                                                             <a href="#" class="secondary_img">
                                                                 <img src="assets/images/product/<?php echo $row->Image ?>"/>
                                                             </a>
-                                                            <div class="quick_button">
-                                                                <a href="#" data-toggle="modal" data-target="#modal_box"
-                                                                    data-placement="top" data-original-title="quick view">Quick
-                                                                    View</a>
-                                                            </div>
                                                         </div>
                                                         <div class="product_content">
                                                             <div class="tag_cate">
@@ -407,7 +393,7 @@
                                                                         <li><a href="#" data-placement="top" title="Add to Wishlist"
                                                                                 data-toggle="tooltip"><span
                                                                                     class="ion-heart"></span></a></li>
-                                                                        <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                                        <li class="add_to_cart"><a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add
                                                                                 to Cart</a></li>
                                                                         <li><a href="#" title="Compare"><i
                                                                                     class="ion-ios-settings-strong"></i></a>
@@ -468,11 +454,6 @@
                                                 <a href="#" class="secondary_img">
                                                     <img src="assets/images/product/<?php echo $row->Image ?>"/>
                                                 </a>
-                                                <div class="quick_button">
-                                                    <a href="#" data-toggle="modal" data-target="#modal_box"
-                                                        data-placement="top" data-original-title="quick view">Quick
-                                                        View</a>
-                                                </div>
                                             </div>
                                             <div class="product_content">
                                                 <div class="tag_cate">
@@ -491,7 +472,7 @@
                                                             <li><a href="#" data-placement="top" title="Add to Wishlist"
                                                                     data-toggle="tooltip"><span
                                                                         class="ion-heart"></span></a></li>
-                                                            <li class="add_to_cart"><a href="#" title="Add to Cart">Add
+                                                            <li class="add_to_cart"><a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add
                                                                     to Cart</a></li>
                                                             <li><a href="#" title="Compare"><i
                                                                         class="ion-ios-settings-strong"></i></a>
@@ -567,9 +548,9 @@
                                 <h3>Information</h3>
                                 <div class="footer_menu">
                                     <ul>
-                                        <li><a href="AboutUs.html">About Us</a></li>
-                                        <li><a href="Contact.html">Contact</a></li>
-                                        <li><a href="FAQ's.html">FAQs</a></li>
+                                        <li><a href="AboutUs">About Us</a></li>
+                                        <li><a href="ContactUs">Contact</a></li>
+                                        <li><a href="FAQ">FAQs</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -580,10 +561,8 @@
                                 <div class="footer_menu">
                                     <ul>
                                         <li><a href="#">My Account</a></li>
-                                        <li><a href="#">Contact</a></li>
+                                        <li><a href="#">Orders</a></li>
                                         <li><a href="#">Wishlist</a></li>
-                                        <li><a href="#">Portfolio</a></li>
-                                        <li><a href="#">Checkout</a></li>
                                     </ul>
                                 </div>
                             </div>
