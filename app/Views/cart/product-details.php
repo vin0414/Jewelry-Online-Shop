@@ -190,12 +190,11 @@
                                                 <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
                                             </div>
                                             <?php } ?>
-                                            <div class="see_all">
-                                                <a href="#">Category : <?php echo $row->CategoryName ?></a>
-                                                <a href="#">Product Type : <?php echo $row->Product_Type ?></a>
-                                            </div>
+                                            <p>Available Stocks : <?php echo $row->Qty ?></p>
+                                            <p>Category : <?php echo $row->CategoryName ?></p>
+                                            <p>Product Type : <?php echo $row->Product_Type ?></p>
                                             <?php if($row->Qty==0){ ?>
-                                                <span class="badge bg-danger text-white" style="padding:10px;">Out of Stock</span>
+                                              <span class="badge bg-danger text-white" style="padding:10px;">Out of Stock</span>
                                             <?php }else{ ?>
                                             <div class="modal_add_to_cart mb-15">
                                                 <form method="post" action="<?=base_url('buy/'.$row->productID)?>">
