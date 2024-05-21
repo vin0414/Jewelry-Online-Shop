@@ -37,13 +37,16 @@
                             <div class="top_right text-right">
                                 <ul>
                                     <li class="top_links">
-                                        <a href="#">My Account <i class="ion-chevron-down"></i></a>
-                                        <ul class="dropdown_links">
-                                            <li><a href="#">Checkout</a></li>
-                                            <li><a href="#">My Account</a></li>
-                                            <li><a href="ShoppingCart.html">Shopping Cart</a></li>
-                                            <li><a href="#">Wishlist</a></li>
-                                        </ul>
+                                        <?php if(empty(session()->get('sess_id'))){ ?>
+                                            <a href="<?=site_url('sign-in')?>">Sign-In</a>
+                                        <?php }else{ ?>
+                                            <a href="#">My Account <i class="ion-chevron-down"></i></a>
+                                            <ul class="dropdown_links">
+                                                <li><a href="<?=site_url('customer/orders')?>">My Orders</a></li>
+                                                <li><a href="<?=site_url('customer/account')?>">My Account</a></li>
+                                                <li><a href="<?=site_url('customer/wish-list')?>">Wishlist</a></li>
+                                            </ul>
+                                        <?php } ?>
                                     </li>
                                 </ul>
                             </div>
