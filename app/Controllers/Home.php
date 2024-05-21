@@ -17,7 +17,7 @@ class Home extends BaseController
         $builder = $this->db->table('tblproduct a');
         $builder->select('a.*,b.CategoryName');
         $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
-        $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+        $builder->groupBy('a.productID')->orderBy('a.productID','DESC')->limit(4);
         $products = $builder->get()->getResult();
         //new products
         $builder = $this->db->table('tblproduct a');
@@ -25,21 +25,21 @@ class Home extends BaseController
         $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
         $builder->WHERE('DATE_FORMAT(DateCreated,"%m")',date('m'));
         $builder->WHERE('DATE_FORMAT(DateCreated,"%Y")',date('Y'));
-        $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+        $builder->groupBy('a.productID')->orderBy('a.productID','DESC')->limit(4);
         $newProduct = $builder->get()->getResult();
         //featured
         $builder = $this->db->table('tblproduct a');
         $builder->select('a.*,b.CategoryName');
         $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
         $builder->WHERE('a.feature','Yes');
-        $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+        $builder->groupBy('a.productID')->orderBy('a.productID','DESC')->limit(4);
         $feature = $builder->get()->getResult();
         //on sales
         $builder = $this->db->table('tblproduct a');
         $builder->select('a.*,b.CategoryName');
         $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
         $builder->WHERE('a.onSales','Yes');
-        $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+        $builder->groupBy('a.productID')->orderBy('a.productID','DESC')->limit(4);
         $discounted = $builder->get()->getResult();
         //cart
         $items = is_array(session('cart'))?array_values(session('cart')):array();
@@ -60,6 +60,21 @@ class Home extends BaseController
             $s += $item['price']*$item['quantity'];
         }
         return $s;
+    }
+
+    public function store()
+    {
+        $builder = $this->db->table('tblproduct a');
+        $builder->select('a.*,b.CategoryName');
+        $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+        $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+        $products = $builder->get()->getResult();
+
+        $items = is_array(session('cart'))?array_values(session('cart')):array();
+        $total = $this->total();
+        $totalItem = count(is_array(session('cart'))?array_values(session('cart')):array());
+        $data = ['items'=>$items,'total'=>$total,'volume'=>$totalItem,'products'=>$products];
+        return view('shop',$data);
     }
 
     public function about()

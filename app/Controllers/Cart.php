@@ -40,7 +40,7 @@ class Cart extends BaseController
             'id'=>$id,
             'name'=>$product['productName'],
             'photo'=>$product['Image'],
-            'price'=>$product['UnitPrice'],
+            'price'=>$product['UnitPrice']-($product['UnitPrice']*$product['Discount']),
             'quantity'=>$qty
         );
         $session = session();
@@ -81,16 +81,5 @@ class Cart extends BaseController
             }
         }
         return -1;
-    }
-
-    private function total()
-    {
-        $s = 0;
-        $items = is_array(session('cart'))?array_values(session('cart')):array();
-        foreach($items as $item)
-        {
-            $s += $item['price']*$item['quantity'];
-        }
-        return $s;
     }
 }
