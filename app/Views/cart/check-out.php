@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css">
 
     <link rel="stylesheet" href="<?=base_url('assets/style.css')?>">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 
 <body>
@@ -127,6 +128,7 @@
                                     <div class="col-lg-8 form-group">
                                         <table class="table table-bordered text-white">
                                             <thead>
+                                                <th>&nbsp;</th>
                                                 <th>Image</th>
                                                 <th>Product Name</th>
                                                 <th>Qty</th>
@@ -134,8 +136,14 @@
                                                 <th>Total Price</th>
                                             </thead>
                                             <tbody>
+                                                <?php if(empty($items)){ ?>
+                                                    <tr><td colspan="6">No Order(s)</td></tr>
+                                                <?php }else{ ?>
                                                 <?php foreach($items as $row): ?>
                                                     <tr>
+                                                        <td>
+                                                            <center><a href="<?=site_url('remove-item/'.$row['id'])?>"><i class="text-danger fa fa-trash"></i></a></center>
+                                                        </td>
                                                         <td>
                                                             <img src="<?=base_url('assets/images/product')?>/<?php echo $row['photo'] ?>" width="50"/>
                                                         </td>
@@ -145,8 +153,9 @@
                                                         <td><?php echo number_format($row['price']*$row['quantity'],2) ?></td>
                                                     </tr>
                                                 <?php endforeach;?>
+                                                <?php } ?>
                                                 <tr>
-                                                    <td colspan="4">Total</td>
+                                                    <td colspan="5">Total</td>
                                                     <td><?=number_format($total,2)?></td>
                                                 </tr>
                                             </tbody>
@@ -167,6 +176,16 @@
                                             </div>
                                             <div class="col-12 form-group">
                                                 <p>Payment Details</p>
+                                                <select class="form-control" name="payment" style="background-color: #000;color:#fff;" required>
+                                                    <option value="">Choose</option>
+                                                    <option value="COD">Cash On Delivery</option>
+                                                    <option value="PICKUP">Pick-Up Delivery</option>
+                                                </select>
+                                            </div>
+                                            <input type="hidden" name="amount" value="<?=$total?>"/>
+                                            <div class="col-12 form-group">
+                                                <br/>
+                                                <button type="submit" class="btn btn-warning"><span class="fa fa-check-circle"></span> Confirm Order(s)</button>
                                             </div>
                                         </div>
                                     </div>

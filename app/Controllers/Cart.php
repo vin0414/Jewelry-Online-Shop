@@ -31,6 +31,16 @@ class Cart extends BaseController
         return $this->response->redirect(site_url('/'));
     }
 
+    public function removeItem($id)
+    {
+        $index = $this->exists($id);
+        $cart = array_values(session('cart'));
+        unset($cart[$index]);
+        $session = session();
+        $session->set('cart',$cart);
+        return $this->response->redirect(site_url('/check-out'));
+    }
+
     public function buy($id)
     {
         $qty = $this->request->getPost('qty');
@@ -86,6 +96,40 @@ class Cart extends BaseController
         $total = $this->total();
         $data = ['items'=>$items,'total'=>$total];
         return view('cart/check-out',$data);
+    }
+
+    public function orderConfirmation()
+    {
+        $orderModel = new \App\Models\orderModel();
+        $user = session()->get('sess_id');
+        $address = $this->request->getPost('address');
+        $contactNo = $this->request->getPost('contactNo');
+        $amount = $this->request->getPost('amount');
+        $payment = $this->request->getPost('payment');
+        $status = 0;
+        $trxnCode = "";
+        $builder = $this->db->table('tblpayment');
+        $builder->select('COUNT(paymentID)+1 as total');
+        $count = $builder->get();
+        if($row = $count->getRow())
+        {
+            $trxnCode = str_pad($row->total, 11, '0', STR_PAD_LEFT);
+        }
+        //save the cart
+        $items = array_values(session('cart'));
+        foreach($items as $item)
+        {
+            $values = [
+                'customerID'=>$user,'productName'=>$item['name'], 'Qty'=>$item['quantity'],
+                'price'=>$item['price'],'Status'=>0,'TransactionNo'=>$trxnCode
+            ];
+            $orderModel->save($values);
+        }
+        $session = session();
+        $session->remove('cart');
+        //save the other info
+
+        //redirect to my orders page
     }
 
     private function total()
