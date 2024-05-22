@@ -143,17 +143,30 @@ class Home extends BaseController
 
     public function orders()
     {
-        return view('admin/orders');
+        $builder = $this->db->table('tblpayment a');
+        $builder->select('a.*,b.Fullname');
+        $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
+        $orderList = $builder->get();
+        $data = ['orders'=>$orderList];
+        return view('admin/orders',$data);
     }
 
     public function customers()
     {
-        return view('admin/customers');
+        $customerModel = new \App\Models\customerModel();
+        $customers = $customerModel->findAll();
+        $data = ['customer'=>$customers];
+        return view('admin/customers',$data);
     }
 
     public function salesReport()
     {
         return view('admin/sales-report');
+    }
+
+    public function account()
+    {
+        return view('admin/account');
     }
 
     //customer

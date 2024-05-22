@@ -55,6 +55,7 @@ $routes->group('',['filter'=>'AuthCheck'],function($routes)
     $routes->get('products','Home::products');
     $routes->get('customers','Home::customers');
     $routes->get('sales-report','Home::salesReport');
+    $routes->get('account-settings','Home::account');
 });
 
 $routes->group('',['filter'=>'AlreadyLoggedIn'],function($routes)
