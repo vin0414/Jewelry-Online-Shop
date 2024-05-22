@@ -43,6 +43,7 @@
                                             <a href="#"><?php echo session()->get('sess_fullname') ?> <i class="ion-chevron-down"></i></a>
                                             <ul class="dropdown_links">
                                                 <li><a href="<?=site_url('orders')?>">My Orders</a></li>
+                                                <li><a href="<?=site_url('history')?>">Order History</a></li>
                                                 <li><a href="<?=site_url('account')?>">My Account</a></li>
                                                 <li><a href="<?=site_url('sign-out')?>">Sign-out</a></li>
                                             </ul>
