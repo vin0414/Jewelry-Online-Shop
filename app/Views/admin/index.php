@@ -19,5 +19,13 @@
     <h5>Monthly Income</h5>
     <h1><?=number_format($income,2)?></h1>
 </div>
+<div>
+    <h5>Daily Income</h5>
+    <h1><?=number_format($daily,2)?></h1>
+</div>
+<div>
+    <h5>Customers</h5>
+    <h1><?=number_format($customer,0)?></h1>
+</div>
 </body>
 </html>

@@ -77,6 +77,16 @@ class Home extends BaseController
     public function dashboard()
     {
         //orders
+        $customer = 0;
+        $builder = $this->db->table('tblcustomer');
+        $builder->select('COUNT(customerID)total');
+        $builder->WHERE('Status',1);
+        $orderList = $builder->get();
+        if($row = $orderList->getRow())
+        {
+            $customer = $row->total;
+        }
+        //orders
         $order = 0;
         $builder = $this->db->table('tblpayment');
         $builder->select('COUNT(paymentID)total');
@@ -87,17 +97,30 @@ class Home extends BaseController
             $order = $row->total;
         }
         //revenue for the month
-        $income = 0;
+        $income = 0;$month = date('m');$year = date('Y');
         $builder = $this->db->table('tblpayment');
         $builder->select('IFNULL(SUM(Total),0)total');
-        $builder->WHERE('Status<>',0);
+        $builder->WHERE('Status<>',0)
+        ->WHERE('DATE_FORMAT(DateCreated,"%m")',$month)
+        ->WHERE('DATE_FORMAT(DateCreated,"%Y")',$year);
         $orderList = $builder->get();
         if($row = $orderList->getRow())
         {
             $income = $row->total;
         }
+        //revenue for the current date
+        $dailyIncome = 0;$date=date('Y-m-d');
+        $builder = $this->db->table('tblpayment');
+        $builder->select('IFNULL(SUM(Total),0)total');
+        $builder->WHERE('Status<>',0)
+        ->WHERE('DateCreated',$date);
+        $orderList = $builder->get();
+        if($row = $orderList->getRow())
+        {
+            $dailyIncome = $row->total;
+        }
         //collect 
-        $data = ['order'=>$order,'income'=>$income];
+        $data = ['order'=>$order,'income'=>$income,'daily'=>$dailyIncome,'customer'=>$customer];
         return view('admin/index',$data);
     }
 
