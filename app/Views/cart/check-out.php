@@ -164,7 +164,7 @@
                                     <div class="col-lg-4 form-group">
                                         <div class="row g-2">
                                             <div class="col-12 form-group">
-                                                <input type="checkbox" style="height:15px;width:15px;" name="currentAddress" id="currentAddress" value="1"/>&nbsp;<label>Current Address?</label>
+                                                <input type="checkbox" style="height:15px;width:15px;" name="currentAddress" id="currentAddress" value="1"/>&nbsp;<label>Primary Address?</label>
                                             </div>
                                             <div class="col-12 form-group">
                                                 <label>Delivery Address</label>
