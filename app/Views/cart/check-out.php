@@ -186,7 +186,11 @@
                                             <input type="hidden" name="amount" value="<?=$total?>"/>
                                             <div class="col-12 form-group">
                                                 <br/>
-                                                <button type="submit" class="btn btn-warning"><span class="fa fa-check-circle"></span> Confirm Order(s)</button>
+                                                <?php if(empty($items)){ ?>
+                                                    <button type="submit" class="btn btn-warning" disabled><span class="fa fa-check-circle"></span> Confirm Order(s)</button>
+                                                <?php }else{?>
+                                                    <button type="submit" class="btn btn-warning"><span class="fa fa-check-circle"></span> Confirm Order(s)</button>
+                                                <?php } ?>
                                             </div>
                                         </div>
                                     </div>
@@ -286,7 +290,12 @@
 						$('#phone').val(data["contactNo"]);
                     }
                 });
-            }       
+            }  
+            else
+            {
+                $('#address').val("");
+				$('#phone').val("");
+            }     
         });
     </script>
 </body>

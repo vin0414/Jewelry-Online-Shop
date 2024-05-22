@@ -119,8 +119,14 @@ class Home extends BaseController
         {
             $dailyIncome = $row->total;
         }
+        //recent products
+        $builder = $this->db->table('tblproduct a');
+        $builder->select('a.*,b.CategoryName');
+        $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+        $builder->groupBy('a.productID')->orderBy('a.productID','DESC')->limit(5);
+        $products = $builder->get()->getResult();
         //collect 
-        $data = ['order'=>$order,'income'=>$income,'daily'=>$dailyIncome,'customer'=>$customer];
+        $data = ['order'=>$order,'income'=>$income,'daily'=>$dailyIncome,'customer'=>$customer,'products'=>$products];
         return view('admin/index',$data);
     }
 
@@ -138,6 +144,11 @@ class Home extends BaseController
     public function orders()
     {
         return view('admin/orders');
+    }
+
+    public function customers()
+    {
+        return view('admin/customers');
     }
 
     public function salesReport()

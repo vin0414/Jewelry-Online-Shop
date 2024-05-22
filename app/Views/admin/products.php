@@ -8,8 +8,10 @@
     <title>Products</title>
 </head>
 <body>
+<div><a href="<?=site_url('dashboard')?>">Dashboard</a></div>
 <div><a href="<?=site_url('products')?>">Products</a></div>
 <div><a href="<?=site_url('customer-orders')?>">Orders</a></div>
+<div><a href="<?=site_url('customers')?>">Customers</a></div>
 <div><a href="<?=site_url('sales-report')?>">Sales Report</a></div>
 <table border="1" width="100%">
     <thead>
