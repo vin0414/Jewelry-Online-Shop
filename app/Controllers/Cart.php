@@ -101,6 +101,7 @@ class Cart extends BaseController
     public function orderConfirmation()
     {
         $orderModel = new \App\Models\orderModel();
+        $paymentModel = new \App\Models\paymentModel();
         $user = session()->get('sess_id');
         $address = $this->request->getPost('address');
         $contactNo = $this->request->getPost('contactNo');
@@ -128,8 +129,12 @@ class Cart extends BaseController
         $session = session();
         $session->remove('cart');
         //save the other info
-
+        $values = ['customerID'=>$user,'TransactionNo'=>$trxnCode,'Total'=>$amount,
+                    'Status'=>$status,'DateCreated'=>date('Y-m-d'),'DateReceived'=>'0000-00-00',
+                    'DeliveryAddress'=>$address,'ContactNo'=>$contactNo,'paymentDetails'=>$payment];
+        $paymentModel->save($values);
         //redirect to my orders page
+        return $this->response->redirect(site_url('/orders'));
     }
 
     private function total()

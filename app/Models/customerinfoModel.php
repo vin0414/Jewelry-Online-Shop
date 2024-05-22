@@ -14,7 +14,7 @@ class customerinfoModel extends Model
     protected $returnType = 'array';
     protected $userSoftDelete = false;
     protected $protectFields = true;
-    protected $allowedFields = ['customerID', 'Address','ContactNo'];
+    protected $allowedFields = ['customerID', 'Street','Barangay','City','Province','ZipCode','BirthDate','Gender','ContactNo','primary'];
 
     protected $validationRules = [];
     protected $validationMessages = [];
