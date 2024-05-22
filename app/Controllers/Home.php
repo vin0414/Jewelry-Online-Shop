@@ -76,17 +76,50 @@ class Home extends BaseController
 
     public function dashboard()
     {
-        return view('admin/index');
+        //orders
+        $order = 0;
+        $builder = $this->db->table('tblpayment');
+        $builder->select('COUNT(paymentID)total');
+        $builder->WHERE('Status',0);
+        $orderList = $builder->get();
+        if($row = $orderList->getRow())
+        {
+            $order = $row->total;
+        }
+        //revenue for the month
+        $income = 0;
+        $builder = $this->db->table('tblpayment');
+        $builder->select('IFNULL(SUM(Total),0)total');
+        $builder->WHERE('Status<>',0);
+        $orderList = $builder->get();
+        if($row = $orderList->getRow())
+        {
+            $income = $row->total;
+        }
+        //collect 
+        $data = ['order'=>$order,'income'=>$income];
+        return view('admin/index',$data);
     }
 
     public function products()
     {
-        return view('admin/products');
+        $builder = $this->db->table('tblproduct a');
+        $builder->select('a.*,b.CategoryName');
+        $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+        $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+        $products = $builder->get()->getResult();
+        $data = ['products'=>$products];
+        return view('admin/products',$data);
     }
 
     public function orders()
     {
         return view('admin/orders');
+    }
+
+    public function salesReport()
+    {
+        return view('admin/sales-report');
     }
 
     //customer
