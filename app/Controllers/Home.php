@@ -18,6 +18,79 @@ class Home extends BaseController
         return view('auth');
     }
 
+    public function validateUser()
+    {
+        $email = $this->request->getPost('email');
+        $password = $this->request->getPost('password');
+
+        $validation = $this->validate([
+            'email'=>'required|valid_email',
+            'password'=>'required'
+        ]);
+
+        if(!$validation)
+        {
+            session()->setFlashdata('fail','Invalid email or password');
+            return redirect()->to('/login')->withInput();
+        }
+        else
+        {
+            $builder = $this->db->table('tblaccount');
+            $builder->select('*');
+            $builder->WHERE('Email',$email)->WHERE('Status',1);
+            $data = $builder->get();
+            if($row = $data->getRow())
+            {
+                $check_password = Hash::check($password, $row->Password);
+                if(empty($check_password) || !$check_password)
+                {
+                    session()->setFlashdata('fail','Invalid email or password');
+                    return redirect()->to('/auth')->withInput();
+                }
+                else
+                {
+                    session()->set('loggedUser', $row->accountID);
+                    session()->set('sess_fullname', $row->Fullname);
+                    session()->set('sess_email',$row->Email);
+                    return $this->response->redirect(site_url('dashboard'));
+                }
+            }
+            else
+            {
+                session()->setFlashdata('fail','Account is disabled. Please contact the Administrator');
+                return redirect()->to('/auth')->withInput();
+            }
+        }
+    }
+
+    public function logOut()
+    {
+        if(session()->has('loggedUser'))
+        {
+            session()->remove('loggedUser');
+            session()->remove('sess_fullname');
+            session()->destroy();
+            return redirect()->to('/auth?access=out')->with('fail', 'You are logged out!');
+        }
+    }
+
+    public function dashboard()
+    {
+        return view('admin/index');
+    }
+
+    public function products()
+    {
+        return view('admin/products');
+    }
+
+    public function orders()
+    {
+        return view('admin/orders');
+    }
+
+    //customer
+
     public function index()
     {
         $builder = $this->db->table('tblproduct a');
@@ -232,8 +305,6 @@ class Home extends BaseController
 
     public function Login()
     {
-        $customerModel = new \App\Models\customerModel();
-        //data
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 

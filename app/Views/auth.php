@@ -27,7 +27,7 @@
                 <?= session()->getFlashdata('fail'); ?>
                 </div>
             <?php endif; ?>
-            <form method="post" class="row" id="frmLogin" action="<?=base_url('login')?>">
+            <form method="post" class="row" id="frmLogin" action="<?=base_url('validate')?>">
                 <div class="col-12 form-group">
                     <label>Email Address</label>
                     <input type="email" class="form-control" name="email" required/>

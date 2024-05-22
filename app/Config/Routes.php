@@ -37,8 +37,10 @@ $routes->get('/register', 'Home::register');
 $routes->get('/forgot-password','Home::forgotPassword');
 $routes->post('create-account','Home::createAccount');
 $routes->post('/login','Home::Login');
+$routes->post('/validate','Home::validateUser');
 $routes->get('activate/(:any)','Home::activate/$1');
 $routes->get('sign-out','Home::signOut');
+$routes->get('log-out','Home::logOut');
 $routes->get('cart/details/(:any)','Cart::productDetails/$1');
 $routes->post('buy/(:any)','Cart::buy/$1');
 $routes->get('remove/(:any)','Cart::remove/$1');
@@ -46,17 +48,29 @@ $routes->get('remove-item/(:any)','Cart::removeItem/$1');
 $routes->post('confirmation','Cart::orderConfirmation');
 $routes->get('fetch-primary-address','Cart::primaryAddress');
 
+$routes->group('',['filter'=>'AuthCheck'],function($routes)
+{
+    $routes->get('dashboard','Home::dashboard');
+    $routes->get('customer-orders','Home::orders');
+    $routes->get('products','Home::products');
+});
+
+$routes->group('',['filter'=>'AlreadyLoggedIn'],function($routes)
+{
+    $routes->get('/auth','Home::Auth');
+});
+
 $routes->group('',['filter'=>'customerAuthCheck'],function($routes)
 {
     $routes->get('check-out','Cart::checkOut');
     $routes->get('orders','Cart::orders');
+    $routes->get('history','Cart::orderHistory');
     $routes->get('account','Cart::account');
 });
 
 $routes->group('',['filter'=>'customerAlreadyLoggedIn'],function($routes)
 {
     $routes->get('/sign-in', 'Home::signIn');
-    $routes->get('/auth', 'Home::auth');
 });
 /*
  * --------------------------------------------------------------------

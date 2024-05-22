@@ -158,6 +158,11 @@ class Cart extends BaseController
         return view('customer/profile');
     }
 
+    public function orderHistory()
+    {
+        return view('customer/order-history');
+    }
+
     public function primaryAddress()
     {
         $user = session()->get('sess_id');
