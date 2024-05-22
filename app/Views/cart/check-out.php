@@ -164,15 +164,15 @@
                                     <div class="col-lg-4 form-group">
                                         <div class="row g-2">
                                             <div class="col-12 form-group">
-                                                <input type="checkbox" style="height:15px;width:15px;" name="currentAddress" id="currentAddress" value="1"/>&nbsp;<label>Primary Address?</label>
+                                                <input type="checkbox" style="height:15px;width:15px;" name="currentAddress" id="currentAddress"/>&nbsp;<label>Primary Address?</label>
                                             </div>
                                             <div class="col-12 form-group">
                                                 <label>Delivery Address</label>
-                                                <textarea class="form-control" name="address" style="background-color:#000;color:#fff;" required></textarea>
+                                                <textarea class="form-control" id="address" name="address" style="background-color:#000;color:#fff;" required></textarea>
                                             </div>
                                             <div class="col-12 form-group">
                                                 <label>Contact No</label>
-                                                <input type="phone" class="form-control" maxlength="11" minlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="contactNo" style="background-color:#000;color:#fff;" required/>
+                                                <input type="phone" id="phone" class="form-control" maxlength="11" minlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="contactNo" style="background-color:#000;color:#fff;" required/>
                                             </div>
                                             <div class="col-12 form-group">
                                                 <p>Payment Details</p>
@@ -273,6 +273,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
 
     <script src="<?=base_url('assets/main.js')?>"></script>
+    <script>
+        $('#currentAddress').change(function() {
+            if(this.checked) {
+                $.ajax({
+                    url:"<?=site_url('fetch-primary-address')?>",method:"GET",
+                    dataType:"JSON",
+                    success:function(data)
+                    {
+                        $('#address').val(data["Address"]);
+						$('#phone').val(data["contactNo"]);
+                    }
+                });
+            }       
+        });
+    </script>
 </body>
 
 </html>

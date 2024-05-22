@@ -157,4 +157,18 @@ class Cart extends BaseController
     {
         return view('customer/profile');
     }
+
+    public function primaryAddress()
+    {
+        $user = session()->get('sess_id');
+        $builder = $this->db->table('tbl_customerinfo');
+        $builder->select('*');
+        $builder->LIKE('customerID',$user)->WHERE('primary','Yes');
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            $info = array("Address"=>$row->Street.",".$row->Barangay.",".$row->City.",".$row->Province." ".$row->ZipCode,"contactNo"=>$row->ContactNo);
+            echo json_encode($info);
+        }
+    }
 }

@@ -44,6 +44,7 @@ $routes->post('buy/(:any)','Cart::buy/$1');
 $routes->get('remove/(:any)','Cart::remove/$1');
 $routes->get('remove-item/(:any)','Cart::removeItem/$1');
 $routes->post('confirmation','Cart::orderConfirmation');
+$routes->get('fetch-primary-address','Cart::primaryAddress');
 
 $routes->group('',['filter'=>'customerAuthCheck'],function($routes)
 {
@@ -55,6 +56,7 @@ $routes->group('',['filter'=>'customerAuthCheck'],function($routes)
 $routes->group('',['filter'=>'customerAlreadyLoggedIn'],function($routes)
 {
     $routes->get('/sign-in', 'Home::signIn');
+    $routes->get('/auth', 'Home::auth');
 });
 /*
  * --------------------------------------------------------------------

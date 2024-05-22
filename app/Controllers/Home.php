@@ -12,6 +12,12 @@ class Home extends BaseController
         helper('text');
         $this->db = db_connect();
     } 
+
+    public function auth()
+    {
+        return view('auth');
+    }
+
     public function index()
     {
         $builder = $this->db->table('tblproduct a');
