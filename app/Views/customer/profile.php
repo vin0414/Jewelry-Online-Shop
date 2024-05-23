@@ -7,10 +7,8 @@
     <title>My Account</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap" rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<?=base_url('assets/css/styles.css')?>" />
     <link rel="stylesheet" href="<?=base_url('assets/css/queries.css')?>" />
     <style>
@@ -335,8 +333,10 @@
       .col-11 {width: 91.66%;}
       .col-12 {width: 100%;}
       .active{background-color: #262626;color:#fff;}
-      .row:after{
-          display: table;
+      .row{
+          display: flex;
+          grid-template-columns: 1fr 1fr;
+          grid-column-gap:20px;
       }
       .row-form{
           display: grid;
@@ -344,6 +344,7 @@
           grid-gap: 10px;
           padding: 10px;
       }
+      .form-group{padding-top:5px;padding-bottom: 5px;}
       .form-control{padding:10px 18px;width:100%;}
       .bg-default,.btn-default{background-color:#262626;color:#fff;}
       .bg-success,.btn-success{background-color:limegreen;color:#fff;}
@@ -354,7 +355,7 @@
         text-align: center;
         text-decoration: none;
         display: inline-block;
-        font-size: 12px;
+        font-size: 15px;
         margin: 2px 2px;
         cursor: pointer;
       }
@@ -427,42 +428,103 @@
           <p class="order__heading">My Account</p>
         </div>
         <div class="row">
-          <div class="col-8">
+          <div class="col-8 form-group">
             <div class="order__box margin_top_4">
               <p>Account Information</p>
               <form method="POST" class="row-form" id="frmAccount">
+                <?php if($customer): ?>
                 <div class="col-12 form-group">
                   <label><b>Fullname</b></label>
-                  <input type="text" class="form-control" name="fullname"/>
+                  <input type="text" class="form-control" value="<?=$customer['Fullname']?>" name="fullname" required/>
                 </div>
                 <div class="col-12 form-group">
                   <label><b>Email Address</b></label>
-                  <input type="email" class="form-control" name="email"/>
+                  <input type="email" class="form-control" value="<?=$customer['Email']?>" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
                 </div>
+                <?php endif;?>
+                <div class="col-12 form-group">
+                  Personal Details
+                </div>
+                <?php if($info): ?>
+                <div class="col-12 form-group">
+                  <div class="row">
+                    <div class="col-4">
+                      <label><b>Birth Date</b></label>
+                      <input type="date" class="form-control" value="<?=$info['BirthDate']?>" name="birthdate" required/>
+                    </div>
+                    <div class="col-4">
+                      <label><b>Contact No</b></label>
+                      <input type="phone" id="phone" class="form-control" value="<?=$info['ContactNo']?>"  maxlength="11" minlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="phone" required/>
+                    </div>
+                    <div class="col-4">
+                      <label><b>Gender</b></label>
+                      <select class="form-control" name="gender" required>
+                        <option value="">Choose</option>
+                        <option <?php if($info['Gender']=="Male") echo 'selected="selected"'; ?>>Male</option>
+                        <option <?php if($info['Gender']=="Female") echo 'selected="selected"'; ?>>Female</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 form-group">
+                  <label>Shipping Address</label>
+                </div>
+                <div class="col-12 form-group">
+                  <div class="row">
+                    <div class="col-6">
+                      <label><b>Street</b></label>
+                      <input type="text" class="form-control" name="street" value="<?=$info['Street']?>"  required/>
+                    </div>
+                    <div class="col-6">
+                      <label><b>Village/Barangay</b></label>
+                      <input type="text" class="form-control" name="barangay" value="<?=$info['Barangay']?>" required/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 form-group">
+                  <div class="row">
+                    <div class="col-6">
+                      <label><b>City</b></label>
+                      <input type="text" class="form-control" name="city" value="<?=$info['City']?>" required/>
+                    </div>
+                    <div class="col-4">
+                      <label><b>Province</b></label>
+                      <input type="text" class="form-control" name="province" value="<?=$info['Province']?>" required/>
+                    </div>
+                    <div class="col-2">
+                      <label><b>Zip Code</b></label>
+                      <input type="text" class="form-control" name="zipcode" value="<?=$info['ZipCode']?>" required/>
+                    </div>
+                  </div>
+                </div>
+                <?php endif;?>
                 <div class="col-12 form-group">
                   <button type="submit" class="btn btn-default" id="btnSave">Save Changes</button>
                 </div>
               </form>
             </div>
           </div>
-          <div class="col-4">
+          <div class="col-4 form-group">
             <div class="order__box margin_top_4">
               <p>Account Security</p>
-              <form method="POST" class="row-form" id="frmPasword">
+              <form method="POST" class="row-form" id="frmPassword">
                 <div class="col-12 form-group">
                   <label><b>Current Password</b></label>
-                  <input type="password" class="form-control" name="current_password"/>
+                  <input type="password" class="form-control" name="current_password" id="current"/>
                 </div>
                 <div class="col-12 form-group">
                   <label><b>New Password</b></label>
-                  <input type="password" class="form-control" name="new_password"/>
+                  <input type="password" class="form-control" name="new_password" id="new"/>
                 </div>
                 <div class="col-12 form-group">
                   <label><b>Confirm Password</b></label>
-                  <input type="password" class="form-control" name="confirm_password"/>
+                  <input type="password" class="form-control" name="confirm_password" id="confirm"/>
                 </div>
                 <div class="col-12 form-group">
-                  <button type="submit" class="btn btn-default" id="btnSave">Save Changes</button>
+                    <input type="checkbox" onclick="myFunction()"> Show Password
+                </div>
+                <div class="col-12 form-group">
+                  <button type="submit" class="btn btn-default" id="btnSubmit">Save Changes</button>
                 </div>
               </form>
             </div>
@@ -601,6 +663,69 @@
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
 	// ]]>
+</script>
+<script>
+  $('#btnSubmit').on('click',function(e){
+    e.preventDefault();
+    var data = $('#frmPassword').serialize();
+    $.ajax({
+      url:"<?=site_url('update-password')?>",method:"POST",
+      data:data,success:function(response)
+      {
+        if(response==="success")
+        {
+          alert("Great! Successfully changed");
+          $('#frmPassword')[0].reset();
+        }
+        else
+        {
+          alert(response);
+        }
+      }
+    });
+  });
+
+  $('#btnSave').on('click',function(e){
+    e.preventDefault();
+    var data = $('#frmAccount').serialize();
+    $.ajax({
+      url:"<?=site_url('save-changes')?>",method:"POST",
+      data:data,success:function(response)
+      {
+        if(response==="success")
+        {
+          alert("Great! Successfully applied changes");
+          location.reload();
+        }
+        else
+        {
+          alert(response);
+        }
+      }
+    });
+  });
+  function myFunction() {
+    var x = document.getElementById("current");
+    if (x.type === "password") {
+        x.type = "text";
+    } else {
+        x.type = "password";
+    }
+
+    var xx = document.getElementById("new");
+    if (xx.type === "password") {
+        xx.type = "text";
+    } else {
+        xx.type = "password";
+    }
+
+    var xxx = document.getElementById("confirm");
+    if (xxx.type === "password") {
+        xxx.type = "text";
+    } else {
+        xxx.type = "password";
+    }
+  }
 </script>
 </body>
 </html>

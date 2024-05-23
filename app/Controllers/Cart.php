@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Controllers;
-
+use App\Libraries\Hash;
 class Cart extends BaseController
 {
     private $db;
@@ -159,7 +159,13 @@ class Cart extends BaseController
 
     public function account()
     {
-        return view('customer/profile');
+        $customerModel = new \App\Models\customerModel();
+        $customerInfoModel = new \App\Models\customerinfoModel();
+        $user = session()->get('sess_id');
+        $customer = $customerModel->WHERE('customerID',$user)->first();
+        $info = $customerInfoModel->WHERE('customerID',$user)->first();
+        $data = ['customer'=>$customer,'info'=>$info];
+        return view('customer/profile',$data);
     }
 
     public function orderHistory()
@@ -242,6 +248,76 @@ class Cart extends BaseController
                 </div>
               </div>
             <?php
+        }
+    }
+
+    public function updateAccount()
+    {
+        $customerModel = new \App\Models\customerModel();
+        $customerInfoModel = new \App\Models\customerinfoModel();
+        $user = session()->get('sess_id');
+        //update the tblcustomer
+        $fullname = $this->request->getPost('fullname');
+        $email = $this->request->getPost('email');
+        //information
+        $birthdate = $this->request->getPost('birthdate');
+        $phone = $this->request->getPost('phone');
+        $gender = $this->request->getPost('gender');
+        $street = $this->request->getPost('street');
+        $brgy = $this->request->getPost('barangay');
+        $city = $this->request->getPost('city');
+        $province = $this->request->getPost('province');
+        $zipcode = $this->request->getPost('zipcode');
+        //update
+        $values = ['Email'=>$email,'Fullname'=>$fullname];
+        $customerModel->update($user,$values);
+        //check if data is empty
+        $builder = $this->db->table('tbl_customerinfo');
+        $builder->select('infoID');
+        $builder->WHERE('customerID',$user);
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            //update
+            $values = ['customerID'=>$user, 'Street'=>$street,'Barangay'=>$brgy,'City'=>$city,
+                    'Province'=>$province,'ZipCode'=>$zipcode,'BirthDate'=>$birthdate,
+                    'Gender'=>$gender,'ContactNo'=>$phone];
+            $customerInfoModel->update($row->infoID,$values);
+        }
+        else
+        {
+            //save 
+            ['customerID'=>$user, 'Street'=>$street,'Barangay'=>$brgy,'City'=>$city,
+                    'Province'=>$province,'ZipCode'=>$zipcode,'BirthDate'=>$birthdate,
+                    'Gender'=>$gender,'ContactNo'=>$phone,'primary'=>'Yes'];
+            $customerInfoModel->save($values);
+        }
+        echo "success";
+    }
+
+    public function updatePassword()
+    {
+        $customerModel = new \App\Models\customerModel();
+        $user = session()->get('sess_id');
+        $currentP = $this->request->getPost('current_password');
+        $newP = $this->request->getPost('new_password');
+        $confirmP = $this->request->getPost('confirm_password');
+        //verify
+        $builder = $this->db->table('tblcustomer');
+        $builder->select('*');
+        $builder->WHERE('customerID',$user);
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            $check_password = Hash::check($currentP, $row->Password);
+            if(empty($check_password) || !$check_password)
+            {
+                echo "Invalid Password! Please try again";
+            }
+            else
+            {
+
+            }
         }
     }
 }

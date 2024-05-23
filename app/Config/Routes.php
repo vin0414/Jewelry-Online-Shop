@@ -49,6 +49,8 @@ $routes->post('confirmation','Cart::orderConfirmation');
 $routes->get('fetch-primary-address','Cart::primaryAddress');
 $routes->get('search-customer-orders','Cart::searchOrders');
 $routes->post('cancel-order','Cart::cancelOrder');
+$routes->post('save-changes','Cart::updateAccount');
+$routes->post('update-password','Cart::updatePassword');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
