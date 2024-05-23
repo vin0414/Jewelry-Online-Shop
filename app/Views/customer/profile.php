@@ -312,11 +312,6 @@
         color: var(--main-color);
         text-decoration: none;
       }
-      .drop__down__menu__item:link,
-      .drop__down__menu__item:visited {
-        /* color: #fff;
-  text-decoration: none; */
-      }
 
       .order__text__description {
         line-height: 1.3;

@@ -151,7 +151,10 @@ class Cart extends BaseController
 
     public function orders()
     {
-        return view('customer/orders');
+        $paymentModel = new \App\Models\paymentModel();
+        $payment = $paymentModel->WHERE('Remarks!=','DELIVERED')->findAll();
+        $data = ['orders'=>$payment];
+        return view('customer/orders',$data);
     }
 
     public function account()
@@ -161,7 +164,10 @@ class Cart extends BaseController
 
     public function orderHistory()
     {
-        return view('customer/order-history');
+        $paymentModel = new \App\Models\paymentModel();
+        $payment = $paymentModel->WHERE('Status<>',0)->findAll();
+        $data = ['orders'=>$payment];
+        return view('customer/order-history',$data);
     }
 
     public function primaryAddress()
@@ -175,6 +181,54 @@ class Cart extends BaseController
         {
             $info = array("Address"=>$row->Street.",".$row->Barangay.",".$row->City.",".$row->Province." ".$row->ZipCode,"contactNo"=>$row->ContactNo);
             echo json_encode($info);
+        }
+    }
+
+    public function searchOrders()
+    {
+        $text = "%".$this->request->getGet('keyword')."%";
+        $builder = $this->db->table('tblpayment');
+        $builder->select('*');
+        $builder->LIKE('TransactionNo',$text)->WHERE('Status<>',0);
+        $data = $builder->get();
+        foreach($data->getResult() as $row)
+        {
+            ?>
+            <div class="order__details__box">
+                <div class="order__text__boxx">
+                  <p class="order__text__heading">Delivery Address</p>
+                  <p class="order__text__description margin_top_2">
+                    <div style="word-wrap:break-word;"><?php echo $row->DeliveryAddress ?></div>
+                  </p>
+                  <p class="order__text__date">
+                    <span class="badge bg-default"><?php echo $row->Remarks ?></span>
+                  </p>
+                </div>
+                <div class="order__text__boxx">
+                  <p class="order__text__heading">Order Details</p>
+                  <p class="order__text__description margin_top_2">
+                    Reference No : <span><?php echo $row->TransactionNo ?></span>
+                  </p>
+                  <p class="order__text__date">Status: 
+                    <?php if($row->Status==1){ ?>
+                      <span class="badge bg-success">Success</span>
+                    <?php }else if($row->Status==2){?>
+                      <span class="badge bg-danger">Cancelled</span>
+                    <?php } ?>
+                  </p>
+                </div>
+                <div class="order__text__boxx">
+                  <p class="order__text__heading">Total Amount</p>
+                  <p class="order__text__description margin_top_2">PhP <?php echo number_format($row->Total,2)?></p>
+                </div>
+                <div class="order__text__box">
+                  <p class="order__text__heading">&nbsp;</p>
+                  <br/>
+                  <button type="button" class="btn">Print</button>
+                  <button type="button" class="btn">View</button>
+                </div>
+              </div>
+            <?php
         }
     }
 }

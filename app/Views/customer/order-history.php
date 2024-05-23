@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<?=base_url('assets/css/styles.css')?>" />
     <link rel="stylesheet" href="<?=base_url('assets/css/queries.css')?>" />
     <style>
@@ -312,11 +313,6 @@
         color: var(--main-color);
         text-decoration: none;
       }
-      .drop__down__menu__item:link,
-      .drop__down__menu__item:visited {
-        /* color: #fff;
-  text-decoration: none; */
-      }
 
       .order__text__description {
         line-height: 1.3;
@@ -328,6 +324,25 @@
         margin-top: 0.5rem;
       }
       .active{background-color: #262626;color:#fff;}
+      .badge {
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 5px;
+      }
+      .bg-default{background-color:#262626;color:#fff;}
+      .bg-success{background-color:limegreen;color:#fff;}
+      .bg-danger{background-color:crimson;color:#fff;}
+      .btn {
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 2px 2px;
+        cursor: pointer;
+      }
+      .form-control{padding:10px 18px;}
     </style>
   </head>
   <body>
@@ -392,164 +407,58 @@
       </aside>
 
       <div class="container">
+        <input type="search" id="search" class="form-control" name="search" placeholder="Search" style="float:right;"/>
         <div class="order__heading__box">
           <ion-icon class="order__icon" name="reader-outline"></ion-icon>
-          <p class="order__heading">Order Summary</p>
+          <p class="order__heading">Order History</p>         
         </div>
-        <div class="order__box margin_top_4">
-          <div class="order__details__box">
-            <div class="order__text__box width-43">
-              <p class="order__text__heading">For delivery</p>
-              <p class="order__text__description margin_top_2">
-                B5 L26, #26, Crismor Ave. Elvinda Village, City of San Pedro,
-                Laguna
-              </p>
-            </div>
-            <div class="order__text__boxx">
-              <p class="order__text__heading">Order Details</p>
-              <p class="order__text__description margin_top_2">
-                Order code: <span>NSSR-1498-2024</span>
-              </p>
-              <p class="order__text__date">2024/05/22</p>
-            </div>
-            <div class="order__text__box">
-              <p class="order__text__heading">To pay</p>
-              <p class="order__text__description margin_top_2">₱ 46,000.00</p>
-            </div>
-            <ion-icon
-              class="order__drop__down"
-              id="dropDown"
-              name="chevron-down-outline"
-            ></ion-icon>
+        <div>
+        <?php if(empty($orders)){ ?>
+          <div class="order__box margin_top_4">
+            <div class="order__details__box">
+              <p>No Available Order(s)</p>
+            </div>  
           </div>
-
-          <!-- Holds the order of user. This table is viewed per order ID -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="width-7">
-                  <img src="images/product.jpg" class="table__image" />
-                </td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product2.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product3.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- 2nd item in list -->
-        <div class="order__box margin_top_4">
-          <div class="order__details__box">
-            <div class="order__text__box">
-              <p class="order__text__heading">For delivery</p>
-              <p class="order__text__description margin_top_2">
-                B5 L26, #26, Crismor Ave. Elvinda Village, City of San Pedro,
-                Laguna
-              </p>
+        <?php }else{?>   
+          <div class="order__box margin_top_4" id="results">
+            <?php foreach($orders as $row): ?>
+              <div class="order__details__box">
+                <div class="order__text__boxx">
+                  <p class="order__text__heading">Delivery Address</p>
+                  <p class="order__text__description margin_top_2">
+                    <div style="word-wrap:break-word;"><?php echo $row['DeliveryAddress'] ?></div>
+                  </p>
+                  <p class="order__text__date">
+                    <span class="badge bg-default"><?php echo $row['Remarks'] ?></span>
+                  </p>
+                </div>
+                <div class="order__text__boxx">
+                  <p class="order__text__heading">Order Details</p>
+                  <p class="order__text__description margin_top_2">
+                    Reference No : <span><?php echo $row['TransactionNo'] ?></span>
+                  </p>
+                  <p class="order__text__date">Status: 
+                    <?php if($row['Status']==1){ ?>
+                      <span class="badge bg-success">Success</span>
+                    <?php }else if($row['Status']==2){?>
+                      <span class="badge bg-danger">Cancelled</span>
+                    <?php } ?>
+                  </p>
+                </div>
+                <div class="order__text__boxx">
+                  <p class="order__text__heading">Total Amount</p>
+                  <p class="order__text__description margin_top_2">PhP <?php echo number_format($row['Total'],2)?></p>
+                </div>
+                <div class="order__text__box">
+                  <p class="order__text__heading">&nbsp;</p>
+                  <br/>
+                  <button type="button" class="btn">Print</button>
+                  <button type="button" class="btn">View</button>
+                </div>
+              </div>
+              <?php endforeach; ?>
             </div>
-            <div class="order__text__boxx">
-              <p class="order__text__heading">Order Details</p>
-              <p class="order__text__description margin_top_2">
-                Order code: <span>NSSR-1498-2024</span>
-              </p>
-              <p class="order__text__date">2024/05/22</p>
-            </div>
-            <div class="order__text__box">
-              <p class="order__text__heading">To pay</p>
-              <p class="order__text__description margin_top_2">₱ 46,000.00</p>
-            </div>
-            <ion-icon
-              class="order__drop__down"
-              id="dropDown"
-              name="chevron-down-outline"
-            ></ion-icon>
-          </div>
-
-          <!-- Holds the order of user. This table is viewed per order ID -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="width-7">
-                  <img src="images/product.jpg" class="table__image" />
-                </td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product2.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product3.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-            </tbody>
-          </table>
+        <?php } ?>
         </div>
       </div>
       <footer></footer>
@@ -684,6 +593,27 @@
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
 	// ]]>
+</script>
+<script>
+  $('#search').keyup(function(){
+    var val = $(this).val();
+    $('#results').html("<div class='order__details__box'><p>Searching...</p></div>");
+    $.ajax({
+      url:"<?=site_url('search-customer-orders')?>",method:"GET",
+      data:{keyword:val},
+      success:function(response)
+      {
+        if(response==="")
+        {
+          $('#results').html("<div class='order__details__box'><p>No Record(s)</p></div>");
+        }
+        else
+        {
+          $('#results').html(response);
+        }
+      }
+    });
+  });
 </script>
 </body>
 </html>

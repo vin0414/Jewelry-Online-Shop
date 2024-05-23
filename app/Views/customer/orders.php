@@ -11,6 +11,7 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="stylesheet" href="<?=base_url('assets/css/styles.css')?>" />
     <link rel="stylesheet" href="<?=base_url('assets/css/queries.css')?>" />
     <style>
@@ -235,7 +236,7 @@
       }
 
       td {
-        padding: 0 0.3rem;
+        padding: 0.5rem 0.5rem;
       }
 
       /* .table.hide {
@@ -312,11 +313,6 @@
         color: var(--main-color);
         text-decoration: none;
       }
-      .drop__down__menu__item:link,
-      .drop__down__menu__item:visited {
-        /* color: #fff;
-  text-decoration: none; */
-      }
 
       .order__text__description {
         line-height: 1.3;
@@ -328,6 +324,9 @@
         margin-top: 0.5rem;
       }
       .active{background-color: #262626;color:#fff;}
+      .btn-danger{float:left;padding:10px;
+              width:10rem;background-color:crimson;color:#fff;
+              border-radius:10px 10px;border:2px solid crimson;}
     </style>
   </head>
   <body>
@@ -392,170 +391,96 @@
       </aside>
 
       <div class="container">
+      <label style="float:right;font-weight:bold;">Total : <?php echo COUNT($orders) ?></label>
         <div class="order__heading__box">
           <ion-icon class="order__icon" name="reader-outline"></ion-icon>
           <p class="order__heading">Order Summary</p>
         </div>
-        <div class="order__box margin_top_4">
-          <div class="order__details__box">
-            <div class="order__text__box width-43">
-              <p class="order__text__heading">For delivery</p>
-              <p class="order__text__description margin_top_2">
-                B5 L26, #26, Crismor Ave. Elvinda Village, City of San Pedro,
-                Laguna
-              </p>
-            </div>
-            <div class="order__text__boxx">
-              <p class="order__text__heading">Order Details</p>
-              <p class="order__text__description margin_top_2">
-                Order code: <span>NSSR-1498-2024</span>
-              </p>
-              <p class="order__text__date">2024/05/22</p>
-            </div>
-            <div class="order__text__box">
-              <p class="order__text__heading">To pay</p>
-              <p class="order__text__description margin_top_2">₱ 46,000.00</p>
-            </div>
-            <ion-icon
-              class="order__drop__down"
-              id="dropDown"
-              name="chevron-down-outline"
-            ></ion-icon>
+        <?php if(empty($orders)){ ?>
+          <div class="order__box margin_top_4">
+            <div class="order__details__box">
+              <p>No Available Order(s)</p>
+            </div>  
           </div>
+        <?php }else{?>
+            <?php foreach($orders as $row): ?>
+            <div class="order__box margin_top_4">
+              <?php echo $row['Remarks']?>
+              <div class="order__details__box">
+                <div class="order__text__box width-43">
+                  <p class="order__text__heading">Delivery Address</p>
+                  <p class="order__text__description margin_top_2">
+                  <?php echo $row['DeliveryAddress']?>
+                  </p>
+                </div>
+                <div class="order__text__boxx">
+                  <p class="order__text__heading">Order Details</p>
+                  <p class="order__text__description margin_top_2">
+                    Reference No: <span><?php echo $row['TransactionNo']?></span>
+                  </p>
+                  <p class="order__text__date">Expected Date: <?php echo $row['DateReceived']?></p>
+                </div>
+                <div class="order__text__box">
+                  <p class="order__text__heading">Total Price</p>
+                  <p class="order__text__description margin_top_2">PhP <?php echo number_format($row['Total'],2)?></p>
+                </div>
+                <ion-icon
+                  class="order__drop__down"
+                  id="dropDown"
+                  name="chevron-down-outline"
+                ></ion-icon>
+              </div>
 
-          <!-- Holds the order of user. This table is viewed per order ID -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="width-7">
-                  <img src="images/product.jpg" class="table__image" />
-                </td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product2.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product3.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- 2nd item in list -->
-        <div class="order__box margin_top_4">
-          <div class="order__details__box">
-            <div class="order__text__box">
-              <p class="order__text__heading">For delivery</p>
-              <p class="order__text__description margin_top_2">
-                B5 L26, #26, Crismor Ave. Elvinda Village, City of San Pedro,
-                Laguna
-              </p>
+              <!-- Holds the order of user. This table is viewed per order ID -->
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>Image</th>
+                    <th>Product Name</th>
+                    <th>Description</th>
+                    <th>Amount</th>
+                    <th>Quantity</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <?php
+                  $db = db_connect();
+                  $builder = $db->table('tblorders a');
+                  $builder->select('a.*,b.Image,b.Product_Type,b.Description');
+                  $builder->join('tblproduct b','b.productName=a.productName','LEFT');
+                  $builder->WHERE('a.TransactionNo',$row['TransactionNo']);
+                  $data = $builder->get();
+                  foreach($data->getResult() as $rows)
+                  {
+                  ?>
+                  <tr>
+                    <td class="width-7">
+                      <img src="<?=base_url('assets/images/product')?>/<?php echo $rows->Image ?>" class="table__image" />
+                    </td>
+                    <td class="order__item__title">
+                    <?php echo $rows->productName ?><br />
+                    <span class="order__item__subtitle"><?php echo $rows->Product_Type ?></span>
+                    </td>
+                    <td><?php echo $rows->Description ?></td>
+                    <td>PhP <?php echo number_format($rows->price,2) ?></td>
+                    <td><?php echo $rows->Qty ?></td>
+                  </tr>
+                  <?php } ?>
+                </tbody>
+              </table>
+              <?php if($row['Remarks']=="PENDING"){?>
+              <button type="button" class="btn-danger cancel" value="<?php echo $row['paymentID'] ?>">
+              <span class="side__button__text">Cancel</span>
+              </button>
+              <?php } ?>
             </div>
-            <div class="order__text__boxx">
-              <p class="order__text__heading">Order Details</p>
-              <p class="order__text__description margin_top_2">
-                Order code: <span>NSSR-1498-2024</span>
-              </p>
-              <p class="order__text__date">2024/05/22</p>
-            </div>
-            <div class="order__text__box">
-              <p class="order__text__heading">To pay</p>
-              <p class="order__text__description margin_top_2">₱ 46,000.00</p>
-            </div>
-            <ion-icon
-              class="order__drop__down"
-              id="dropDown"
-              name="chevron-down-outline"
-            ></ion-icon>
-          </div>
-
-          <!-- Holds the order of user. This table is viewed per order ID -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="width-7">
-                  <img src="images/product.jpg" class="table__image" />
-                </td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product2.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product3.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+            <?php endforeach; ?>
+        <?php } ?>
       </div>
       <footer></footer>
     </main>
     <script src="<?=base_url('assets/js/script.js')?>">
-            document.addEventListener("DOMContentLoaded", function () {
+      document.addEventListener("DOMContentLoaded", function () {
         const dropdownIcons = document.querySelectorAll(".order__drop__down");
 
         function toggleTable() {
@@ -684,6 +609,15 @@
 		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
 	}
 	// ]]>
+</script>
+<script>
+  $(document).on('click','.cancel',function(){
+    var confirmation = confirm("Do you want to cancel this order?");
+    if(confirmation)
+    {
+
+    }
+  });
 </script>
 </body>
 </html>
