@@ -316,7 +316,16 @@ class Cart extends BaseController
             }
             else
             {
-
+                if($newP!=$confirmP)
+                {
+                    echo "Invalid! Password mismatch. Please try again";
+                }
+                else
+                {
+                    $values = ['Password'=>Hash::make($newP)];
+                    $customerModel->update($user,$values);
+                    echo "success";
+                }
             }
         }
     }
