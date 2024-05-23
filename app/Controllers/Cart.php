@@ -108,6 +108,7 @@ class Cart extends BaseController
         $amount = $this->request->getPost('amount');
         $payment = $this->request->getPost('payment');
         $status = 0;
+        $dateReceived = date('Y-m-d', strtotime(date('Y-m-d'). ' + 3 days'));
         $trxnCode = "";
         $builder = $this->db->table('tblpayment');
         $builder->select('COUNT(paymentID)+1 as total');
@@ -130,7 +131,7 @@ class Cart extends BaseController
         $session->remove('cart');
         //save the other info
         $values = ['customerID'=>$user,'TransactionNo'=>$trxnCode,'Total'=>$amount,
-                    'Status'=>$status,'DateCreated'=>date('Y-m-d'),'DateReceived'=>'0000-00-00',
+                    'Status'=>$status,'DateCreated'=>date('Y-m-d'),'DateReceived'=>$dateReceived,
                     'DeliveryAddress'=>$address,'ContactNo'=>$contactNo,'paymentDetails'=>$payment,'Remarks'=>'PENDING'];
         $paymentModel->save($values);
         //redirect to my orders page
