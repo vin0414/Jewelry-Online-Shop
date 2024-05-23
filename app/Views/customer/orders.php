@@ -327,6 +327,14 @@
       .btn-danger{float:left;padding:10px;
               width:10rem;background-color:crimson;color:#fff;
               border-radius:10px 10px;border:2px solid crimson;}
+      .badge {
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 5px;
+      }
+      .bg-default{background-color:#262626;color:#fff;}
+      .bg-success{background-color:limegreen;color:#fff;}
+      .bg-danger{background-color:crimson;color:#fff;}
     </style>
   </head>
   <body>
@@ -405,12 +413,12 @@
         <?php }else{?>
             <?php foreach($orders as $row): ?>
             <div class="order__box margin_top_4">
-              <?php echo $row['Remarks']?>
               <div class="order__details__box">
                 <div class="order__text__box width-43">
                   <p class="order__text__heading">Delivery Address</p>
                   <p class="order__text__description margin_top_2">
-                  <?php echo $row['DeliveryAddress']?>
+                  <?php echo $row['DeliveryAddress']?><br/>
+                  <span class="badge bg-default"><?php echo $row['Remarks']?></span>
                   </p>
                 </div>
                 <div class="order__text__boxx">
@@ -615,7 +623,21 @@
     var confirmation = confirm("Do you want to cancel this order?");
     if(confirmation)
     {
-
+      $.ajax({
+        url:"<?=site_url('cancel-order')?>",method:"POST",
+        data:{value:$(this).val()},
+        success:function(response)
+        {
+          if(response==="success")
+          {
+            alert("Great! Successfully cancelled");
+            location.reload();
+          }
+          else{
+            alert(response);
+          }
+        }
+      });
     }
   });
 </script>

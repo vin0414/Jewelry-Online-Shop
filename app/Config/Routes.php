@@ -48,6 +48,7 @@ $routes->get('remove-item/(:any)','Cart::removeItem/$1');
 $routes->post('confirmation','Cart::orderConfirmation');
 $routes->get('fetch-primary-address','Cart::primaryAddress');
 $routes->get('search-customer-orders','Cart::searchOrders');
+$routes->post('cancel-order','Cart::cancelOrder');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
