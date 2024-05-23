@@ -322,7 +322,42 @@
         font-size: 1.5rem;
         margin-top: 0.5rem;
       }
+      .col-1 {width: 8.33%;}
+      .col-2 {width: 16.66%;}
+      .col-3 {width: 25%;}
+      .col-4 {width: 33.33%;}
+      .col-5 {width: 41.66%;}
+      .col-6 {width: 50%;}
+      .col-7 {width: 58.33%;}
+      .col-8 {width: 66.66%;}
+      .col-9 {width: 75%;}
+      .col-10 {width: 83.33%;}
+      .col-11 {width: 91.66%;}
+      .col-12 {width: 100%;}
       .active{background-color: #262626;color:#fff;}
+      .row:after{
+          display: table;
+      }
+      .row-form{
+          display: grid;
+          grid-template-columns: auto;
+          grid-gap: 10px;
+          padding: 10px;
+      }
+      .form-control{padding:10px 18px;width:100%;}
+      .bg-default,.btn-default{background-color:#262626;color:#fff;}
+      .bg-success,.btn-success{background-color:limegreen;color:#fff;}
+      .bg-danger,.btn-danger{background-color:crimson;color:#fff;}
+      .btn {
+        border: none;border-radius: 10px 10px;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 2px 2px;
+        cursor: pointer;
+      }
     </style>
   </head>
   <body>
@@ -388,163 +423,50 @@
 
       <div class="container">
         <div class="order__heading__box">
-          <ion-icon class="order__icon" name="reader-outline"></ion-icon>
-          <p class="order__heading">Order Summary</p>
+          <ion-icon class="order__icon" name="person-outline"></ion-icon>
+          <p class="order__heading">My Account</p>
         </div>
-        <div class="order__box margin_top_4">
-          <div class="order__details__box">
-            <div class="order__text__box width-43">
-              <p class="order__text__heading">For delivery</p>
-              <p class="order__text__description margin_top_2">
-                B5 L26, #26, Crismor Ave. Elvinda Village, City of San Pedro,
-                Laguna
-              </p>
+        <div class="row">
+          <div class="col-8">
+            <div class="order__box margin_top_4">
+              <p>Account Information</p>
+              <form method="POST" class="row-form" id="frmAccount">
+                <div class="col-12 form-group">
+                  <label><b>Fullname</b></label>
+                  <input type="text" class="form-control" name="fullname"/>
+                </div>
+                <div class="col-12 form-group">
+                  <label><b>Email Address</b></label>
+                  <input type="email" class="form-control" name="email"/>
+                </div>
+                <div class="col-12 form-group">
+                  <button type="submit" class="btn btn-default" id="btnSave">Save Changes</button>
+                </div>
+              </form>
             </div>
-            <div class="order__text__boxx">
-              <p class="order__text__heading">Order Details</p>
-              <p class="order__text__description margin_top_2">
-                Order code: <span>NSSR-1498-2024</span>
-              </p>
-              <p class="order__text__date">2024/05/22</p>
-            </div>
-            <div class="order__text__box">
-              <p class="order__text__heading">To pay</p>
-              <p class="order__text__description margin_top_2">₱ 46,000.00</p>
-            </div>
-            <ion-icon
-              class="order__drop__down"
-              id="dropDown"
-              name="chevron-down-outline"
-            ></ion-icon>
           </div>
-
-          <!-- Holds the order of user. This table is viewed per order ID -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="width-7">
-                  <img src="images/product.jpg" class="table__image" />
-                </td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product2.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product3.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <!-- 2nd item in list -->
-        <div class="order__box margin_top_4">
-          <div class="order__details__box">
-            <div class="order__text__box">
-              <p class="order__text__heading">For delivery</p>
-              <p class="order__text__description margin_top_2">
-                B5 L26, #26, Crismor Ave. Elvinda Village, City of San Pedro,
-                Laguna
-              </p>
+          <div class="col-4">
+            <div class="order__box margin_top_4">
+              <p>Account Security</p>
+              <form method="POST" class="row-form" id="frmPasword">
+                <div class="col-12 form-group">
+                  <label><b>Current Password</b></label>
+                  <input type="password" class="form-control" name="current_password"/>
+                </div>
+                <div class="col-12 form-group">
+                  <label><b>New Password</b></label>
+                  <input type="password" class="form-control" name="new_password"/>
+                </div>
+                <div class="col-12 form-group">
+                  <label><b>Confirm Password</b></label>
+                  <input type="password" class="form-control" name="confirm_password"/>
+                </div>
+                <div class="col-12 form-group">
+                  <button type="submit" class="btn btn-default" id="btnSave">Save Changes</button>
+                </div>
+              </form>
             </div>
-            <div class="order__text__boxx">
-              <p class="order__text__heading">Order Details</p>
-              <p class="order__text__description margin_top_2">
-                Order code: <span>NSSR-1498-2024</span>
-              </p>
-              <p class="order__text__date">2024/05/22</p>
-            </div>
-            <div class="order__text__box">
-              <p class="order__text__heading">To pay</p>
-              <p class="order__text__description margin_top_2">₱ 46,000.00</p>
-            </div>
-            <ion-icon
-              class="order__drop__down"
-              id="dropDown"
-              name="chevron-down-outline"
-            ></ion-icon>
           </div>
-
-          <!-- Holds the order of user. This table is viewed per order ID -->
-          <table class="table">
-            <thead>
-              <tr>
-                <th></th>
-                <th>Item</th>
-                <th>Description</th>
-                <th>Amount</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td class="width-7">
-                  <img src="images/product.jpg" class="table__image" />
-                </td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product2.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-              <tr>
-                <td><img src="images/product3.jpg" class="table__image" /></td>
-                <td class="order__item__title">
-                  Golden Charm Necklace<br /><span class="order__item__subtitle"
-                    >Women's Necklace</span
-                  >
-                </td>
-                <td>A golden ring that shall lorem ipsum</td>
-                <td>₱ 24,000.00</td>
-                <td>x1</td>
-              </tr>
-            </tbody>
-          </table>
         </div>
       </div>
       <footer></footer>
@@ -560,7 +482,7 @@
 
             if (table) {
               table.classList.toggle("hide");
-              parentBox.classList.toggle("hide");
+            arentBox.classList.toggle("hide");
             }
           }
           const currentIconName = this.getAttribute("name");
