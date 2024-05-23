@@ -14,7 +14,7 @@ class paymentModel extends Model
     protected $returnType = 'array';
     protected $userSoftDelete = false;
     protected $protectFields = true;
-    protected $allowedFields = ['customerID','TransactionNo','Total','Status','DateCreated','DateReceived','DeliveryAddress','ContactNo','paymentDetails'];
+    protected $allowedFields = ['customerID','TransactionNo','Total','Status','DateCreated','DateReceived','DeliveryAddress','ContactNo','paymentDetails','Remarks'];
 
     protected $validationRules = [];
     protected $validationMessages = [];

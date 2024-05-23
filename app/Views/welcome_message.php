@@ -5,6 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
     <title>NASSER GOLDSMITH & JEWELRY STORE</title>
     <link rel="shortcut icon" href="assets/Diamond Ring.ico" type="image/x-icon">
     <!-- CSS only -->
@@ -258,43 +259,41 @@
                             <div class="tab-content">
                                 <div class="tab-pane fade show active" id="featured" role="tabpane1">
                                     <div class="product_container">
-                                        <div class="custom-row" style="width:25%;">
+                                        <div class="row">
                                             <?php foreach($feature as $row): ?>
-                                                <div class="custom-col-5">
-                                                    <div class="single_product">
-                                                        <div class="product_thumb">
-                                                            <a href="#" class="primary_img">
-                                                                <img src="assets/images/product/<?php echo $row->Image ?>"/>
-                                                            </a>
-                                                            <a href="#" class="secondary_img">
-                                                                <img src="assets/images/product/<?php echo $row->Image ?>"/>
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_content">
-                                                            <div class="tag_cate">
-                                                                <a href="#"><?php echo $row->CategoryName ?></a>
+                                                <div class="col-lg-3 form-group">
+                                                    <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
+                                                        <div class="card-body">
+                                                            <img src="assets/images/product/<?php echo $row->Image ?>"/>
+                                                            <center><?php echo $row->CategoryName ?></center>
+                                                            <center><h4><?php echo $row->productName ?></h4></center>
+                                                            <?php if($row->onSales=="Yes"){ ?>
+                                                            <div class="modal_price mb-10 text-center">
+                                                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
+                                                                <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
                                                             </div>
-                                                            <h3><a href="#"><?php echo $row->productName ?></a></h3>
-                                                            <div class="price_box">
-                                                                <span class="current_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                                                            <?php }else {?>
+                                                            <div class="modal_price mb-10 text-center">
+                                                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
                                                             </div>
-                                                            <div class="product_hover">
-                                                                <div class="product_desc">
-                                                                    <p><?php echo $row->Description ?></p>
-                                                                </div>
-                                                                <div class="action_links">
-                                                                    <ul>
-                                                                        <li><a href="#" data-placement="top" title="Add to Wishlist"
-                                                                                data-toggle="tooltip"><span
-                                                                                    class="ion-heart"></span></a></li>
-                                                                        <li class="add_to_cart">
-                                                                            <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
-                                                                        </li>
-                                                                        <li><a href="#" title="Compare"><i
-                                                                                    class="ion-ios-settings-strong"></i></a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                            <?php } ?>
+                                                            <div class="product_desc">
+                                                                <p class="text-center"><?php echo $row->Description ?></p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <center>
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart">
+                                                                        <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                                                    </li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                                </center>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -305,42 +304,41 @@
                                 </div>
                                 <div class="tab-pane fade" id="arrivals" role="tabpane1">
                                     <div class="product_container">
-                                        <div class="custom-row" style="width:25%;">
+                                        <div class="row">
                                             <?php foreach($arrival as $row): ?>
-                                                <div class="custom-col-5">
-                                                    <div class="single_product">
-                                                        <div class="product_thumb">
-                                                            <a href="#" class="primary_img">
-                                                                <img src="assets/images/product/<?php echo $row->Image ?>"/>
-                                                            </a>
-                                                            <a href="#" class="secondary_img">
-                                                                <img src="assets/images/product/<?php echo $row->Image ?>"/>
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_content">
-                                                            <div class="tag_cate">
-                                                                <a href="#"><?php echo $row->CategoryName ?></a>
+                                                <div class="col-lg-3 form-group">
+                                                    <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
+                                                        <div class="card-body">
+                                                            <img src="assets/images/product/<?php echo $row->Image ?>"/>
+                                                            <center><?php echo $row->CategoryName ?></center>
+                                                            <center><h4><?php echo $row->productName ?></h4></center>
+                                                            <?php if($row->onSales=="Yes"){ ?>
+                                                            <div class="modal_price mb-10 text-center">
+                                                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
+                                                                <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
                                                             </div>
-                                                            <h3><a href="#"><?php echo $row->productName ?></a></h3>
-                                                            <div class="price_box">
-                                                                <span class="current_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                                                            <?php }else {?>
+                                                            <div class="modal_price mb-10 text-center">
+                                                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
                                                             </div>
-                                                            <div class="product_hover">
-                                                                <div class="product_desc">
-                                                                    <p><?php echo $row->Description ?></p>
-                                                                </div>
-                                                                <div class="action_links">
-                                                                    <ul>
-                                                                        <li><a href="#" data-placement="top" title="Add to Wishlist"
-                                                                                data-toggle="tooltip"><span
-                                                                                    class="ion-heart"></span></a></li>
-                                                                        <li class="add_to_cart"><a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add
-                                                                                to Cart</a></li>
-                                                                        <li><a href="#" title="Compare"><i
-                                                                                    class="ion-ios-settings-strong"></i></a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                            <?php } ?>
+                                                            <div class="product_desc">
+                                                                <p class="text-center"><?php echo $row->Description ?></p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <center>
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart">
+                                                                        <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                                                    </li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                                </center>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -351,43 +349,41 @@
                                 </div>
                                 <div class="tab-pane fade" id="onsale" role="tabpane1">
                                     <div class="product_container">
-                                        <div class="custom-row" style="width:25%;">
+                                        <div class="row">
                                             <?php foreach($discount as $row): ?>
-                                                <div class="custom-col-5">
-                                                    <div class="single_product">
-                                                        <div class="product_thumb">
-                                                            <a href="#" class="primary_img">
-                                                                <img src="assets/images/product/<?php echo $row->Image ?>"/>
-                                                            </a>
-                                                            <a href="#" class="secondary_img">
-                                                                <img src="assets/images/product/<?php echo $row->Image ?>"/>
-                                                            </a>
-                                                        </div>
-                                                        <div class="product_content">
-                                                            <div class="tag_cate">
-                                                                <a href="#"><?php echo $row->CategoryName ?></a>
-                                                            </div>
-                                                            <h3><a href="#"><?php echo $row->productName ?></a></h3>
-                                                            <div class="price_box">
+                                                <div class="col-lg-3 form-group">
+                                                    <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
+                                                        <div class="card-body">
+                                                            <img src="assets/images/product/<?php echo $row->Image ?>"/>
+                                                            <center><?php echo $row->CategoryName ?></center>
+                                                            <center><h4><?php echo $row->productName ?></h4></center>
+                                                            <?php if($row->onSales=="Yes"){ ?>
+                                                            <div class="modal_price mb-10 text-center">
+                                                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
                                                                 <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
-                                                                <span class="current_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
                                                             </div>
-                                                            <div class="product_hover">
-                                                                <div class="product_desc">
-                                                                    <p><?php echo $row->Description ?></p>
-                                                                </div>
-                                                                <div class="action_links">
-                                                                    <ul>
-                                                                        <li><a href="#" data-placement="top" title="Add to Wishlist"
-                                                                                data-toggle="tooltip"><span
-                                                                                    class="ion-heart"></span></a></li>
-                                                                        <li class="add_to_cart"><a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add
-                                                                                to Cart</a></li>
-                                                                        <li><a href="#" title="Compare"><i
-                                                                                    class="ion-ios-settings-strong"></i></a>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                            <?php }else {?>
+                                                            <div class="modal_price mb-10 text-center">
+                                                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                                                            </div>
+                                                            <?php } ?>
+                                                            <div class="product_desc">
+                                                                <p class="text-center"><?php echo $row->Description ?></p>
+                                                            </div>
+                                                            <div class="action_links">
+                                                                <center>
+                                                                <ul>
+                                                                    <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                            data-toggle="tooltip"><span
+                                                                                class="ion-heart"></span></a></li>
+                                                                    <li class="add_to_cart">
+                                                                        <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                                                    </li>
+                                                                    <li><a href="#" title="Compare"><i
+                                                                                class="ion-ios-settings-strong"></i></a>
+                                                                    </li>
+                                                                </ul>
+                                                                </center>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -431,47 +427,46 @@
                     <div class="col-12">
                         <div class="product-area">
                             <div class="product_container bottom">
-                                <div class="custom-row" style="width:25%;">
+                                <div class="row">
                                 <?php foreach($products as $row): ?>
-                                    <div class="custom-col-5">
-                                        <div class="single_product">
-                                            <div class="product_thumb">
-                                                <a href="#" class="primary_img">
-                                                    <img src="assets/images/product/<?php echo $row->Image ?>"/>
-                                                </a>
-                                                <a href="#" class="secondary_img">
-                                                    <img src="assets/images/product/<?php echo $row->Image ?>"/>
-                                                </a>
-                                            </div>
-                                            <div class="product_content">
-                                                <div class="tag_cate">
-                                                    <a href="#"><?php echo $row->CategoryName ?></a>
+                                    <div class="col-lg-3 form-group">
+                                        <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
+                                            <div class="card-body">
+                                                <img src="assets/images/product/<?php echo $row->Image ?>"/>
+                                                <center><?php echo $row->CategoryName ?></center>
+                                                <center><h4><?php echo $row->productName ?></h4></center>
+                                                <?php if($row->onSales=="Yes"){ ?>
+                                                <div class="modal_price mb-10 text-center">
+                                                    <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
+                                                    <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
                                                 </div>
-                                                <h3><a href="#"><?php echo $row->productName ?></a></h3>
-                                                <div class="price_box">
-                                                    <span class="current_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                                                <?php }else {?>
+                                                <div class="modal_price mb-10 text-center">
+                                                    <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
                                                 </div>
-                                                <div class="product_hover">
-                                                    <div class="product_desc">
-                                                        <p><?php echo $row->Description ?></p>
-                                                    </div>
-                                                    <div class="action_links">
-                                                        <ul>
-                                                            <li><a href="#" data-placement="top" title="Add to Wishlist"
-                                                                    data-toggle="tooltip"><span
-                                                                        class="ion-heart"></span></a></li>
-                                                            <li class="add_to_cart"><a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add
-                                                                    to Cart</a></li>
-                                                            <li><a href="#" title="Compare"><i
-                                                                        class="ion-ios-settings-strong"></i></a>
-                                                            </li>
-                                                        </ul>
-                                                    </div>
+                                                <?php } ?>
+                                                <div class="product_desc">
+                                                    <p class="text-center"><?php echo $row->Description ?></p>
+                                                </div>
+                                                <div class="action_links">
+                                                    <center>
+                                                    <ul>
+                                                        <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                                                data-toggle="tooltip"><span
+                                                                    class="ion-heart"></span></a></li>
+                                                        <li class="add_to_cart">
+                                                            <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                                        </li>
+                                                        <li><a href="#" title="Compare"><i
+                                                                    class="ion-ios-settings-strong"></i></a>
+                                                        </li>
+                                                    </ul>
+                                                    </center>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                    <?php endforeach; ?>
+                                    </div>   
+                                <?php endforeach; ?>
                                 </div>   
                             </div>
                         </div>

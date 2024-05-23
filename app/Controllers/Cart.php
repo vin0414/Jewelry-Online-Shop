@@ -131,7 +131,7 @@ class Cart extends BaseController
         //save the other info
         $values = ['customerID'=>$user,'TransactionNo'=>$trxnCode,'Total'=>$amount,
                     'Status'=>$status,'DateCreated'=>date('Y-m-d'),'DateReceived'=>'0000-00-00',
-                    'DeliveryAddress'=>$address,'ContactNo'=>$contactNo,'paymentDetails'=>$payment];
+                    'DeliveryAddress'=>$address,'ContactNo'=>$contactNo,'paymentDetails'=>$payment,'Remarks'=>'PENDING'];
         $paymentModel->save($values);
         //redirect to my orders page
         return $this->response->redirect(site_url('/orders'));
