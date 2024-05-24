@@ -614,9 +614,9 @@
             <ion-icon class="nav__side__icon" name="home-outline"></ion-icon>
             <li class="nav__list">Dashboard</li></a
           >
-          <a href="<?=site_url('products')?>" class="nav__links active">
+          <a href="javascript:void(0);" class="nav__links active">
             <ion-icon class="nav__side__icon" name="diamond-outline"></ion-icon>
-            <li class="nav__list">Products</li></a
+            <li class="nav__list">Edit Products</li></a
           >
           <a href="<?=site_url('customer-orders')?>" class="nav__links">
             <ion-icon
@@ -656,44 +656,14 @@
       <div class="container">
         <div class="content">
           <div class="row">
-            <div class="col-6">
-            <input type="search" class="form-control" id="search" placeholder="Search"/>
+            <div class="col-11">
+            <h4>Edit Product</h4>
             </div>
-            <div class="col-2">
-              <select class="form-control" id="category">
-                <option value="">Category</option>
-                <?php foreach($category as $row): ?>
-                  <option value="<?php echo $row['categoryID'] ?>"><?php echo $row['CategoryName'] ?></option>
-                <?php endforeach;?>
-              </select>
-            </div>
-            <div class="col-2">
-              <select class="form-control" id="type">
-                <option value="">Product Type</option>
-                <option>Men</option>
-                <option>Women</option>
-              </select>
-            </div>
-            <div class="col-2">
-              <button type="button" class="btn btn-default form-control btn-sm">Add Product</button>
+            <div class="col-1">
+              <a href="<?=site_url('products')?>" class="btn btn-default form-control btn-sm">Back</a>
             </div>
           </div>
-          <div class="first__row" id="productResult">
-          <?php foreach($products as $row): ?>
-            <div class="cards">
-              <div class="card">
-              <img src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>" 
-              alt="<?php echo $row->productName ?>" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
-                <p class="card__textdescription"><?php echo $row->CategoryName ?></p>
-                <h4 class="card__heading"><center><?php echo $row->productName ?></center></h4>
-                <span class="card__textdescription">Price : PhP <?php echo number_format($row->UnitPrice,2) ?> | Qty :<?php echo $row->Qty ?></span>
-                <center>
-                  <a href="<?=site_url('edit/') ?><?php echo $row->productID ?>" class="btn bg-default">Edit Item</a>
-                  <button type="button" class="btn bg-default">Add Stocks</button>
-                </cente>
-              </div>
-            </div>
-            <?php endforeach;?>
+          <div class="first__row">
           </div>
         </div>
       </div>
@@ -792,29 +762,5 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-    <script>
-      $('#search').keyup(function(){
-        var val = $(this).val();
-        $.ajax({
-          url:"<?=site_url('find-products')?>",method:"GET",
-          data:{keyword:val},
-          success:function(response)
-          {
-            $('#productResult').html(response);
-          }
-        });
-      });
-      $('#category').change(function(){
-        var val = $(this).val();
-        $.ajax({
-          url:"<?=site_url('fetch-by-category')?>",method:"GET",
-          data:{value:val},
-          success:function(response)
-          {
-            $('#productResult').html(response);
-          }
-        });
-      });
-    </script>
   </body>
 </html>

@@ -12,6 +12,12 @@
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
       rel="stylesheet"
     />
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
+		<script type="text/javascript">
+			google.charts.load('visualization', "1", {
+				packages: ['corechart']
+			});
+		</script>
     <style>
       :root {
         --main-color: #262626;
@@ -406,9 +412,10 @@
       }
       .second__row {
         display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
+        grid-template-columns: 1.3fr 0.9fr;
         margin-top: 3.2rem;
-        gap: 3.2rem;
+        gap: 2rem;
+
       }
       .third__row {
         display: grid;
@@ -640,14 +647,14 @@
             <div class="cards">
               <div class="card">
                 <p class="card__heading">Monthly Income</p>
-                <h2 class="card__heading__number">PhP <?=number_format($income,2)?></h2>
+                <h2 class="card__heading__number"><?=number_format($income,2)?></h2>
                 <span class="card__textdescription">+20% over previous month</span>
               </div>
             </div>
             <div class="cards">
               <div class="card">
                 <p class="card__heading">Daily Income</p>
-                <h2 class="card__heading__number">PhP <?=number_format($daily,2)?></h2>
+                <h2 class="card__heading__number"><?=number_format($daily,2)?></h2>
                 <span class="card__textdescription">+20% over previous month</span>
               </div>
             </div>
@@ -661,8 +668,14 @@
           </div>
           <div class="second__row">
             <div class="charts__container">
-               <div id="curve_chart" class="charts" style="height:300px;">Charts Here</div>
-               <div id="curve_chart2" class="charts" style="height:300px;">Charts Here</div>
+              <div class="charts" style="height:300px;width:100%;">
+                <h4>Daily Orders</h4>
+                <div id="chartContainer" ></div>
+              </div>
+              <div class="charts" style="height:300px;width:100%;">
+                <h4>Daily Revenue</h4>
+                <div id="paymentContainer"></div>
+              </div>
             </div>
             <div class="table__container">
               <table class="table">
@@ -791,5 +804,49 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+    <script>
+      google.charts.setOnLoadCallback(requestChart);
+      google.charts.setOnLoadCallback(revenueChart);
+      function requestChart() 
+			{
+				var data = google.visualization.arrayToDataTable([
+					["Date", "Total"],
+					<?php 
+					foreach ($query as $row){
+					echo "['".$row->DateCreated."',".$row->total."],";
+					}
+					?>
+				]);
+
+				var options = {
+				title: '',
+				curveType: 'function',
+				legend: { position: 'bottom' },
+				};
+				/* Instantiate and draw the chart.*/
+				var chart = new google.visualization.ColumnChart(document.getElementById('chartContainer'));
+				chart.draw(data, options);
+			}
+      function revenueChart() 
+			{
+				var data = google.visualization.arrayToDataTable([
+					["Date", "Revenue"],
+					<?php 
+					foreach ($revenue as $row){
+					echo "['".$row->DateCreated."',".$row->total."],";
+					}
+					?>
+				]);
+
+				var options = {
+				title: '',
+				curveType: 'function',
+				legend: { position: 'bottom' },
+				};
+				/* Instantiate and draw the chart.*/
+				var chart = new google.visualization.ColumnChart(document.getElementById('paymentContainer'));
+				chart.draw(data, options);
+			}
+    </script>
   </body>
 </html>

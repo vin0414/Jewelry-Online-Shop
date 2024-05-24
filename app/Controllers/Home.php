@@ -125,8 +125,19 @@ class Home extends BaseController
         $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
         $builder->groupBy('a.productID')->orderBy('a.productID','DESC')->limit(5);
         $products = $builder->get()->getResult();
+        //create chart
+        $builder = $this->db->table('tblpayment');
+        $builder->select('DateCreated,COUNT(paymentID)total');
+        $builder->groupBy('DateCreated');
+        $query = $builder->get()->getResult();
+        //revenue
+        $builder = $this->db->table('tblpayment');
+        $builder->select('DateCreated,SUM(Total)total');
+        $builder->groupBy('DateCreated');
+        $revenue = $builder->get()->getResult();
         //collect 
-        $data = ['order'=>$order,'income'=>$income,'daily'=>$dailyIncome,'customer'=>$customer,'products'=>$products];
+        $data = ['order'=>$order,'income'=>$income,'daily'=>$dailyIncome,
+        'customer'=>$customer,'products'=>$products,'query'=>$query,'revenue'=>$revenue];
         return view('admin/index',$data);
     }
 
@@ -137,8 +148,108 @@ class Home extends BaseController
         $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
         $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
         $products = $builder->get()->getResult();
-        $data = ['products'=>$products];
+        //category
+        $categoryModel = new \App\Models\categoryModel();
+        $category = $categoryModel->findAll();
+        $data = ['products'=>$products,'category'=>$category];
         return view('admin/products',$data);
+    }
+
+    public function editProduct($id)
+    {
+        return view('admin/edit-product');
+    }
+
+    public function fetchByCategory()
+    {
+        $val = $this->request->getGet('value');
+        if(!empty($val))
+        {
+            $builder = $this->db->table('tblproduct a');
+            $builder->select('a.*,b.CategoryName');
+            $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+            $builder->WHERE('a.categoryID',$val);
+            $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+            $data = $builder->get();
+            foreach($data->getResult() as $row)
+            {
+                ?>
+                <div class="cards">
+                <div class="card">
+                <img src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>" 
+                alt="<?php echo $row->productName ?>" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
+                    <p class="card__textdescription"><?php echo $row->CategoryName ?></p>
+                    <h4 class="card__heading"><center><?php echo $row->productName ?></center></h4>
+                    <span class="card__textdescription">Price : PhP <?php echo number_format($row->UnitPrice,2) ?> | Qty :<?php echo $row->Qty ?></span>
+                    <center>
+                    <a href="<?=site_url('edit/') ?><?php echo $row->productID ?>" class="btn bg-default">Edit Item</a>
+                    <button type="button" class="btn bg-default">Add Stocks</button>
+                    </cente>
+                </div>
+                </div>
+                <?php
+            }
+        }
+        else
+        {
+            $builder = $this->db->table('tblproduct a');
+            $builder->select('a.*,b.CategoryName');
+            $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+            $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+            $data = $builder->get();
+            foreach($data->getResult() as $row)
+            {
+                ?>
+                <div class="cards">
+                <div class="card">
+                <img src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>" 
+                alt="<?php echo $row->productName ?>" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
+                    <p class="card__textdescription"><?php echo $row->CategoryName ?></p>
+                    <h4 class="card__heading"><center><?php echo $row->productName ?></center></h4>
+                    <span class="card__textdescription">Price : PhP <?php echo number_format($row->UnitPrice,2) ?> | Qty :<?php echo $row->Qty ?></span>
+                    <center>
+                    <a href="<?=site_url('edit/') ?><?php echo $row->productID ?>" class="btn bg-default">Edit Item</a>
+                    <button type="button" class="btn bg-default">Add Stocks</button>
+                    </cente>
+                </div>
+                </div>
+                <?php
+            }
+        }
+    }
+
+    public function fetchByType()
+    {
+
+    }
+
+    public function findProducts()
+    {
+        $text = "%".$this->request->getGet('keyword')."%";
+        $builder = $this->db->table('tblproduct a');
+        $builder->select('a.*,b.CategoryName');
+        $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+        $builder->LIKE('a.productName',$text);
+        $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+        $data = $builder->get();
+        foreach($data->getResult() as $row)
+        {
+            ?>
+            <div class="cards">
+              <div class="card">
+              <img src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>" 
+              alt="<?php echo $row->productName ?>" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
+                <p class="card__textdescription"><?php echo $row->CategoryName ?></p>
+                <h4 class="card__heading"><center><?php echo $row->productName ?></center></h4>
+                <span class="card__textdescription">Price : PhP <?php echo number_format($row->UnitPrice,2) ?> | Qty :<?php echo $row->Qty ?></span>
+                <center>
+                  <a href="<?=site_url('edit/') ?><?php echo $row->productID ?>" class="btn bg-default">Edit Item</a>
+                  <button type="button" class="btn bg-default">Add Stocks</button>
+                </cente>
+              </div>
+            </div>
+            <?php
+        }
     }
 
     public function orders()
