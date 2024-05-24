@@ -69,9 +69,10 @@ $routes->group('',['filter'=>'AuthCheck'],function($routes)
     $routes->get('products','Home::products');
     $routes->get('new','Home::newProduct');
     $routes->get('edit/(:any)','Home::editProduct/$1');
-    $routes->get('customers','Home::customers');
+    $routes->get('members','Home::members');
     $routes->get('sales-report','Home::salesReport');
     $routes->get('account-settings','Home::account');
+    $routes->get('settings','Home::settings');
 });
 
 $routes->group('',['filter'=>'AlreadyLoggedIn'],function($routes)

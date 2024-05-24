@@ -603,6 +603,52 @@
           grid-template-columns: 1fr 1fr;
           grid-column-gap:20px;
       }
+      /* Style The Dropdown Button */
+      .dropbtn {
+        background-color: #262626;
+        color: white;
+        padding: 12px;
+        font-size: 13px;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* The container <div> - needed to position the dropdown content */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Dropdown Content (Hidden by Default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+
+      /* Links inside the dropdown */
+      .dropdown-content a {
+        color: black;
+        padding: 10px 12px;
+        text-decoration: none;
+        display: block;
+      }
+
+      /* Change color of dropdown links on hover */
+      .dropdown-content a:hover {background-color: #f1f1f1}
+
+      /* Show the dropdown menu on hover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Change the background color of the dropdown button when the dropdown content is shown */
+      .dropdown:hover .dropbtn {
+        background-color: #262626;
+      }
     </style>
   </head>
   <body>
@@ -651,7 +697,7 @@
             ></ion-icon>
             <li class="nav__list">Orders</li></a
           >
-          <a href="#" class="nav__links">
+          <a href="<?=site_url('sales-report')?>" class="nav__links">
             <ion-icon
               class="nav__side__icon"
               name="file-tray-full-outline"
@@ -661,14 +707,14 @@
         </ul>
         <p class="nav__list side__text margin_top_2">Tools</p>
         <ul class="nav__list__container">
-          <a href="#" class="nav__links margin_top_2">
+          <a href="<?=site_url('settings')?>" class="nav__links margin_top_2">
             <ion-icon
               class="nav__side__icon"
               name="help-circle-outline"
             ></ion-icon>
             <li class="nav__list">Settings</li></a
           >
-          <a href="#" class="nav__links">
+          <a href="<?=site_url('members')?>" class="nav__links">
             <ion-icon class="nav__side__icon" name="person-outline"></ion-icon>
             <li class="nav__list">Users</li></a
           >
@@ -719,7 +765,7 @@
                     <input type="date" class="form-control" id="date"/>
                   </div>
                   <div class="col-3">
-                    <button type="button" class="btn btn-default btn-sm" onclick="Print()"><ion-icon name="print-outline"></ion-icon>&nbsp;Print</button>
+                    <a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="Print()"><ion-icon name="print-outline"></ion-icon>&nbsp;Print<a/>
                     <a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="exportf(this)"><ion-icon name="download-outline"></ion-icon>&nbsp;Export</a>
                   </div>
                 </div> 
@@ -760,7 +806,15 @@
                           <?php } ?>
                         </td>
                         <td><?php echo $row->Remarks ?></td>
-                        <td></td>
+                        <td>
+                            <div class="dropdown">
+                              <button class="dropbtn btn-sm"><ion-icon name="reorder-three-outline"></ion-icon>&nbsp;Action</button>
+                              <div class="dropdown-content">
+                                <a href="#">View Orders</a>
+                                <a href="#">Add Remarks</a>
+                              </div>
+                            </div>
+                        </td>
                       </tr>
                     <?php endforeach;?>
                   </tbody>

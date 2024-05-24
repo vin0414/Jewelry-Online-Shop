@@ -560,17 +560,22 @@ class Home extends BaseController
         }
     }
 
-    public function customers()
+    public function members()
     {
-        $customerModel = new \App\Models\customerModel();
-        $customers = $customerModel->findAll();
-        $data = ['customer'=>$customers];
-        return view('admin/customers',$data);
+        $accountModel = new \App\Models\accountModel();
+        $accounts = $accountModel->findAll();
+        $data = ['customer'=>$accounts];
+        return view('admin/members',$data);
     }
 
     public function salesReport()
     {
         return view('admin/sales-report');
+    }
+
+    public function settings()
+    {
+        return view('admin/settings');
     }
 
     public function account()

@@ -5,19 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="<?=base_url('assets/Diamond Ring.ico')?>" type="image/x-icon">
-    <title>Nasser Jewelry - Dashboard</title>
+    <title>Nasser Jewelry - Settings</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
-    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script> 
-		<script type="text/javascript">
-			google.charts.load('visualization', "1", {
-				packages: ['corechart']
-			});
-		</script>
+      rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
       :root {
         --main-color: #262626;
@@ -412,10 +406,9 @@
       }
       .second__row {
         display: grid;
-        grid-template-columns: 1.3fr 0.9fr;
+        grid-template-columns: 1.2fr 0.8fr;
         margin-top: 3.2rem;
-        gap: 2rem;
-
+        gap: 3.2rem;
       }
       .third__row {
         display: grid;
@@ -442,10 +435,12 @@
 
       .card__heading__number {
         font-size: 3rem;
+        text-align: center;
       }
       .card__textdescription {
-        font-size: 1.7rem;
+        font-size: 1.2rem;
         color: #7e7e7e;
+        text-align: center;
       }
       .image__table {
         width: 8rem;
@@ -466,13 +461,6 @@
       .charts {
         width: 100%;
         height: 100%;
-      }
-
-      .charts__container {
-        display: flex;
-        flex-direction: column;
-        gap: 4rem;
-      
       }
 
       /* QUERY */
@@ -557,7 +545,38 @@
           grid-template-columns: 1fr;
         }
       }
-      .badge{background-color: #262626;color:#fff;padding:5px;border-radius: 2px 2px;}
+      .row{
+          display: flex;
+          grid-template-columns: 1fr 1fr;
+          grid-column-gap:20px;
+      }
+      .col-1 {width: 8.33%;}
+      .col-2 {width: 16.66%;}
+      .col-3 {width: 25%;}
+      .col-4 {width: 33.33%;}
+      .col-5 {width: 41.66%;}
+      .col-6 {width: 50%;}
+      .col-7 {width: 58.33%;}
+      .col-8 {width: 66.66%;}
+      .col-9 {width: 75%;}
+      .col-10 {width: 83.33%;}
+      .col-11 {width: 91.66%;}
+      .col-12 {width: 100%;}
+      .form-control{padding:10px 18px;width:100%;}
+      .bg-default,.btn-default{background-color:#262626;color:#fff;}
+      .bg-success,.btn-success{background-color:limegreen;color:#fff;}
+      .bg-danger,.btn-danger{background-color:crimson;color:#fff;}
+      .btn {
+        border: none;border-radius: 10px 10px;
+        padding: 15px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 2px 2px;
+        cursor: pointer;
+      }
+      .btn-sm{padding:12px 18px;}
     </style>
   </head>
   <body>
@@ -591,7 +610,7 @@
           name="menu-outline"
         ></ion-icon>
         <ul class="nav__list__container">
-          <a href="<?=site_url('dashboard')?>" class="nav__links margin_top_2 active">
+          <a href="<?=site_url('dashboard')?>" class="nav__links margin_top_2">
             <ion-icon class="nav__side__icon" name="home-outline"></ion-icon>
             <li class="nav__list">Dashboard</li></a
           >
@@ -616,7 +635,7 @@
         </ul>
         <p class="nav__list side__text margin_top_2">Tools</p>
         <ul class="nav__list__container">
-          <a href="<?=site_url('settings')?>" class="nav__links margin_top_2">
+          <a href="<?=site_url('settings')?>" class="nav__links margin_top_2 active">
             <ion-icon
               class="nav__side__icon"
               name="help-circle-outline"
@@ -636,77 +655,7 @@
 
       <div class="container">
         <div class="content">
-          <div class="first__row">
-            <div class="cards">
-              <div class="card">
-                <p class="card__heading">New Orders</p>
-                <h2 class="card__heading__number"><?=number_format($order,0)?></h2>
-                <span class="card__textdescription">+20% over previous month</span>
-              </div>
-            </div>
-            <div class="cards">
-              <div class="card">
-                <p class="card__heading">Monthly Income</p>
-                <h2 class="card__heading__number"><?=number_format($income,2)?></h2>
-                <span class="card__textdescription">+20% over previous month</span>
-              </div>
-            </div>
-            <div class="cards">
-              <div class="card">
-                <p class="card__heading">Daily Income</p>
-                <h2 class="card__heading__number"><?=number_format($daily,2)?></h2>
-                <span class="card__textdescription">+20% over previous month</span>
-              </div>
-            </div>
-            <div class="cards">
-              <div class="card">
-                <p class="card__heading">Customers</p>
-                <h2 class="card__heading__number"><?=number_format($customer,0)?></h2>
-                <span class="card__textdescription">+20% over previous month</span>
-              </div>
-            </div>
-          </div>
-          <div class="second__row">
-            <div class="charts__container">
-              <div class="charts" style="height:300px;width:100%;">
-                <h4>Daily Orders</h4>
-                <div id="chartContainer" ></div>
-              </div>
-              <div class="charts" style="height:300px;width:100%;">
-                <h4>Daily Revenue</h4>
-                <div id="paymentContainer"></div>
-              </div>
-            </div>
-            <div class="table__container">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th colspan="2">Top Products</th>
-                  </tr>
-                </thead>
-                <tbody>
-                <?php foreach($products as $row):?>
-                  <tr>
-                    <td>
-                      <img
-                        class="image__table"
-                        alt="image"
-                        src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>"
-                      />
-                    </td>
-                    <td colspan="2"><p><?php echo $row->productName ?></p>
-                    <?php if($row->onSales=="Yes"){ ?>
-                        <small>PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?><sub class="badge"><?php echo $row->Discount*100 ?>% OFF</sub></small>
-                    <?php }else{?>
-                        <small>PhP <?php echo number_format($row->UnitPrice,2) ?></small>
-                    <?php } ?>
-                    </td>
-                  </tr>
-                  <?php endforeach;?>
-                </tbody>
-              </table>
-            </div>
-          </div>
+
         </div>
       </div>
       <footer></footer>
@@ -805,48 +754,7 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script>
-      google.charts.setOnLoadCallback(requestChart);
-      google.charts.setOnLoadCallback(revenueChart);
-      function requestChart() 
-			{
-				var data = google.visualization.arrayToDataTable([
-					["Date", "Total"],
-					<?php 
-					foreach ($query as $row){
-					echo "['".$row->DateCreated."',".$row->total."],";
-					}
-					?>
-				]);
-
-				var options = {
-				title: '',
-				curveType: 'function',
-				legend: { position: 'bottom' },
-				};
-				/* Instantiate and draw the chart.*/
-				var chart = new google.visualization.ColumnChart(document.getElementById('chartContainer'));
-				chart.draw(data, options);
-			}
-      function revenueChart() 
-			{
-				var data = google.visualization.arrayToDataTable([
-					["Date", "Revenue"],
-					<?php 
-					foreach ($revenue as $row){
-					echo "['".$row->DateCreated."',".$row->total."],";
-					}
-					?>
-				]);
-
-				var options = {
-				title: '',
-				curveType: 'function',
-				legend: { position: 'bottom' },
-				};
-				/* Instantiate and draw the chart.*/
-				var chart = new google.visualization.ColumnChart(document.getElementById('paymentContainer'));
-				chart.draw(data, options);
-			}
+      
     </script>
   </body>
 </html>
