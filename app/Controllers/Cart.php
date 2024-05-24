@@ -151,8 +151,9 @@ class Cart extends BaseController
 
     public function orders()
     {
+        $user = session()->get('sess_id');
         $paymentModel = new \App\Models\paymentModel();
-        $payment = $paymentModel->WHERE('Status',0)->findAll();
+        $payment = $paymentModel->WHERE('Status',0)->WHERE('customerID',$user)->findAll();
         $data = ['orders'=>$payment];
         return view('customer/orders',$data);
     }
@@ -170,8 +171,9 @@ class Cart extends BaseController
 
     public function orderHistory()
     {
+        $user = session()->get('sess_id');
         $paymentModel = new \App\Models\paymentModel();
-        $payment = $paymentModel->WHERE('Status<>',0)->findAll();
+        $payment = $paymentModel->WHERE('Status<>',0)->WHERE('customerID',$user)->findAll();
         $data = ['orders'=>$payment];
         return view('customer/order-history',$data);
     }
@@ -202,9 +204,10 @@ class Cart extends BaseController
     public function searchOrders()
     {
         $text = "%".$this->request->getGet('keyword')."%";
+        $user = session()->get('sess_id');
         $builder = $this->db->table('tblpayment');
         $builder->select('*');
-        $builder->LIKE('TransactionNo',$text)->WHERE('Status<>',0);
+        $builder->LIKE('TransactionNo',$text)->WHERE('Status<>',0)->WHERE('customerID',$user);
         $data = $builder->get();
         foreach($data->getResult() as $row)
         {
