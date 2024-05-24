@@ -461,6 +461,13 @@
         height: 100%;
       }
 
+      .charts__container {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+      
+      }
+
       /* QUERY */
 
       /* 1440 px */
@@ -543,6 +550,7 @@
           grid-template-columns: 1fr;
         }
       }
+      .badge{background-color: #262626;color:#fff;padding:5px;border-radius: 2px 2px;}
     </style>
   </head>
   <body>
@@ -652,7 +660,10 @@
             </div>
           </div>
           <div class="second__row">
-            <div id="curve_chart" class="charts" style="height:300px;">Charts Here</div>
+            <div class="charts__container">
+               <div id="curve_chart" class="charts" style="height:300px;">Charts Here</div>
+               <div id="curve_chart2" class="charts" style="height:300px;">Charts Here</div>
+            </div>
             <div class="table__container">
               <table class="table">
                 <thead>
@@ -670,9 +681,9 @@
                         src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>"
                       />
                     </td>
-                    <td colspan="2"><small><?php echo $row->productName ?></small><br/>
+                    <td colspan="2"><p><?php echo $row->productName ?></p>
                     <?php if($row->onSales=="Yes"){ ?>
-                        <small>PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?><sup><?php echo $row->Discount*100 ?>% OFF</sup></small>
+                        <small>PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?><sub class="badge"><?php echo $row->Discount*100 ?>% OFF</sub></small>
                     <?php }else{?>
                         <small>PhP <?php echo number_format($row->UnitPrice,2) ?></small>
                     <?php } ?>
