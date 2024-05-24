@@ -543,6 +543,13 @@
           grid-template-columns: 1fr;
         }
       }
+      .full-card
+      {
+        padding: 2.4rem;
+        border-radius: 1rem;
+        width:100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
     </style>
   </head>
   <body>
@@ -606,7 +613,7 @@
               class="nav__side__icon"
               name="help-circle-outline"
             ></ion-icon>
-            <li class="nav__list">Help</li></a
+            <li class="nav__list">Settings</li></a
           >
           <a href="#" class="nav__links">
             <ion-icon class="nav__side__icon" name="person-outline"></ion-icon>
@@ -621,20 +628,34 @@
 
       <div class="container">
         <div class="content">
-          <div class="second__row">
-            <div id="curve_chart" class="charts" style="height:300px;">Charts Here</div>
-            <div class="table__container">
-              <table class="table">
-                <thead>
-                  <tr>
-                    <th colspan="2">Top Products</th>
-                  </tr>
-                </thead>
-                <tbody>
-                
-                </tbody>
-              </table>
+        <div class="first__row">
+            <div class="cards">
+              <div class="card">
+                <p class="card__heading">New Orders</p>
+                <h2 class="card__heading__number"><?=number_format($new,0)?></h2>
+              </div>
             </div>
+            <div class="cards">
+              <div class="card">
+                <p class="card__heading">Confirmed</p>
+                <h2 class="card__heading__number"><?=number_format($confirm,0)?></h2>
+              </div>
+            </div>
+            <div class="cards">
+              <div class="card">
+                <p class="card__heading">For Delivery</p>
+                <h2 class="card__heading__number"></h2>
+              </div>
+            </div>
+            <div class="cards">
+              <div class="card">
+                <p class="card__heading">Paid</p>
+                <h2 class="card__heading__number"></h2>
+              </div>
+            </div>
+          </div>
+          <br/>
+          <div class="full-card">
           </div>
         </div>
       </div>

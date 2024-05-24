@@ -695,7 +695,7 @@
             <div class="row">
               <div class="col-8" style="padding:10px;">
                 <h4>New Product</h4>
-                <form method="POST" class="row-form" id="newProduct" action="<?=base_url('save-product')?>">
+                <form method="POST" class="row-form" id="newProduct" enctype="multipart/form-data" action="<?=base_url('save-product')?>">
                   <div class="col-12">
                     <label><b>Product Name</b></label>
                     <input type="text" class="form-control" name="productName" required/>
@@ -753,7 +753,7 @@
                       </div>
                       <div class="col-6">
                         <label><b>Discount</b></label>
-                        <input type="text" class="form-control" name="discount" placeholder="0" required/>
+                        <input type="text" class="form-control" name="discount" value="0"required/>
                       </div>
                     </div>
                   </div>

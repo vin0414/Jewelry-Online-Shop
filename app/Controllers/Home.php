@@ -200,6 +200,19 @@ class Home extends BaseController
         return redirect()->to('/edit/'.$id)->withInput();
     }
 
+    public function addStocks()
+    {
+        $productModel = new \App\Models\productModel();
+        $id = $this->request->getPost('value');
+        $number = $this->request->getPost('number');
+        $newStocks = 0;
+        $product = $productModel->WHERE('productID',$id)->first();
+        $newStocks = $number + $product['Qty'];
+        $values = ['Qty'=>$newStocks];
+        $productModel->update($id,$values);
+        echo "success";
+    }
+
     public function saveProduct()
     {
         $productModel = new \App\Models\productModel();
@@ -418,11 +431,31 @@ class Home extends BaseController
 
     public function orders()
     {
+        //orders
+        $order = 0;
+        $builder = $this->db->table('tblpayment');
+        $builder->select('COUNT(paymentID)total');
+        $builder->WHERE('Status',0);
+        $orderList = $builder->get();
+        if($row = $orderList->getRow())
+        {
+            $order = $row->total;
+        }
+        //confirmed
+        $confirm = 0;
+        $builder = $this->db->table('tblpayment');
+        $builder->select('COUNT(paymentID)total');
+        $builder->WHERE('Status',1);
+        $orderList = $builder->get();
+        if($row = $orderList->getRow())
+        {
+            $confirm = $row->total;
+        }
         $builder = $this->db->table('tblpayment a');
         $builder->select('a.*,b.Fullname');
         $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
         $orderList = $builder->get();
-        $data = ['orders'=>$orderList];
+        $data = ['orders'=>$orderList,'new'=>$order,'confirm'=>$confirm];
         return view('admin/orders',$data);
     }
 

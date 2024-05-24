@@ -47,6 +47,7 @@ $routes->get('fetch-by-type','Home::fetchByType');
 $routes->post('save-product','Home::saveProduct');
 $routes->post('update-product','Home::updateProduct');
 $routes->post('upload-image','Home::uploadImage');
+$routes->post('add-stocks','Home::addStocks');
 //cart controller
 $routes->get('cart/details/(:any)','Cart::productDetails/$1');
 $routes->post('buy/(:any)','Cart::buy/$1');

@@ -689,7 +689,7 @@
                 <span class="card__textdescription">Price : PhP <?php echo number_format($row->UnitPrice,2) ?> | Qty :<?php echo $row->Qty ?></span>
                 <center>
                   <a href="<?=site_url('edit/') ?><?php echo $row->productID ?>" class="btn bg-default">Edit Item</a>
-                  <button type="button" class="btn bg-default">Add Stocks</button>
+                  <button type="button" class="btn bg-default add" value="<?php echo $row->productID ?>">Add Stocks</button>
                 </cente>
               </div>
             </div>
@@ -825,6 +825,29 @@
             $('#productResult').html(response);
           }
         });
+      });
+      $(document).on('click','.add',function(){
+        var val = $(this).val();
+        var number = prompt("Please enter new stocks");
+        if(number)
+        {
+          $.ajax({
+            url:"<?=site_url('add-stocks')?>",method:"POST",
+            data:{value:val,number:number},
+            success:function(response)
+            {
+              if(response==="success")
+              {
+                alert("Great! Successfully added");
+                location.reload();
+              }
+              else
+              {
+                alert(response);
+              }
+            }
+          });
+        }
       });
     </script>
   </body>
