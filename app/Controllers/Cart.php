@@ -17,7 +17,11 @@ class Cart extends BaseController
         $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
         $builder->WHERE('a.productID',$id);
         $products = $builder->get()->getResult();
-        $data = ['product'=>$products];
+        //more photos
+        $otherphotoModel = new \App\Models\otherphotoModel();
+        $photos = $otherphotoModel->WHERE('productID',$id)->findAll();
+        //collect
+        $data = ['product'=>$products,'photos'=>$photos];
         return view('cart/product-details',$data);
     }
 

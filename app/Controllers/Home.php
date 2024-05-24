@@ -207,6 +207,7 @@ class Home extends BaseController
         $desc = $this->request->getPost('description');
         $itemUnit = $this->request->getPost('itemUnit');
         $unitPrice = $this->request->getPost('unitPrice');
+        $qty = $this->request->getPost('qty');
         $type = $this->request->getPost('type');
         $category = $this->request->getPost('category');
         $onsales = $this->request->getPost('onsales');
@@ -215,6 +216,25 @@ class Home extends BaseController
         $file = $this->request->getFile('file');
         $originalName = $file->getClientName();
         //save the records
+        if($featured=="Yes")
+        {
+            $values = ['productName'=>$pName,'Description'=>$desc,'Image'=>$originalName,
+                            'ItemUnit'=>$itemUnit,'Qty'=>$qty,'UnitPrice'=>$unitPrice,'DateCreated'=>date('Y-m-d'),
+                            'Product_Type'=>$type,'categoryID'=>$category,
+                            'feature'=>'Yes','onSales'=>$onsales,'Discount'=>($discount/100)];
+            $productModel->save($values);
+        }
+        else
+        {
+            $values = ['productName'=>$pName,'Description'=>$desc,'Image'=>$originalName,
+                'ItemUnit'=>$itemUnit,'Qty'=>$qty,'UnitPrice'=>$unitPrice,'DateCreated'=>date('Y-m-d'),
+                'Product_Type'=>$type,'categoryID'=>$category,
+                'feature'=>'No','onSales'=>$onsales,'Discount'=>($discount/100)];
+            $productModel->save($values);
+        }
+        $file->move('assets/images/product/',$originalName);
+        session()->setFlashdata('success',"Great! Successfully added");
+        return redirect()->to('/new')->withInput();
     }
 
     public function updateProduct()

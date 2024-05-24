@@ -706,11 +706,15 @@
                   </div>
                   <div class="col-12">
                     <div class="row">
-                      <div class="col-6">
+                      <div class="col-4">
                         <label><b>Item Unit</b></label>
                         <input type="text" class="form-control" name="itemUnit" required/>
                       </div>
-                      <div class="col-6">
+                      <div class="col-4">
+                        <label><b>Quantity</b></label>
+                        <input type="number" class="form-control" name="qty" min="1" required/>
+                      </div>
+                      <div class="col-4">
                         <label><b>Unit Price</b></label>
                         <input type="text" class="form-control" name="unitPrice" required/>
                       </div>

@@ -128,49 +128,29 @@
                                     <div class="col-lg-5 col-md-5 col-sm-12">
                                         <div class="modal_tab">
                                             <div class="tab-content product-details-large">
-                                                <div class="tab-pane fade show active" id="tab1" role="tabpanel">
+                                                <div class="tab-pane fade show active" id="tab0" role="tabpanel">
                                                     <div class="modal_tab_img">
-                                                        <a href="#"><img src="<?=base_url('assets/images/product/7.jpg')?>" alt=""></a>
+                                                        <a href="#"><img src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>" alt=""></a>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="tab2" role="tabpanel">
+                                                <?php foreach($photos as $item): ?>
+                                                <div class="tab-pane fade" id="tab<?php echo $item['mpID']?>" role="tabpanel">
                                                     <div class="modal_tab_img">
-                                                        <a href="#"><img src="<?=base_url('assets/images/product/8.jpg')?>" alt=""></a>
+                                                        <a href="#"><img src="<?=base_url('assets/images/product')?>/<?php echo $item['Image'] ?>" alt=""></a>
                                                     </div>
                                                 </div>
-                                                <div class="tab-pane fade" id="tab3" role="tabpanel">
-                                                    <div class="modal_tab_img">
-                                                        <a href="#"><img src="<?=base_url('assets/images/product/9.jpg')?>" alt=""></a>
-                                                    </div>
-                                                </div>
-                                                <div class="tab-pane fade" id="tab4" role="tabpanel">
-                                                    <div class="modal_tab_img">
-                                                        <a href="#"><img src="<?=base_url('assets/images/product/6.jpg')?>" alt=""></a>
-                                                    </div>
-                                                </div>
+                                                <?php endforeach;?>
                                             </div>
                                             <div class="modal_tab_button">
                                                 <ul class="nav product_navactive owl-carousel" role="tablist">
+                                                    <?php foreach($photos as $item): ?>
                                                     <li>
-                                                        <a href="#tab1" class="nav-link active" data-toggle="tab" role="tab"
-                                                            aria-controls="tab1" aria-selected="false"><img
-                                                                src="<?=base_url('assets/images/product/7.jpg')?>" alt=""></a>
+                                                        <a href="#tab<?php echo $item['mpID']?>" class="nav-link" data-toggle="tab" role="tab"
+                                                            aria-controls="tab2" aria-selected="false">
+                                                            <img src="<?=base_url('assets/images/product')?>/<?php echo $item['Image'] ?>" style="height:130px;width:150px;"/>
+                                                        </a>
                                                     </li>
-                                                    <li>
-                                                        <a href="#tab2" class="nav-link" data-toggle="tab" role="tab"
-                                                            aria-controls="tab2" aria-selected="false"><img
-                                                                src="<?=base_url('assets/images/product/8.jpg')?>" alt=""></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#tab3" class="nav-link button_three" data-toggle="tab"
-                                                            role="tab" aria-controls="tab3" aria-selected="false"><img
-                                                                src="<?=base_url('assets/images/product/9.jpg')?>" alt=""></a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="#tab4" class="nav-link" data-toggle="tab" role="tab"
-                                                            aria-controls="tab4" aria-selected="false"><img
-                                                                src="<?=base_url('assets/images/product/6.jpg')?>" alt=""></a>
-                                                    </li>
+                                                    <?php endforeach;?>
                                                 </ul>
                                             </div>
                                         </div>
