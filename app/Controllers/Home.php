@@ -451,11 +451,31 @@ class Home extends BaseController
         {
             $confirm = $row->total;
         }
+        //for delivery
+        $delivery = 0;
+        $builder = $this->db->table('tblpayment');
+        $builder->select('COUNT(paymentID)total');
+        $builder->WHERE('Remarks','FOR DELIVERY');
+        $orderList = $builder->get();
+        if($row = $orderList->getRow())
+        {
+            $delivery = $row->total;
+        }
+        //paid
+        $paid = 0;
+        $builder = $this->db->table('tblpayment');
+        $builder->select('COUNT(paymentID)total');
+        $builder->WHERE('Status',3);
+        $orderList = $builder->get();
+        if($row = $orderList->getRow())
+        {
+            $paid = $row->total;
+        }
         $builder = $this->db->table('tblpayment a');
         $builder->select('a.*,b.Fullname');
         $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
-        $orderList = $builder->get();
-        $data = ['orders'=>$orderList,'new'=>$order,'confirm'=>$confirm];
+        $orderList = $builder->get()->getResult();
+        $data = ['orders'=>$orderList,'new'=>$order,'confirm'=>$confirm,'deliver'=>$delivery,'paid'=>$paid];
         return view('admin/orders',$data);
     }
 

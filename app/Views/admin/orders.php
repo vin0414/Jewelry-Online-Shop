@@ -260,6 +260,8 @@
         border-collapse: collapse;
         /* width: 300px; */
         table-layout: fixed;
+        font-size:13px;
+        border:2px solid #262626;
       }
       td,
       th {
@@ -550,6 +552,17 @@
         width:100%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
       }
+      #customers td, #customers th {
+        border: 1px solid #262626;
+        padding: 8px;
+      }
+      #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #262626;
+        color: white;
+      }
     </style>
   </head>
   <body>
@@ -644,18 +657,46 @@
             <div class="cards">
               <div class="card">
                 <p class="card__heading">For Delivery</p>
-                <h2 class="card__heading__number"></h2>
+                <h2 class="card__heading__number"><?=number_format($deliver,0)?></h2>
               </div>
             </div>
             <div class="cards">
               <div class="card">
                 <p class="card__heading">Paid</p>
-                <h2 class="card__heading__number"></h2>
+                <h2 class="card__heading__number"><?=number_format($paid,0)?></h2>
               </div>
             </div>
           </div>
           <br/>
           <div class="full-card">
+            <table class="table" id="customers">
+              <thead>
+                <th>Trxn No</th>
+                <th>Customer's Name</th>
+                <th>Address</th>
+                <th>Contact No</th>
+                <th>Total Amount</th>
+                <th>Payment</th>
+                <th>Status</th>
+                <th>Remarks</th>
+                <th>More</th>
+              </thead>
+              <tbody>
+                <?php foreach($orders as $row): ?>
+                  <tr>
+                    <td><?php echo $row->TransactionNo ?></td>
+                    <td><?php echo $row->Fullname ?></td>
+                    <td><?php echo $row->DeliveryAddress ?></td>
+                    <td><?php echo $row->ContactNo ?></td>
+                    <td><?php echo $row->Total ?></td>
+                    <td><?php echo $row->paymentDetails ?></td>
+                    <td></td>
+                    <td><?php echo $row->Remarks ?></td>
+                    <td></td>
+                  </tr>
+                <?php endforeach;?>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
