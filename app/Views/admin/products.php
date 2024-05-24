@@ -675,7 +675,7 @@
               </select>
             </div>
             <div class="col-2">
-              <button type="button" class="btn btn-default form-control btn-sm">Add Product</button>
+              <a href="<?=site_url('new')?>" class="btn btn-default form-control btn-sm">Add Product</a>
             </div>
           </div>
           <div class="first__row" id="productResult">

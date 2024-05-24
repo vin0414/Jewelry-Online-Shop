@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="<?=base_url('assets/Diamond Ring.ico')?>" type="image/x-icon">
-    <title>Nasser Jewelry - Products</title>
+    <title>Nasser Jewelry - New Products</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -633,7 +633,7 @@
           >
           <a href="javascript:void(0);" class="nav__links active">
             <ion-icon class="nav__side__icon" name="diamond-outline"></ion-icon>
-            <li class="nav__list">Edit Products</li></a
+            <li class="nav__list">New Product</li></a
           >
           <a href="<?=site_url('customer-orders')?>" class="nav__links">
             <ion-icon
@@ -672,7 +672,7 @@
 
       <div class="container">
         <div class="content">
-          <?php if(!empty(session()->getFlashdata('fail'))) : ?>
+        <?php if(!empty(session()->getFlashdata('fail'))) : ?>
             <div class="alert bg-danger" role="alert">
               <?= session()->getFlashdata('fail'); ?>
             </div>
@@ -684,7 +684,7 @@
           <?php endif; ?>
           <div class="row">
             <div class="col-11">
-            <h4>Edit Product</h4>
+            <h4>New Product</h4>
             </div>
             <div class="col-1">
               <a href="<?=site_url('products')?>" class="btn btn-default form-control btn-sm">Back</a>
@@ -694,27 +694,25 @@
           <div class="full-card">
             <div class="row">
               <div class="col-8" style="padding:10px;">
-                <h4>Update Product</h4>
-                <form method="POST" class="row-form" id="editProduct">
-                  <?php if($product): ?>
-                  <input type="hidden" name="productID" value="<?php echo $product['productID'] ?>"/>
+                <h4>New Product</h4>
+                <form method="POST" class="row-form" id="newProduct" action="<?=base_url('save-product')?>">
                   <div class="col-12">
                     <label><b>Product Name</b></label>
-                    <input type="text" class="form-control" value="<?php echo $product['productName'] ?>" name="productName"/>
+                    <input type="text" class="form-control" name="productName" required/>
                   </div>
                   <div class="col-12">
                     <label><b>Description</b></label>
-                    <textarea class="form-control" name="description" style="height:150px;"><?php echo $product['Description'] ?></textarea>
+                    <textarea class="form-control" name="description" style="height:150px;" required></textarea>
                   </div>
                   <div class="col-12">
                     <div class="row">
                       <div class="col-6">
                         <label><b>Item Unit</b></label>
-                        <input type="text" class="form-control" value="<?php echo $product['ItemUnit'] ?>" name="itemUnit"/>
+                        <input type="text" class="form-control" name="itemUnit" required/>
                       </div>
                       <div class="col-6">
                         <label><b>Unit Price</b></label>
-                        <input type="text" class="form-control" value="<?php echo $product['UnitPrice'] ?>" name="unitPrice"/>
+                        <input type="text" class="form-control" name="unitPrice" required/>
                       </div>
                     </div>
                   </div>
@@ -722,15 +720,15 @@
                     <div class="row">
                       <div class="col-6">
                         <label><b>Product Type</b></label>
-                        <select class="form-control" name="type">
+                        <select class="form-control" name="type" required>
                           <option value="">Choose</option>
-                          <option <?php if($product['Product_Type']=="Men") echo 'selected="selected"'; ?>>Men</option>
-                          <option <?php if($product['Product_Type']=="Women") echo 'selected="selected"'; ?>>Women</option>
+                          <option>Men</option>
+                          <option>Women</option>
                         </select>
                       </div>
                       <div class="col-6">
                         <label><b>Category</b></label>
-                        <select class="form-control" name="category">
+                        <select class="form-control" name="category" required>
                           <option value="">Choose</option>
                           <?php foreach($category as $row): ?>
                             <option value="<?php echo $row['categoryID'] ?>"><?php echo $row['CategoryName'] ?></option>
@@ -743,54 +741,31 @@
                     <div class="row">
                       <div class="col-6">
                         <label><b>On Sales</b></label>
-                        <select class="form-control" name="onsales">
+                        <select class="form-control" name="onsales" required>
                           <option value="">Choose</option>
-                          <option <?php if($product['onSales']=="Yes") echo 'selected="selected"'; ?>>Yes</option>
-                          <option <?php if($product['onSales']=="No") echo 'selected="selected"'; ?>>No</option>
+                          <option>Yes</option>
+                          <option>No</option>
                         </select>
                       </div>
                       <div class="col-6">
                         <label><b>Discount</b></label>
-                        <input type="text" class="form-control" name="discount" value="<?php echo $product['Discount']*100 ?>" placeholder="0"/>
+                        <input type="text" class="form-control" name="discount" placeholder="0" required/>
                       </div>
                     </div>
                   </div>
                   <div class="col-12">
-                    <?php if($product['feature']=="Yes"){ ?>
-                      <input type="checkbox" name="featured" id="featured" value="Yes" checked/>&nbsp;<label><small>Featured Products</small></label>
-                    <?php }else{?>
-                      <input type="checkbox" name="featured" id="featured" value="Yes"/>&nbsp;<label><small>Featured Products</small></label>
-                    <?php } ?>
+                    <label><b>Image</b></label>
+                    <input type="file" class="form-control" name="file" accept="image/*" required/>
                   </div>
-                  <?php endif; ?>
                   <div class="col-12">
-                    <button type="submit" class="btn bg-default" id="btnUpdate">Save Changes</button>
+                  <input type="checkbox" name="featured" id="featured" value="Yes"/>&nbsp;<label><small>Featured Products</small></label>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn bg-default" id="btnSave">Save Entry</button>
                   </div>
                 </form>
               </div>
               <div class="col-4 bg-default" style="padding:10px;border-radius:10px 10px;">
-                <h4>Upload Photos</h4>
-                <form method="POST" class="row-form" id="uploadPhoto" action="<?=base_url('upload-image')?>" enctype="multipart/form-data">
-                  <?php if($product): ?>
-                  <input type="hidden" name="productID" value="<?php echo $product['productID'] ?>"/>
-                  <?php endif; ?>
-                  <div class="col-12">
-                    <label><b>File</b></label>
-                    <input type="file" name="images[]" style="border:1px #fff solid;" accept="image/*" class="form-control" multiple required/>
-                  </div>
-                  <div class="col-12">
-                    <button type="submit" class="btn btn-outline-default" id="btnUpload">Upload</button>
-                  </div>
-                </form>
-                <br/>
-                <h4>Albums</h4>
-                <div class="row" style="padding:10px;">
-                  <?php foreach($photos as $row): ?>
-                  <div class="col-6 bg-outline-default" style="border-radius:10px 10px;">
-                  <img src="<?=base_url('assets/images/product')?>/<?php echo $row['Image'] ?>" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
-                  </div>
-                  <?php endforeach;?>
-                </div>
               </div>
             </div>
           </div>
@@ -892,26 +867,7 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script>
-      $('#btnUpdate').on('click',function(e){
-        e.preventDefault();
-        var data = $('#editProduct').serialize();
-        $.ajax({
-          url:"<?=site_url('update-product')?>",method:"POST",
-          data:data,
-          success:function(response)
-          {
-            if(response==="success")
-            {
-              alert("Great! Successfully applied changes");
-              location.reload();
-            }
-            else
-            {
-              alert(response);
-            }
-          }
-        });
-      });
+
     </script>
   </body>
 </html>

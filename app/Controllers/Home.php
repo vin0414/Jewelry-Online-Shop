@@ -155,6 +155,14 @@ class Home extends BaseController
         return view('admin/products',$data);
     }
 
+    public function newProduct()
+    {
+        $categoryModel = new \App\Models\categoryModel();
+        $category = $categoryModel->findAll();
+        $data = ['category'=>$category];
+        return view('admin/new-product',$data);
+    }
+
     public function editProduct($id)
     {
         $categoryModel = new \App\Models\categoryModel();
@@ -162,8 +170,85 @@ class Home extends BaseController
         //product
         $productModel = new \App\Models\productModel();
         $product = $productModel->find($id);
-        $data = ['category'=>$category,'product'=>$product];
+        //other photo
+        $otherphotoModel = new \App\Models\otherphotoModel();
+        $other = $otherphotoModel->WHERE('productID',$product['productID'])->findAll();
+        $data = ['category'=>$category,'product'=>$product,'photos'=>$other];
         return view('admin/edit-product',$data);
+    }
+
+    public function uploadImage()
+    {
+        $otherphotoModel = new \App\Models\otherphotoModel();
+        //data
+        $id = $this->request->getPost('productID');
+        if($this->request->getFileMultiple('images')) 
+        {
+            foreach($this->request->getFileMultiple('images') as $file)
+            {
+                $originalName = $file->getClientName();
+                $file->move('assets/images/product/',$originalName);
+                //save the images
+                $values = [
+                    'productID'=>$id,
+                    'Image'=>$file->getClientName(),
+                ];
+                $otherphotoModel->save($values);
+            }
+        }
+        session()->setFlashdata('success',"Great! Successfully added");
+        return redirect()->to('/edit/'.$id)->withInput();
+    }
+
+    public function saveProduct()
+    {
+        $productModel = new \App\Models\productModel();
+        $pName = $this->request->getPost('productName');
+        $desc = $this->request->getPost('description');
+        $itemUnit = $this->request->getPost('itemUnit');
+        $unitPrice = $this->request->getPost('unitPrice');
+        $type = $this->request->getPost('type');
+        $category = $this->request->getPost('category');
+        $onsales = $this->request->getPost('onsales');
+        $discount = $this->request->getPost('discount');
+        $featured = $this->request->getPost('featured');
+        $file = $this->request->getFile('file');
+        $originalName = $file->getClientName();
+        //save the records
+    }
+
+    public function updateProduct()
+    {
+        $productModel = new \App\Models\productModel();
+        //data
+        $id = $this->request->getPost('productID');
+        $pName = $this->request->getPost('productName');
+        $desc = $this->request->getPost('description');
+        $itemUnit = $this->request->getPost('itemUnit');
+        $unitPrice = $this->request->getPost('unitPrice');
+        $type = $this->request->getPost('type');
+        $category = $this->request->getPost('category');
+        $onsales = $this->request->getPost('onsales');
+        $discount = $this->request->getPost('discount');
+        $featured = $this->request->getPost('featured');
+        //validate if featured or not
+        if($featured=="Yes")
+        {
+            $values = ['productName'=>$pName,'Description'=>$desc,
+                        'ItemUnit'=>$itemUnit,'UnitPrice'=>$unitPrice,
+                        'Product_Type'=>$type,'categoryID'=>$category,
+                        'feature'=>$featured,'onSales'=>$onsales,'Discount'=>($discount/100)];
+            $productModel->update($id,$values);
+        }
+        else
+        {
+            $values = ['productName'=>$pName,'Description'=>$desc,
+                        'ItemUnit'=>$itemUnit,'UnitPrice'=>$unitPrice,
+                        'Product_Type'=>$type,'categoryID'=>$category,
+                        'feature'=>'No','onSales'=>$onsales,'Discount'=>($discount/100)];
+            $productModel->update($id,$values);
+        }
+        echo "success";
     }
 
     public function fetchByCategory()

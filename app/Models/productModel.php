@@ -14,7 +14,7 @@ class productModel extends Model
     protected $returnType = 'array';
     protected $userSoftDelete = false;
     protected $protectFields = true;
-    protected $allowedFields = ['productName','Description','Image','ItemUnit','Qty','UnitPrice','DateCreated','Product_Type','categoryID'];
+    protected $allowedFields = ['productName','Description','Image','ItemUnit','Qty','UnitPrice','DateCreated','Product_Type','categoryID','feature','onSales','Discount'];
 
     protected $validationRules = [];
     protected $validationMessages = [];

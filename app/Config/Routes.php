@@ -44,6 +44,9 @@ $routes->get('log-out','Home::logOut');
 $routes->get('find-products','Home::findProducts');
 $routes->get('fetch-by-category','Home::fetchByCategory');
 $routes->get('fetch-by-type','Home::fetchByType');
+$routes->post('save-product','Home::saveProduct');
+$routes->post('update-product','Home::updateProduct');
+$routes->post('upload-image','Home::uploadImage');
 //cart controller
 $routes->get('cart/details/(:any)','Cart::productDetails/$1');
 $routes->post('buy/(:any)','Cart::buy/$1');
@@ -61,6 +64,7 @@ $routes->group('',['filter'=>'AuthCheck'],function($routes)
     $routes->get('dashboard','Home::dashboard');
     $routes->get('customer-orders','Home::orders');
     $routes->get('products','Home::products');
+    $routes->get('new','Home::newProduct');
     $routes->get('edit/(:any)','Home::editProduct/$1');
     $routes->get('customers','Home::customers');
     $routes->get('sales-report','Home::salesReport');
