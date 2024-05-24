@@ -157,7 +157,13 @@ class Home extends BaseController
 
     public function editProduct($id)
     {
-        return view('admin/edit-product');
+        $categoryModel = new \App\Models\categoryModel();
+        $category = $categoryModel->findAll();
+        //product
+        $productModel = new \App\Models\productModel();
+        $product = $productModel->find($id);
+        $data = ['category'=>$category,'product'=>$product];
+        return view('admin/edit-product',$data);
     }
 
     public function fetchByCategory()
@@ -220,7 +226,60 @@ class Home extends BaseController
 
     public function fetchByType()
     {
-
+        $val = $this->request->getGet('value');
+        if(!empty($val))
+        {
+            $builder = $this->db->table('tblproduct a');
+            $builder->select('a.*,b.CategoryName');
+            $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+            $builder->WHERE('a.Product_Type',$val);
+            $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+            $data = $builder->get();
+            foreach($data->getResult() as $row)
+            {
+                ?>
+                <div class="cards">
+                <div class="card">
+                <img src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>" 
+                alt="<?php echo $row->productName ?>" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
+                    <p class="card__textdescription"><?php echo $row->CategoryName ?></p>
+                    <h4 class="card__heading"><center><?php echo $row->productName ?></center></h4>
+                    <span class="card__textdescription">Price : PhP <?php echo number_format($row->UnitPrice,2) ?> | Qty :<?php echo $row->Qty ?></span>
+                    <center>
+                    <a href="<?=site_url('edit/') ?><?php echo $row->productID ?>" class="btn bg-default">Edit Item</a>
+                    <button type="button" class="btn bg-default">Add Stocks</button>
+                    </cente>
+                </div>
+                </div>
+                <?php
+            }
+        }
+        else
+        {
+            $builder = $this->db->table('tblproduct a');
+            $builder->select('a.*,b.CategoryName');
+            $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+            $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+            $data = $builder->get();
+            foreach($data->getResult() as $row)
+            {
+                ?>
+                <div class="cards">
+                <div class="card">
+                <img src="<?=base_url('assets/images/product')?>/<?php echo $row->Image ?>" 
+                alt="<?php echo $row->productName ?>" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
+                    <p class="card__textdescription"><?php echo $row->CategoryName ?></p>
+                    <h4 class="card__heading"><center><?php echo $row->productName ?></center></h4>
+                    <span class="card__textdescription">Price : PhP <?php echo number_format($row->UnitPrice,2) ?> | Qty :<?php echo $row->Qty ?></span>
+                    <center>
+                    <a href="<?=site_url('edit/') ?><?php echo $row->productID ?>" class="btn bg-default">Edit Item</a>
+                    <button type="button" class="btn bg-default">Add Stocks</button>
+                    </cente>
+                </div>
+                </div>
+                <?php
+            }
+        }
     }
 
     public function findProducts()

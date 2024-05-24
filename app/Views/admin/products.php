@@ -815,6 +815,17 @@
           }
         });
       });
+      $('#type').change(function(){
+        var val = $(this).val();
+        $.ajax({
+          url:"<?=site_url('fetch-by-type')?>",method:"GET",
+          data:{value:val},
+          success:function(response)
+          {
+            $('#productResult').html(response);
+          }
+        });
+      });
     </script>
   </body>
 </html>

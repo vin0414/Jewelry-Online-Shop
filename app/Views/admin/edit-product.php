@@ -432,6 +432,13 @@
         border-radius: 1rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
       }
+      .full-card
+      {
+        padding: 2.4rem;
+        border-radius: 1rem;
+        width:100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
 
       .card__heading__number {
         font-size: 3rem;
@@ -577,6 +584,12 @@
         cursor: pointer;
       }
       .btn-sm{padding:12px 18px;}
+      .row-form{
+          display: grid;
+          grid-template-columns: auto;
+          grid-gap: 10px;
+          padding: 10px;
+      }
     </style>
   </head>
   <body>
@@ -663,7 +676,89 @@
               <a href="<?=site_url('products')?>" class="btn btn-default form-control btn-sm">Back</a>
             </div>
           </div>
-          <div class="first__row">
+          <br/>
+          <div class="full-card">
+            <div class="row">
+              <div class="col-8">
+                <h4>Update Product</h4>
+                <form method="POST" class="row-form" id="editProduct">
+                  <?php if($product): ?>
+                  <div class="col-12">
+                    <label><b>Product Name</b></label>
+                    <input type="text" class="form-control" value="<?php echo $product['productName'] ?>" name="productName"/>
+                  </div>
+                  <div class="col-12">
+                    <label><b>Description</b></label>
+                    <textarea class="form-control" name="description" style="height:150px;"><?php echo $product['Description'] ?></textarea>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-6">
+                        <label><b>Item Unit</b></label>
+                        <input type="text" class="form-control" value="<?php echo $product['ItemUnit'] ?>" name="itemUnit"/>
+                      </div>
+                      <div class="col-6">
+                        <label><b>Unit Price</b></label>
+                        <input type="text" class="form-control" value="<?php echo $product['UnitPrice'] ?>" name="unitPrice"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-6">
+                        <label><b>Product Type</b></label>
+                        <select class="form-control" name="type">
+                          <option value="">Choose</option>
+                          <option <?php if($product['Product_Type']=="Men") echo 'selected="selected"'; ?>>Men</option>
+                          <option <?php if($product['Product_Type']=="Women") echo 'selected="selected"'; ?>>Women</option>
+                        </select>
+                      </div>
+                      <div class="col-6">
+                        <label><b>Category</b></label>
+                        <select class="form-control" name="category">
+                          <option value="">Choose</option>
+                          <?php foreach($category as $row): ?>
+                            <option value="<?php echo $row['categoryID'] ?>"><?php echo $row['CategoryName'] ?></option>
+                          <?php endforeach;?>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <div class="row">
+                      <div class="col-6">
+                        <label><b>On Sales</b></label>
+                        <select class="form-control" name="onsales">
+                          <option value="">Choose</option>
+                          <option>Yes</option>
+                          <option>No</option>
+                        </select>
+                      </div>
+                      <div class="col-6">
+                        <label><b>Discount</b></label>
+                        <input type="text" class="form-control" name="discount" placeholder="0"/>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-12">
+                    <input type="checkbox" name="featured" id="featured"/>&nbsp;<label><small>Featured Products</small></label>
+                  </div>
+                  <?php endif; ?>
+                  <div class="col-12">
+                    <button type="submit" class="btn bg-default" id="btnUpdate">Save Changes</button>
+                  </div>
+                </form>
+              </div>
+              <div class="col-4">
+                <h4>Upload Photos</h4>
+                <form method="POST" class="row-form" id="uploadPhoto">
+                  <div class="col-12">
+                    <label><b>Photo</b></label>
+                    <input type="file" name="picture" class="form-control" multiple/>
+                  </div>
+                </form>
+              </div>
+            </div>
           </div>
         </div>
       </div>
