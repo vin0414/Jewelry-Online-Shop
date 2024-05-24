@@ -640,7 +640,7 @@
               class="nav__side__icon"
               name="help-circle-outline"
             ></ion-icon>
-            <li class="nav__list">Help</li></a
+            <li class="nav__list">Settings</li></a
           >
           <a href="#" class="nav__links">
             <ion-icon class="nav__side__icon" name="person-outline"></ion-icon>

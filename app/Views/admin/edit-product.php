@@ -573,6 +573,7 @@
       .bg-default,.btn-default{background-color:#262626;color:#fff;}
       .bg-success,.btn-success{background-color:limegreen;color:#fff;}
       .bg-danger,.btn-danger{background-color:crimson;color:#fff;}
+      .btn-outline-default,.bg-outline-default{background-color: #fff;color:#262626;border:1px #262626 solid;}
       .btn {
         border: none;border-radius: 10px 10px;
         padding: 15px 20px;
@@ -653,7 +654,7 @@
               class="nav__side__icon"
               name="help-circle-outline"
             ></ion-icon>
-            <li class="nav__list">Help</li></a
+            <li class="nav__list">Settings</li></a
           >
           <a href="#" class="nav__links">
             <ion-icon class="nav__side__icon" name="person-outline"></ion-icon>
@@ -679,7 +680,7 @@
           <br/>
           <div class="full-card">
             <div class="row">
-              <div class="col-8">
+              <div class="col-8" style="padding:10px;">
                 <h4>Update Product</h4>
                 <form method="POST" class="row-form" id="editProduct">
                   <?php if($product): ?>
@@ -749,12 +750,15 @@
                   </div>
                 </form>
               </div>
-              <div class="col-4">
+              <div class="col-4 bg-default" style="padding:10px;border-radius:10px 10px;">
                 <h4>Upload Photos</h4>
                 <form method="POST" class="row-form" id="uploadPhoto">
                   <div class="col-12">
                     <label><b>Photo</b></label>
-                    <input type="file" name="picture" class="form-control" multiple/>
+                    <input type="file" name="picture" style="border:1px #fff solid;" class="form-control" multiple/>
+                  </div>
+                  <div class="col-12">
+                    <button type="submit" class="btn btn-outline-default" id="btnUpload">Upload</button>
                   </div>
                 </form>
               </div>

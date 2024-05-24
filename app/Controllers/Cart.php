@@ -289,11 +289,28 @@ class Cart extends BaseController
         }
         else
         {
-            //save 
-            ['customerID'=>$user, 'Street'=>$street,'Barangay'=>$brgy,'City'=>$city,
-                    'Province'=>$province,'ZipCode'=>$zipcode,'BirthDate'=>$birthdate,
-                    'Gender'=>$gender,'ContactNo'=>$phone,'primary'=>'Yes'];
-            $customerInfoModel->save($values);
+            $validation = $this->validate([
+                'birthdate'=>'required',
+                'phone'=>'required',
+                'gender'=>'required',
+                'street'=>'required',
+                'barangay'=>'required',
+                'city'=>'required',
+                'province'=>'required',
+                'zipcode'=>'required',
+            ]);
+            if(!$validation)
+            {
+                //do nothing
+            }
+            else
+            {
+                //save 
+                ['customerID'=>$user, 'Street'=>$street,'Barangay'=>$brgy,'City'=>$city,
+                        'Province'=>$province,'ZipCode'=>$zipcode,'BirthDate'=>$birthdate,
+                        'Gender'=>$gender,'ContactNo'=>$phone,'primary'=>'Yes'];
+                $customerInfoModel->save($values);
+            }
         }
         echo "success";
     }

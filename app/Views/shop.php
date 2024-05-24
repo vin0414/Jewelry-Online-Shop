@@ -81,15 +81,6 @@
 
                         <div class="col-lg-5 col-md-7 col-6">
                             <div class="middel_right">
-                                <div class="search_btn">
-                                    <a href="#"><i class="ion-ios-search-strong"></i></a>
-                                    <div class="dropdown_search">
-                                        <form action="#">
-                                            <input type="text" placeholder="Search Product ....">
-                                            <button type="submit"><i class="ion-ios-search-strong"></i></button>
-                                        </form>
-                                    </div>
-                                </div>
                                 <div class="cart_link">
                                     <a href="javascript:void(0);"><i class="ion-android-cart"></i><span class="cart_text_quantity">PhP <?php echo number_format($total,2) ?></span><i class="ion-chevron-down"></i></a>
                                     <span class="cart_quantity"><?php echo number_format($volume,0) ?></span>
@@ -372,7 +363,7 @@
                 {
                     if(response==="")
                     {
-                        $('#loadProducts').html("<div><center>Loading...</center></div>");
+                        $('#loadProducts').html("<div><center>No Record(s)</center></div>");
                     }
                     else
                     {

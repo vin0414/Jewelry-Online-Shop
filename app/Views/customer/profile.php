@@ -439,12 +439,65 @@
                 </div>
                 <div class="col-12 form-group">
                   <label><b>Email Address</b></label>
-                  <input type="email" class="form-control" value="<?=$customer['Email']?>" name="email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" required/>
+                  <input type="email" class="form-control" value="<?=$customer['Email']?>" name="email" required/>
                 </div>
                 <?php endif;?>
                 <div class="col-12 form-group">
                   Personal Details
                 </div>
+                <?php if(empty($info)){ ?>
+                <div class="col-12 form-group">
+                  <div class="row">
+                    <div class="col-4">
+                      <label><b>Birth Date</b></label>
+                      <input type="date" class="form-control" name="birthdate" required/>
+                    </div>
+                    <div class="col-4">
+                      <label><b>Contact No</b></label>
+                      <input type="phone" id="phone" class="form-control" maxlength="11" minlength="11" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" name="phone" required/>
+                    </div>
+                    <div class="col-4">
+                      <label><b>Gender</b></label>
+                      <select class="form-control" name="gender" required>
+                        <option value="">Choose</option>
+                        <option>Male</option>
+                        <option>Female</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 form-group">
+                  <label>Shipping Address</label>
+                </div>
+                <div class="col-12 form-group">
+                  <div class="row">
+                    <div class="col-6">
+                      <label><b>Street</b></label>
+                      <input type="text" class="form-control" name="street" required/>
+                    </div>
+                    <div class="col-6">
+                      <label><b>Village/Barangay</b></label>
+                      <input type="text" class="form-control" name="barangay" required/>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-12 form-group">
+                  <div class="row">
+                    <div class="col-6">
+                      <label><b>City</b></label>
+                      <input type="text" class="form-control" name="city" required/>
+                    </div>
+                    <div class="col-4">
+                      <label><b>Province</b></label>
+                      <input type="text" class="form-control" name="province" required/>
+                    </div>
+                    <div class="col-2">
+                      <label><b>Zip Code</b></label>
+                      <input type="text" class="form-control" name="zipcode" required/>
+                    </div>
+                  </div>
+                </div>
+                <?php }else{?>
                 <?php if($info): ?>
                 <div class="col-12 form-group">
                   <div class="row">
@@ -498,6 +551,7 @@
                   </div>
                 </div>
                 <?php endif;?>
+                <?php } ?>
                 <div class="col-12 form-group">
                   <button type="submit" class="btn btn-default" id="btnSave">Save Changes</button>
                 </div>
