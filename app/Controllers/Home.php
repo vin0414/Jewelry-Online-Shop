@@ -98,9 +98,10 @@ class Home extends BaseController
         }
         //revenue for the month
         $income = 0;$month = date('m');$year = date('Y');
+        $status = [0,2];
         $builder = $this->db->table('tblpayment');
         $builder->select('IFNULL(SUM(Total),0)total');
-        $builder->WHERE('Status<>',0)
+        $builder->WHERENOTIN('Status',$status)
         ->WHERE('DATE_FORMAT(DateCreated,"%m")',$month)
         ->WHERE('DATE_FORMAT(DateCreated,"%Y")',$year);
         $orderList = $builder->get();
@@ -110,9 +111,10 @@ class Home extends BaseController
         }
         //revenue for the current date
         $dailyIncome = 0;$date=date('Y-m-d');
+        $status = [0,2];
         $builder = $this->db->table('tblpayment');
         $builder->select('IFNULL(SUM(Total),0)total');
-        $builder->WHERE('Status<>',0)
+        $builder->WHERENOTIN('Status',$status)
         ->WHERE('DateCreated',$date);
         $orderList = $builder->get();
         if($row = $orderList->getRow())
@@ -131,8 +133,10 @@ class Home extends BaseController
         $builder->groupBy('DateCreated');
         $query = $builder->get()->getResult();
         //revenue
+        $status = [0,2];
         $builder = $this->db->table('tblpayment');
         $builder->select('DateCreated,SUM(Total)total');
+        $builder->WHERENOTIN('Status',$status);
         $builder->groupBy('DateCreated');
         $revenue = $builder->get()->getResult();
         //collect 
@@ -474,9 +478,86 @@ class Home extends BaseController
         $builder = $this->db->table('tblpayment a');
         $builder->select('a.*,b.Fullname');
         $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
+        $builder->orderBy('a.Status','ASC');
         $orderList = $builder->get()->getResult();
         $data = ['orders'=>$orderList,'new'=>$order,'confirm'=>$confirm,'deliver'=>$delivery,'paid'=>$paid];
         return view('admin/orders',$data);
+    }
+
+    public function searchOrders()
+    {
+        $text = "%".$this->request->getGet('keyword')."%";
+        $builder = $this->db->table('tblpayment a');
+        $builder->select('a.*,b.Fullname');
+        $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
+        $builder->LIKE('TransactionNo',$text)->orLike('b.Fullname',$text);
+        $builder->orderBy('a.Status','ASC');
+        $orderList = $builder->get();
+        foreach($orderList->getResult() as $row)
+        {
+            ?>
+            <tr>
+                <td><?php echo $row->DateCreated ?></td>
+                <td><?php echo $row->TransactionNo ?></td>
+                <td><?php echo $row->Fullname ?></td>
+                <td><?php echo $row->DeliveryAddress ?></td>
+                <td><?php echo $row->ContactNo ?></td>
+                <td><?php echo $row->Total ?></td>
+                <td><?php echo $row->paymentDetails ?></td>
+                <td>
+                    <?php if($row->Status==0){ ?>
+                    <span class="btn btn-sm bg-outline-default">Waiting</span>
+                    <?php }else if($row->Status==1){?>
+                    <span class="btn btn-sm bg-default">Confirmed</span>
+                    <?php }else if($row->Status== 2){?>
+                    <span class="btn btn-sm bg-danger">Cancelled</span>
+                    <?php }else{?>
+                    <span class="btn btn-sm bg-success">Success</span>
+                    <?php } ?>
+                </td>
+                <td><?php echo $row->Remarks ?></td>
+                <td></td>
+            </tr>
+            <?php
+        }
+    }
+
+    public function searchOrdersDate()
+    {
+        $date = $this->request->getGet('value');
+        $builder = $this->db->table('tblpayment a');
+        $builder->select('a.*,b.Fullname');
+        $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
+        $builder->WHERE('a.DateCreated',$date);
+        $builder->orderBy('a.Status','ASC');
+        $orderList = $builder->get();
+        foreach($orderList->getResult() as $row)
+        {
+            ?>
+            <tr>
+                <td><?php echo $row->DateCreated ?></td>
+                <td><?php echo $row->TransactionNo ?></td>
+                <td><?php echo $row->Fullname ?></td>
+                <td><?php echo $row->DeliveryAddress ?></td>
+                <td><?php echo $row->ContactNo ?></td>
+                <td><?php echo $row->Total ?></td>
+                <td><?php echo $row->paymentDetails ?></td>
+                <td>
+                    <?php if($row->Status==0){ ?>
+                    <span class="btn btn-sm bg-outline-default">Waiting</span>
+                    <?php }else if($row->Status==1){?>
+                    <span class="btn btn-sm bg-default">Confirmed</span>
+                    <?php }else if($row->Status== 2){?>
+                    <span class="btn btn-sm bg-danger">Cancelled</span>
+                    <?php }else{?>
+                    <span class="btn btn-sm bg-success">Success</span>
+                    <?php } ?>
+                </td>
+                <td><?php echo $row->Remarks ?></td>
+                <td></td>
+            </tr>
+            <?php
+        }
     }
 
     public function customers()

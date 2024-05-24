@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"
-    />
+      rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <style>
       :root {
         --main-color: #262626;
@@ -563,6 +563,46 @@
         background-color: #262626;
         color: white;
       }
+      .tableFixHead thead th { position: sticky; top: 0; z-index: 1;}
+      .col-1 {width: 8.33%;}
+      .col-2 {width: 16.66%;}
+      .col-3 {width: 25%;}
+      .col-4 {width: 33.33%;}
+      .col-5 {width: 41.66%;}
+      .col-6 {width: 50%;}
+      .col-7 {width: 58.33%;}
+      .col-8 {width: 66.66%;}
+      .col-9 {width: 75%;}
+      .col-10 {width: 83.33%;}
+      .col-11 {width: 91.66%;}
+      .col-12 {width: 100%;}
+      .form-control{padding:10px 18px;width:100%;}
+      .bg-default,.btn-default{background-color:#262626;color:#fff;}
+      .bg-success,.btn-success{background-color:limegreen;color:#fff;}
+      .bg-danger,.btn-danger{background-color:crimson;color:#fff;}
+      .btn-outline-default,.bg-outline-default{background-color: #fff;color:#262626;border:1px #262626 solid;}
+      .btn {
+        border-radius: 10px 10px;
+        padding: 15px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 2px 2px;
+        cursor: pointer;
+      }
+      .btn-sm{padding:12px 18px;}
+      .row-form{
+          display: grid;
+          grid-template-columns: auto;
+          grid-gap: 10px;
+          padding: 10px;
+      }
+      .row{
+          display: flex;
+          grid-template-columns: 1fr 1fr;
+          grid-column-gap:20px;
+      }
     </style>
   </head>
   <body>
@@ -669,34 +709,64 @@
           </div>
           <br/>
           <div class="full-card">
-            <table class="table" id="customers">
-              <thead>
-                <th>Trxn No</th>
-                <th>Customer's Name</th>
-                <th>Address</th>
-                <th>Contact No</th>
-                <th>Total Amount</th>
-                <th>Payment</th>
-                <th>Status</th>
-                <th>Remarks</th>
-                <th>More</th>
-              </thead>
-              <tbody>
-                <?php foreach($orders as $row): ?>
-                  <tr>
-                    <td><?php echo $row->TransactionNo ?></td>
-                    <td><?php echo $row->Fullname ?></td>
-                    <td><?php echo $row->DeliveryAddress ?></td>
-                    <td><?php echo $row->ContactNo ?></td>
-                    <td><?php echo $row->Total ?></td>
-                    <td><?php echo $row->paymentDetails ?></td>
-                    <td></td>
-                    <td><?php echo $row->Remarks ?></td>
-                    <td></td>
-                  </tr>
-                <?php endforeach;?>
-              </tbody>
-            </table>
+            <div class="row-form">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-7">
+                    <input type="search" class="form-control" id="search" placeholder="Search"/>
+                  </div>
+                  <div class="col-2">
+                    <input type="date" class="form-control" id="date"/>
+                  </div>
+                  <div class="col-3">
+                    <button type="button" class="btn btn-default btn-sm" onclick="Print()"><ion-icon name="print-outline"></ion-icon>&nbsp;Print</button>
+                    <a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="exportf(this)"><ion-icon name="download-outline"></ion-icon>&nbsp;Export</a>
+                  </div>
+                </div> 
+              </div>
+              <div class="col-12 tableFixHead" style="height:500px;overflow-y:auto;" id="pdf">
+                <table class="table" id="customers">
+                  <thead>
+                    <th>Date</th>
+                    <th>Trxn No</th>
+                    <th>Customer's Name</th>
+                    <th>Address</th>
+                    <th>Contact No</th>
+                    <th>Total Amount</th>
+                    <th>Payment</th>
+                    <th>Status</th>
+                    <th>Remarks</th>
+                    <th>More</th>
+                  </thead>
+                  <tbody id="results">
+                    <?php foreach($orders as $row): ?>
+                      <tr>
+                        <td><?php echo $row->DateCreated ?></td>
+                        <td><?php echo $row->TransactionNo ?></td>
+                        <td><?php echo $row->Fullname ?></td>
+                        <td><?php echo $row->DeliveryAddress ?></td>
+                        <td><?php echo $row->ContactNo ?></td>
+                        <td><?php echo $row->Total ?></td>
+                        <td><?php echo $row->paymentDetails ?></td>
+                        <td>
+                          <?php if($row->Status==0){ ?>
+                            <span class="btn btn-sm bg-outline-default">Waiting</span>
+                          <?php }else if($row->Status==1){?>
+                            <span class="btn btn-sm bg-default">Confirmed</span>
+                          <?php }else if($row->Status== 2){?>
+                            <span class="btn btn-sm bg-danger">Cancelled</span>
+                          <?php }else{?>
+                            <span class="btn btn-sm bg-success">Success</span>
+                          <?php } ?>
+                        </td>
+                        <td><?php echo $row->Remarks ?></td>
+                        <td></td>
+                      </tr>
+                    <?php endforeach;?>
+                  </tbody>
+                </table>
+              </div>
+            </div> 
           </div>
         </div>
       </div>
@@ -795,5 +865,60 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
+    <script>
+      $('#date').change(function(){
+        var val = $(this).val();
+        $('#results').html("<tr><td colspan='10'><center>Loading....</center></td></tr>");
+        $.ajax({
+          url:"<?=site_url('search-orders-date')?>",method:"GET",
+          data:{value:val},
+          success:function(response)
+          {
+            if(response==="")
+            {
+              $('#results').html("<tr><td colspan='10'><center>No Order(s)</center></td></tr>");
+            }
+            else
+            {
+              $('#results').html(response);
+            }
+          }
+        });
+      });
+      $('#search').keyup(function(){
+        var val = $(this).val();
+        $('#results').html("<tr><td colspan='10'><center>Loading....</center></td></tr>");
+        $.ajax({
+          url:"<?=site_url('search-orders')?>",method:"GET",
+          data:{keyword:val},
+          success:function(response)
+          {
+            if(response==="")
+            {
+              $('#results').html("<tr><td colspan='10'><center>No Order(s)</center></td></tr>");
+            }
+            else
+            {
+              $('#results').html(response);
+            }
+          }
+        });
+      });
+      function Print() {
+          var printContents = document.getElementById("pdf").innerHTML;
+          var originalContents = document.body.innerHTML;
+          document.body.innerHTML = printContents;
+          window.print();
+          document.body.innerHTML = originalContents;
+      }
+      function exportf(elem) {
+          var table = document.getElementById("customers");
+          var html = table.outerHTML;
+          var url = 'data:application/vnd.ms-excel,' + escape(html); // Set your html table into url 
+          elem.setAttribute("href", url);
+          elem.setAttribute("download","orders.xls"); // Choose the file name
+          return false;
+        }
+    </script>
   </body>
 </html>
