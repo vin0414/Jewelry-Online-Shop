@@ -675,12 +675,12 @@
                   <br/>
                   <small>Effortlessly import copies of your database to prevent data loss, ensure business continuity, and facilitate quick recovery in case of system failures.</small>
                   <br/><br/>
-                  <form class="row-form" method="POST" id="frmRestore" enctype="multipart/form-data" action="">
+                  <form class="row-form" method="POST" id="frmRestore" enctype="multipart/form-data" action="<?=base_url('restore')?>">
                     <div class="col-12">
                       <div class="row">
                         <div class="col-6">
                           <label>Server</label>
-                          <input type="text" class="form-control" name="server" required/>
+                          <input type="text" class="form-control" name="server" value="localhost" required/>
                         </div>
                         <div class="col-6">
                           <label>Database</label>
@@ -716,7 +716,7 @@
                   <br/>
                   <small>Easily create copies of your database to prevent data loss, ensure business continuity, and facilitate quick recovery in case of system failures.</small>
                   <br/>
-                  <a href="" class="btn btn-default"><ion-icon name="duplicate-outline"></ion-icon>&nbsp;Download</a>
+                  <a href="<?=site_url('download')?>" class="btn btn-default"><ion-icon name="duplicate-outline"></ion-icon>&nbsp;Download</a>
                 </div>
                 <br/>
                 <div class="full-card">
