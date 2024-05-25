@@ -590,6 +590,9 @@
         width:100%;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
       }
+      .alert {
+        padding: 20px;margin-bottom:10px;
+      }
     </style>
   </head>
   <body>
@@ -668,6 +671,16 @@
       </aside>
       <div class="container">
         <div class="content">
+        <?php if(!empty(session()->getFlashdata('fail'))) : ?>
+            <div class="alert bg-danger" role="alert">
+              <?= session()->getFlashdata('fail'); ?>
+            </div>
+          <?php endif; ?>
+          <?php if(!empty(session()->getFlashdata('success'))) : ?>
+            <div class="alert bg-success" role="alert">
+              <?= session()->getFlashdata('success'); ?>
+            </div>
+          <?php endif; ?>
             <div class="row">
               <div class="col-6">
                 <div class="full-card">
@@ -722,7 +735,7 @@
                 <div class="full-card">
                   <h4><ion-icon name="duplicate-outline"></ion-icon>&nbsp;Add Category</h4>
                   <br/>
-                  <form method="POST" class="row-form">
+                  <form method="POST" class="row-form" id="frmCategory">
                     <div class="col-12">
                       <label>Category Name</label>
                       <input type="text" class="form-control" name="category_name"/>
@@ -832,7 +845,25 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script>
-      
+      $('#frmCategory').on('submit',function(e){
+        e.preventDefault();
+        var data = $('#frmCategory').serialize();
+        $.ajax({
+          url:"<?=site_url('save-category')?>",method:"POST",
+          data:data,success:function(response)
+          {
+            if(response==="success")
+            {
+              alert("Great!Successfully added");
+              $('#frmCategory')[0].reset();
+            }
+            else
+            {
+              alert(response);
+            }
+          }
+        });
+      });
     </script>
   </body>
 </html>

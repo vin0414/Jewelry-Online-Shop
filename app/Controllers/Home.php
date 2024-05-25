@@ -684,6 +684,32 @@ class Home extends BaseController
         return view('admin/settings');
     }
 
+    public function saveCategory()
+    {
+        $categoryModel = new \App\Models\categoryModel();
+        $c_name = $this->request->getPost('category_name');
+        $validation = $this->validate([
+            'category_name'=>'is_unique[tblcategory.CategoryName]'
+        ]);
+        if(!$validation)
+        {
+            echo "Invalid! ".$c_name." Already exist";
+        }
+        else
+        {
+            if(empty($c_name))
+            {
+                echo "Invalid! Please enter category name";
+            }
+            else
+            {
+                $values = ['CategoryName'=>$c_name];
+                $categoryModel->save($values);
+                echo "success";
+            }
+        }
+    }
+
     public function account()
     {
         return view('admin/account');

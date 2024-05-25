@@ -56,6 +56,7 @@ $routes->post('reset-account','Home::resetAccount');
 $routes->post('update-account','Home::updateAccount');
 $routes->get('search-by-category','Home::searchByCategory');
 $routes->get('search-by-type','Home::searchByType');
+$routes->post('save-category','Home::saveCategory');
 $routes->get('download','Download::downloadFile');
 $routes->post('restore','RestoreDB::RestoreData');
 //cart controller
