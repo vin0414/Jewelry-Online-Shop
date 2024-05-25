@@ -749,10 +749,13 @@ class Home extends BaseController
         $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
         $products = $builder->get()->getResult();
 
+        $categoryModel = new \App\Models\categoryModel();
+        $category = $categoryModel->findAll();
+
         $items = is_array(session('cart'))?array_values(session('cart')):array();
         $total = $this->total();
         $totalItem = count(is_array(session('cart'))?array_values(session('cart')):array());
-        $data = ['items'=>$items,'total'=>$total,'volume'=>$totalItem,'products'=>$products];
+        $data = ['items'=>$items,'total'=>$total,'volume'=>$totalItem,'products'=>$products,'category'=>$category];
         return view('shop',$data);
     }
 

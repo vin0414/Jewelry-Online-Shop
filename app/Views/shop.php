@@ -228,7 +228,26 @@
             <div class="container">
                 <div class="row">
                     <div class="col-12">
-                        <input type="search" class="form-control" style="background-color: #000;color:#fff;" id="search" name="search" placeholder="Search"/>
+                        <div class="row">
+                            <div class="col-2">
+                                <select class="form-control" id="category" style="background-color: #000;color:#fff;">
+                                    <option value="">All Category</option>
+                                    <?php foreach($category as $row): ?>
+                                        <option value="<?php echo $row['categoryID'] ?>"><?php echo $row['CategoryName'] ?></option>
+                                    <?php endforeach;?>
+                                </select>
+                            </div>
+                            <div class="col-2">
+                                <select class="form-control" id="type" style="background-color: #000;color:#fff;">
+                                    <option value="">All Types</option>
+                                    <option>Men</option>
+                                    <option>Women</option>
+                                </select>
+                            </div>
+                            <div class="col-8">
+                                <input type="search" class="form-control" style="background-color: #000;color:#fff;" id="search" name="search" placeholder="Search Products"/>
+                            </div>
+                        </div>
                     </div>
                     <div class="col-12">
                         <br/>
