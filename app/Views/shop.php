@@ -391,6 +391,44 @@
                 }
             });
         });
+        $('#type').change(function(){
+            var val = $(this).val();
+            $('#loadProducts').html("<div><center>Loading...</center></div>");
+            $.ajax({
+                url:"<?=site_url('search-by-type')?>",method:"GET",
+                data:{value:val},
+                success:function(response)
+                {
+                    if(response==="")
+                    {
+                        $('#loadProducts').html("<div><center>No Record(s)</center></div>");
+                    }
+                    else
+                    {
+                        $('#loadProducts').html(response);
+                    }
+                }
+            });
+        });
+        $('#category').change(function(){
+            var val = $(this).val();
+            $('#loadProducts').html("<div><center>Loading...</center></div>");
+            $.ajax({
+                url:"<?=site_url('search-by-category')?>",method:"GET",
+                data:{value:val},
+                success:function(response)
+                {
+                    if(response==="")
+                    {
+                        $('#loadProducts').html("<div><center>No Record(s)</center></div>");
+                    }
+                    else
+                    {
+                        $('#loadProducts').html(response);
+                    }
+                }
+            });
+        });
     </script>
 </body>
 

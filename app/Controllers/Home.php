@@ -759,6 +759,217 @@ class Home extends BaseController
         return view('shop',$data);
     }
 
+    public function searchByType()
+    {
+        $val = $this->request->getGet('value');
+        if(empty($val))
+        {
+            $builder = $this->db->table('tblproduct a');
+            $builder->select('a.*,b.CategoryName');
+            $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+            $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+            $data = $builder->get();
+            foreach($data->getResult() as $row)
+            {
+                ?>
+                <div class="col-lg-3 form-group">
+                    <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
+                        <div class="card-body">
+                            <img src="assets/images/product/<?php echo $row->Image ?>"/>
+                            <center><?php echo $row->CategoryName ?></center>
+                            <center><h4><?php echo $row->productName ?></h4></center>
+                            <?php if($row->onSales=="Yes"){ ?>
+                            <div class="modal_price mb-10 text-center">
+                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
+                                <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                            </div>
+                            <?php }else {?>
+                            <div class="modal_price mb-10 text-center">
+                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                            </div>
+                            <?php } ?>
+                            <div class="product_desc">
+                                <p class="text-center"><?php echo $row->Description ?></p>
+                            </div>
+                            <div class="action_links">
+                                <center>
+                                <ul>
+                                    <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                            data-toggle="tooltip"><span
+                                                class="ion-heart"></span></a></li>
+                                    <li class="add_to_cart">
+                                        <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                    </li>
+                                    <li><a href="#" title="Compare"><i
+                                                class="ion-ios-settings-strong"></i></a>
+                                    </li>
+                                </ul>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        }
+        else
+        {
+            $builder = $this->db->table('tblproduct a');
+            $builder->select('a.*,b.CategoryName');
+            $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+            $builder->WHERE('a.Product_Type',$val);
+            $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+            $data = $builder->get();
+            foreach($data->getResult() as $row)
+            {
+                ?>
+                <div class="col-lg-3 form-group">
+                    <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
+                        <div class="card-body">
+                            <img src="assets/images/product/<?php echo $row->Image ?>"/>
+                            <center><?php echo $row->CategoryName ?></center>
+                            <center><h4><?php echo $row->productName ?></h4></center>
+                            <?php if($row->onSales=="Yes"){ ?>
+                            <div class="modal_price mb-10 text-center">
+                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
+                                <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                            </div>
+                            <?php }else {?>
+                            <div class="modal_price mb-10 text-center">
+                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                            </div>
+                            <?php } ?>
+                            <div class="product_desc">
+                                <p class="text-center"><?php echo $row->Description ?></p>
+                            </div>
+                            <div class="action_links">
+                                <center>
+                                <ul>
+                                    <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                            data-toggle="tooltip"><span
+                                                class="ion-heart"></span></a></li>
+                                    <li class="add_to_cart">
+                                        <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                    </li>
+                                    <li><a href="#" title="Compare"><i
+                                                class="ion-ios-settings-strong"></i></a>
+                                    </li>
+                                </ul>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        }
+    }
+
+    public function searchByCategory()
+    {
+        $val = $this->request->getGet('value');
+        if(empty($val))
+        {
+            $builder = $this->db->table('tblproduct a');
+            $builder->select('a.*,b.CategoryName');
+            $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+            $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+            $data = $builder->get();
+            foreach($data->getResult() as $row)
+            {
+                ?>
+                <div class="col-lg-3 form-group">
+                    <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
+                        <div class="card-body">
+                            <img src="assets/images/product/<?php echo $row->Image ?>"/>
+                            <center><?php echo $row->CategoryName ?></center>
+                            <center><h4><?php echo $row->productName ?></h4></center>
+                            <?php if($row->onSales=="Yes"){ ?>
+                            <div class="modal_price mb-10 text-center">
+                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
+                                <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                            </div>
+                            <?php }else {?>
+                            <div class="modal_price mb-10 text-center">
+                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                            </div>
+                            <?php } ?>
+                            <div class="product_desc">
+                                <p class="text-center"><?php echo $row->Description ?></p>
+                            </div>
+                            <div class="action_links">
+                                <center>
+                                <ul>
+                                    <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                            data-toggle="tooltip"><span
+                                                class="ion-heart"></span></a></li>
+                                    <li class="add_to_cart">
+                                        <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                    </li>
+                                    <li><a href="#" title="Compare"><i
+                                                class="ion-ios-settings-strong"></i></a>
+                                    </li>
+                                </ul>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        }
+        else
+        {
+            $builder = $this->db->table('tblproduct a');
+            $builder->select('a.*,b.CategoryName');
+            $builder->join('tblcategory b','b.categoryID=a.categoryID','LEFT');
+            $builder->WHERE('a.categoryID',$val);
+            $builder->groupBy('a.productID')->orderBy('a.productID','DESC');
+            $data = $builder->get();
+            foreach($data->getResult() as $row)
+            {
+                ?>
+                <div class="col-lg-3 form-group">
+                    <div class="card" style="background-color:#000;color:#fff;border:1px solid #fff;">
+                        <div class="card-body">
+                            <img src="assets/images/product/<?php echo $row->Image ?>"/>
+                            <center><?php echo $row->CategoryName ?></center>
+                            <center><h4><?php echo $row->productName ?></h4></center>
+                            <?php if($row->onSales=="Yes"){ ?>
+                            <div class="modal_price mb-10 text-center">
+                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice-($row->UnitPrice*$row->Discount),2) ?></span>
+                                <span class="old_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                            </div>
+                            <?php }else {?>
+                            <div class="modal_price mb-10 text-center">
+                                <span class="new_price">PhP <?php echo number_format($row->UnitPrice,2) ?></span>
+                            </div>
+                            <?php } ?>
+                            <div class="product_desc">
+                                <p class="text-center"><?php echo $row->Description ?></p>
+                            </div>
+                            <div class="action_links">
+                                <center>
+                                <ul>
+                                    <li><a href="#" data-placement="top" title="Add to Wishlist"
+                                            data-toggle="tooltip"><span
+                                                class="ion-heart"></span></a></li>
+                                    <li class="add_to_cart">
+                                        <a href="<?=site_url('cart/details/')?><?php echo $row->productID ?>" title="Add to Cart">Add to Cart</a>
+                                    </li>
+                                    <li><a href="#" title="Compare"><i
+                                                class="ion-ios-settings-strong"></i></a>
+                                    </li>
+                                </ul>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <?php
+            }
+        }
+    }
 
     public function searchProducts()
     {

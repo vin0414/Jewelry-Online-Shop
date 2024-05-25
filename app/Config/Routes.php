@@ -54,6 +54,8 @@ $routes->post('add-account','Home::addAccount');
 $routes->get('search-accounts','Home::searchAccounts');
 $routes->post('reset-account','Home::resetAccount');
 $routes->post('update-account','Home::updateAccount');
+$routes->get('search-by-category','Home::searchByCategory');
+$routes->get('search-by-type','Home::searchByType');
 //cart controller
 $routes->get('cart/details/(:any)','Cart::productDetails/$1');
 $routes->post('buy/(:any)','Cart::buy/$1');
