@@ -70,6 +70,7 @@ $routes->group('',['filter'=>'AuthCheck'],function($routes)
     $routes->get('new','Home::newProduct');
     $routes->get('edit/(:any)','Home::editProduct/$1');
     $routes->get('members','Home::members');
+    $routes->get('edit-account/(:any)','Home::editAccount/$1');
     $routes->get('sales-report','Home::salesReport');
     $routes->get('account-settings','Home::account');
     $routes->get('settings','Home::settings');

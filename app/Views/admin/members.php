@@ -660,11 +660,24 @@
             <input type="search" class="form-control" id="search" placeholder="Search"/>
             </div>
             <div class="col-2">
-              <a href="<?=site_url('new')?>" class="btn btn-default form-control btn-sm">Add Product</a>
+              <button type="button" class="btn btn-default form-control btn-sm"><ion-icon name="person-add-outline"></ion-icon>&nbsp;Add User</button>
             </div>
           </div>
-          <div class="first__row" id="productResult">
-          
+          <div class="first__row" id="accountResult">
+            <?php foreach($accounts as $row): ?>
+            <div class="cards">
+              <div class="card">
+              <img src="<?=base_url('assets/images/logo/user-photo.png')?>" alt="" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
+                <p class="card__textdescription"><?php echo $row['Email'] ?></p>
+                <h4 class="card__heading"><center><?php echo $row['Fullname'] ?></center></h4>
+                <span class="card__textdescription"><?php echo $row['Role'] ?></span>
+                <center>
+                  <a href="<?=site_url('edit-account/')?><?php echo $row['accountID'] ?>" class="btn bg-default">Edit Account</a>
+                  <button type="button" class="btn bg-default reset" value="<?php echo $row['accountID'] ?>">Reset</button>
+                </cente>
+              </div>
+            </div>
+            <?php endforeach;?>
           </div>
         </div>
       </div>

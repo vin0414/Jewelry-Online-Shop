@@ -75,7 +75,7 @@
 
                         <div class="col-lg-2 col-md-3 col-4">
                             <div class="logo">
-                                <a href="/"><img src="<?=base_url('assets/images/logo/LOGO2-Photoroom.jpg')?>" alt=""></a>
+                                <a href="/"><img src="<?=base_url('assets/images/logo/LOGO2.jpg')?>" alt=""></a>
                             </div>
                         </div>
                     </div>
@@ -92,7 +92,7 @@
                         <div class="col-12">
                             <div class="main_menu_inner">
                                 <div class="logo_sticky">
-                                    <a href="/"><img src="assets/images/logo/LOGO2-Photoroom.jpg" alt=""></a>
+                                    <a href="/"><img src="assets/images/logo/LOGO2.jpg" alt=""></a>
                                 </div>
                                 <div class="main_menu">
                                     <nav>

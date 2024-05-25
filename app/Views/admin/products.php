@@ -675,7 +675,7 @@
               </select>
             </div>
             <div class="col-2">
-              <a href="<?=site_url('new')?>" class="btn btn-default form-control btn-sm">Add Product</a>
+              <a href="<?=site_url('new')?>" class="btn btn-default form-control btn-sm"><ion-icon name="add-circle-outline"></ion-icon>&nbsp;Add Product</a>
             </div>
           </div>
           <div class="first__row" id="productResult">

@@ -564,8 +564,13 @@ class Home extends BaseController
     {
         $accountModel = new \App\Models\accountModel();
         $accounts = $accountModel->findAll();
-        $data = ['customer'=>$accounts];
+        $data = ['accounts'=>$accounts];
         return view('admin/members',$data);
+    }
+
+    public function editAccount($id)
+    {
+        return view('admin/edit-account');
     }
 
     public function salesReport()
