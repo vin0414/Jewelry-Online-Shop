@@ -53,6 +53,7 @@ $routes->get('search-orders-date','Home::searchOrdersDate');
 $routes->post('add-account','Home::addAccount');
 $routes->get('search-accounts','Home::searchAccounts');
 $routes->post('reset-account','Home::resetAccount');
+$routes->post('update-account','Home::updateAccount');
 //cart controller
 $routes->get('cart/details/(:any)','Cart::productDetails/$1');
 $routes->post('buy/(:any)','Cart::buy/$1');

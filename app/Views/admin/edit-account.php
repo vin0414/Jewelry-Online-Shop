@@ -812,7 +812,25 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script>
-
+      $('#frmAccount').on('submit',function(e){
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+          url:"<?=site_url('update-account')?>",method:"POST",
+          data:data,success:function(response)
+          {
+            if(response==="success")
+            {
+              alert("Great!Successfully applied changes");
+              window.location.href="/members";
+            }
+            else
+            {
+              alert(response);
+            }
+          }
+        });
+      });
     </script>
   </body>
 </html>

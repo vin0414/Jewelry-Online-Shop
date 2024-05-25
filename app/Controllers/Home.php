@@ -662,6 +662,18 @@ class Home extends BaseController
         return view('admin/edit-account',$data);
     }
 
+    public function updateAccount()
+    {
+        $accountModel = new \App\Models\accountModel();
+        $id = $this->request->getPost('id');
+        $name = $this->request->getPost('fullname');
+        $email = $this->request->getPost('email');
+        $role = $this->request->getPost('role');
+        $values = ['Email'=>$email, 'Fullname'=>$name,'Role'=>$role];
+        $accountModel->update($id,$values);
+        echo "success";
+    }
+
     public function salesReport()
     {
         return view('admin/sales-report');
