@@ -793,7 +793,7 @@
                         <td><?php echo $row->Fullname ?></td>
                         <td><?php echo $row->DeliveryAddress ?></td>
                         <td><?php echo $row->ContactNo ?></td>
-                        <td><?php echo $row->Total ?></td>
+                        <td><?php echo number_format($row->Total,2) ?></td>
                         <td><?php echo $row->paymentDetails ?></td>
                         <td>
                           <?php if($row->Status==0){ ?>

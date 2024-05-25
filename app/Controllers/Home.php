@@ -510,7 +510,7 @@ class Home extends BaseController
                 <td><?php echo $row->Fullname ?></td>
                 <td><?php echo $row->DeliveryAddress ?></td>
                 <td><?php echo $row->ContactNo ?></td>
-                <td><?php echo $row->Total ?></td>
+                <td><?php echo number_format($row->Total,2) ?></td>
                 <td><?php echo $row->paymentDetails ?></td>
                 <td>
                     <?php if($row->Status==0){ ?>
@@ -524,7 +524,15 @@ class Home extends BaseController
                     <?php } ?>
                 </td>
                 <td><?php echo $row->Remarks ?></td>
-                <td></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="dropbtn btn-sm"><ion-icon name="reorder-three-outline"></ion-icon>&nbsp;Action</button>
+                        <div class="dropdown-content">
+                        <a href="#">View Orders</a>
+                        <a href="#">Add Remarks</a>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <?php
         }
@@ -548,7 +556,7 @@ class Home extends BaseController
                 <td><?php echo $row->Fullname ?></td>
                 <td><?php echo $row->DeliveryAddress ?></td>
                 <td><?php echo $row->ContactNo ?></td>
-                <td><?php echo $row->Total ?></td>
+                <td><?php echo number_format($row->Total,2) ?></td>
                 <td><?php echo $row->paymentDetails ?></td>
                 <td>
                     <?php if($row->Status==0){ ?>
@@ -562,7 +570,15 @@ class Home extends BaseController
                     <?php } ?>
                 </td>
                 <td><?php echo $row->Remarks ?></td>
-                <td></td>
+                <td>
+                    <div class="dropdown">
+                        <button class="dropbtn btn-sm"><ion-icon name="reorder-three-outline"></ion-icon>&nbsp;Action</button>
+                        <div class="dropdown-content">
+                        <a href="#">View Orders</a>
+                        <a href="#">Add Remarks</a>
+                        </div>
+                    </div>
+                </td>
             </tr>
             <?php
         }
@@ -604,7 +620,7 @@ class Home extends BaseController
                 <h4 class="card__heading"><center><?php echo $row->Fullname ?></center></h4>
                 <span class="card__textdescription"><?php echo $row->Role ?></span>
                 <center>
-                  <a href="<?=site_url('edit-account/')?><?php echo $row->accountID ?>" class="btn bg-default">Edit Account</a>
+                  <a href="<?=site_url('edit-account/')?><?php echo $row['accountID'] ?>" class="btn bg-default">Edit Account</a>
                   <button type="button" class="btn bg-default reset" value="<?php echo $row->accountID ?>">Reset</button>
                 </cente>
               </div>
@@ -641,7 +657,9 @@ class Home extends BaseController
     public function editAccount($id)
     {
         $accountModel = new \App\Models\accountModel();
-        return view('admin/edit-account');
+        $account = $accountModel->WHERE('accountID',$id)->first();
+        $data = ['account'=>$account];
+        return view('admin/edit-account',$data);
     }
 
     public function salesReport()
