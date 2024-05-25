@@ -642,28 +642,24 @@
               <div class="card">
                 <p class="card__heading">New Orders</p>
                 <h2 class="card__heading__number"><?=number_format($order,0)?></h2>
-                <span class="card__textdescription">+20% over previous month</span>
               </div>
             </div>
             <div class="cards">
               <div class="card">
                 <p class="card__heading">Monthly Income</p>
                 <h2 class="card__heading__number"><?=number_format($income,2)?></h2>
-                <span class="card__textdescription">+20% over previous month</span>
               </div>
             </div>
             <div class="cards">
               <div class="card">
                 <p class="card__heading">Daily Income</p>
                 <h2 class="card__heading__number"><?=number_format($daily,2)?></h2>
-                <span class="card__textdescription">+20% over previous month</span>
               </div>
             </div>
             <div class="cards">
               <div class="card">
                 <p class="card__heading">Customers</p>
                 <h2 class="card__heading__number"><?=number_format($customer,0)?></h2>
-                <span class="card__textdescription">+20% over previous month</span>
               </div>
             </div>
           </div>

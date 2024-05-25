@@ -577,6 +577,19 @@
         cursor: pointer;
       }
       .btn-sm{padding:12px 18px;}
+      .row-form{
+          display: grid;
+          grid-template-columns: auto;
+          grid-gap: 10px;
+          padding: 10px;
+      }
+      .full-card
+      {
+        padding: 2.4rem;
+        border-radius: 1rem;
+        width:100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
     </style>
   </head>
   <body>
@@ -653,10 +666,74 @@
           >
         </ul>
       </aside>
-
       <div class="container">
         <div class="content">
-
+            <div class="row">
+              <div class="col-6">
+                <div class="full-card">
+                  <h4><ion-icon name="server-outline"></ion-icon>&nbsp;Restore</h4>
+                  <br/>
+                  <small>Effortlessly import copies of your database to prevent data loss, ensure business continuity, and facilitate quick recovery in case of system failures.</small>
+                  <br/><br/>
+                  <form class="row-form" method="POST" id="frmRestore" enctype="multipart/form-data" action="">
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <label>Server</label>
+                          <input type="text" class="form-control" name="server" required/>
+                        </div>
+                        <div class="col-6">
+                          <label>Database</label>
+                          <input type="text" class="form-control" name="database" required/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <div class="row">
+                        <div class="col-6">
+                          <label>Username</label>
+                          <input type="text" class="form-control" name="username" required/>
+                        </div>
+                        <div class="col-6">
+                          <label>Password</label>
+                          <input type="password" class="form-control" name="password" required/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-12">
+                      <label>Attachment</label>
+                      <input type="file" class="form-control" style="border:1px #262626 solid;" name="file" required/>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-default"><ion-icon name="cloud-upload-outline"></ion-icon>&nbsp;Upload</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="full-card">
+                  <h4><ion-icon name="server-outline"></ion-icon>&nbsp;Back-Up</h4>
+                  <br/>
+                  <small>Easily create copies of your database to prevent data loss, ensure business continuity, and facilitate quick recovery in case of system failures.</small>
+                  <br/>
+                  <a href="" class="btn btn-default"><ion-icon name="duplicate-outline"></ion-icon>&nbsp;Download</a>
+                </div>
+                <br/>
+                <div class="full-card">
+                  <h4><ion-icon name="duplicate-outline"></ion-icon>&nbsp;Add Category</h4>
+                  <br/>
+                  <form method="POST" class="row-form">
+                    <div class="col-12">
+                      <label>Category Name</label>
+                      <input type="text" class="form-control" name="category_name"/>
+                    </div>
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-default"><ion-icon name="add-circle-outline"></ion-icon>&nbsp;Add Entry</button>
+                    </div>
+                  </form>
+                </div>
+              </div>
+            </div>
         </div>
       </div>
       <footer></footer>
