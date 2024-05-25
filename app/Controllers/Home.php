@@ -52,6 +52,7 @@ class Home extends BaseController
                     session()->set('loggedUser', $row->accountID);
                     session()->set('sess_fullname', $row->Fullname);
                     session()->set('sess_email',$row->Email);
+                    session()->set('sess_role',$row->Role);
                     return $this->response->redirect(site_url('dashboard'));
                 }
             }
@@ -210,11 +211,18 @@ class Home extends BaseController
         $id = $this->request->getPost('value');
         $number = $this->request->getPost('number');
         $newStocks = 0;
-        $product = $productModel->WHERE('productID',$id)->first();
-        $newStocks = $number + $product['Qty'];
-        $values = ['Qty'=>$newStocks];
-        $productModel->update($id,$values);
-        echo "success";
+        if($number<=0)
+        {
+            echo "Invalid! Please try again";
+        }
+        else
+        {
+            $product = $productModel->WHERE('productID',$id)->first();
+            $newStocks = $number + $product['Qty'];
+            $values = ['Qty'=>$newStocks];
+            $productModel->update($id,$values);
+            echo "success";
+        }
     }
 
     public function saveProduct()
@@ -568,8 +576,71 @@ class Home extends BaseController
         return view('admin/members',$data);
     }
 
+    public function resetAccount()
+    {
+        $accountModel = new \App\Models\accountModel();
+        $id = $this->request->getPost('value');
+        $password = "Qwerty1234";
+        $hash_password = Hash::make($password);
+        $values = ['Password'=>$hash_password];
+        $accountModel->update($id,$values);
+        echo "Great! Successfully reset";
+    }
+
+    public function searchAccounts()
+    {
+        $text = "%".$this->request->getGet('keyword')."%";
+        $builder = $this->db->table('tblaccount');
+        $builder->select('*');
+        $builder->LIKE('Fullname',$text);
+        $data = $builder->get();
+        foreach($data->getResult()as $row)
+        {
+            ?>
+            <div class="cards">
+              <div class="card">
+              <img src="<?=base_url('assets/images/logo/user-photo.png')?>" alt="" style="width:50%;display: block;margin-left: auto;margin-right: auto;"/>
+                <p class="card__textdescription"><?php echo $row->Email ?></p>
+                <h4 class="card__heading"><center><?php echo $row->Fullname ?></center></h4>
+                <span class="card__textdescription"><?php echo $row->Role ?></span>
+                <center>
+                  <a href="<?=site_url('edit-account/')?><?php echo $row->accountID ?>" class="btn bg-default">Edit Account</a>
+                  <button type="button" class="btn bg-default reset" value="<?php echo $row->accountID ?>">Reset</button>
+                </cente>
+              </div>
+            </div>
+            <?php
+        }
+    }
+
+    public function addAccount()
+    {
+        $accountModel = new \App\Models\accountModel();
+        $fullname = $this->request->getPost('fullname');
+        $email = $this->request->getPost('email');
+        $role = $this->request->getPost('role');
+        $password = "Qwerty1234";
+        $hash_password = Hash::make($password);
+        $validation = $this->validate([
+            'fullname'=>'required',
+            'email'=>'required|is_unique[tblaccount.Email]',
+            'role'=> 'required',
+        ]);
+        if(!$validation)
+        {
+            echo "Invalid! Please fill in the form";
+        }
+        else
+        {
+            $values = ['Email'=>$email, 'Password'=>$hash_password,'Fullname'=>$fullname,'Role'=>$role,'Status'=>1];
+            $accountModel->save($values);
+            echo "success";
+        }
+    }
+
     public function editAccount($id)
     {
+        $accountModel = new \App\Models\accountModel();
         return view('admin/edit-account');
     }
 

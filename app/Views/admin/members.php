@@ -561,7 +561,7 @@
       .col-9 {width: 75%;}
       .col-10 {width: 83.33%;}
       .col-11 {width: 91.66%;}
-      .col-12 {width: 100%;}
+      .col-12 {width: 100%;padding:10px;}
       .form-control{padding:10px 18px;width:100%;}
       .bg-default,.btn-default{background-color:#262626;color:#fff;}
       .bg-success,.btn-success{background-color:limegreen;color:#fff;}
@@ -577,6 +577,51 @@
         cursor: pointer;
       }
       .btn-sm{padding:12px 18px;}
+      .trigger{
+          text-align: center;
+      }
+
+      .modal {
+          position: fixed;
+          left: 0;
+          top: 0;
+          width: 100%;
+          height: 100%;
+          background-color: rgba(0, 0, 0, 0.5);
+          opacity: 0;
+          visibility: hidden;
+          transform: scale(1.1);
+          transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+      }
+      .modal-content {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          background-color: white;
+          padding: 1rem 1.5rem;
+          width: 30%;
+          border-radius: 0.5rem;
+      }
+      .close-button {
+          float: right;
+          width: 1.5rem;
+          line-height: 1.5rem;
+          text-align: center;
+          cursor: pointer;
+          border-radius: 0.25rem;
+          background-color: lightgray;
+      }
+      .close-button:hover {
+          background-color: darkgray;
+      }
+      .show-modal {
+          opacity: 1;
+          visibility: visible;
+          transform: scale(1.0);
+          transition: visibility 0s linear 0s, opacity 0.25s 0s, transform 0.25s;
+      }
+
     </style>
   </head>
   <body>
@@ -642,10 +687,11 @@
             ></ion-icon>
             <li class="nav__list">Settings</li></a
           >
+          <?php if(session()->get('sess_role')=="Administrator"){ ?>
           <a href="<?=site_url('members')?>" class="nav__links active">
             <ion-icon class="nav__side__icon" name="person-outline"></ion-icon>
-            <li class="nav__list">Users</li></a
-          >
+            <li class="nav__list">Users</li></a>
+          <?php } ?>
           <a href="<?=site_url('log-out')?>" class="nav__links">
             <ion-icon class="nav__side__icon" name="log-in-outline"></ion-icon>
             <li class="nav__list">Logout</li></a
@@ -660,7 +706,7 @@
             <input type="search" class="form-control" id="search" placeholder="Search"/>
             </div>
             <div class="col-2">
-              <button type="button" class="btn btn-default form-control btn-sm"><ion-icon name="person-add-outline"></ion-icon>&nbsp;Add User</button>
+              <button type="button" class="btn btn-default form-control btn-sm trigger"><ion-icon name="person-add-outline"></ion-icon>&nbsp;Add User</button>
             </div>
           </div>
           <div class="first__row" id="accountResult">
@@ -681,6 +727,32 @@
           </div>
         </div>
       </div>
+      <div class="modal">
+        <div class="modal-content">
+            <span class="close-button">×</span>
+            <form method="post" class="row-form" id="frmAccount" style="margin:10px;padding:10px;">
+              <div class="col-12">
+                <label>Fullname</label>
+                <input type="text" class="form-control" name="fullname"/>
+              </div>
+              <div class="col-12">
+                <label>Email Address</label>
+                <input type="email" class="form-control" name="email"/>
+              </div>
+              <div class="col-12">
+                <label>Role</label>
+                <select class="form-control" name="role">
+                  <option value="">Choose</option>
+                  <option>Administrator</option>
+                  <option>Standard User</option>
+                </select>
+              </div>
+              <div class="col-12">
+                <button type="submit" class="btn btn-default">Add User</button>
+              </div>
+            </form>
+        </div>
+    </div>
       <footer></footer>
     </main>
     <script>
@@ -777,7 +849,71 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script>
-      
+      var modal = document.querySelector(".modal");
+      var trigger = document.querySelector(".trigger");
+      var closeButton = document.querySelector(".close-button");
+
+      function toggleModal() {
+          modal.classList.toggle("show-modal");
+      }
+
+      function windowOnClick(event) {
+          if (event.target === modal) {
+              toggleModal();
+          }
+      }
+
+      trigger.addEventListener("click", toggleModal);
+      closeButton.addEventListener("click", toggleModal);
+      window.addEventListener("click", windowOnClick);
+
+      $('#search').keyup(function(){
+        var val = $(this).val();
+        $.ajax({
+          url:"<?=site_url('search-accounts')?>",method:"GET",
+          data:{keyword:val},
+          success:function(response)
+          {
+            $('#accountResult').html(response);
+          }
+        });
+      });
+
+      $(document).on('click','.reset',function(){
+        var confirmation = confirm('Do you want to reset the password?');
+        if(confirmation)
+        {
+          var val = $(this).val();
+          $.ajax({
+            url:"<?=site_url('reset-account')?>",method:"POST",
+            data:{value:val},
+            success:function(response)
+            {
+              alert(response);
+            }
+          });
+        }
+      });
+
+      $('#frmAccount').on('submit',function(e){
+        e.preventDefault();
+        var data = $(this).serialize();
+        $.ajax({
+          url:"<?=site_url('add-account')?>",method:"POST",
+          data:data,success:function(response)
+          {
+            if(response==="success")
+            {
+              alert("Great! Successfully registered");
+              location.reload();
+            }
+            else
+            {
+              alert(response);
+            }
+          }
+        });
+      });
     </script>
   </body>
 </html>

@@ -642,10 +642,11 @@
             ></ion-icon>
             <li class="nav__list">Settings</li></a
           >
+          <?php if(session()->get('sess_role')=="Administrator"){ ?>
           <a href="<?=site_url('members')?>" class="nav__links">
             <ion-icon class="nav__side__icon" name="person-outline"></ion-icon>
-            <li class="nav__list">Users</li></a
-          >
+            <li class="nav__list">Users</li></a>
+          <?php } ?>
           <a href="<?=site_url('log-out')?>" class="nav__links">
             <ion-icon class="nav__side__icon" name="log-in-outline"></ion-icon>
             <li class="nav__list">Logout</li></a
