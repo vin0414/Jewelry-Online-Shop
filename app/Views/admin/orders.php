@@ -811,8 +811,7 @@
                             <div class="dropdown">
                               <button class="dropbtn btn-sm"><ion-icon name="reorder-three-outline"></ion-icon>&nbsp;Action</button>
                               <div class="dropdown-content">
-                                <a href="#">View Orders</a>
-                                <a href="#">Add Remarks</a>
+                                <a href="<?=site_url('view/')?><?php echo $row->TransactionNo ?>">View Orders</a>
                               </div>
                             </div>
                         </td>

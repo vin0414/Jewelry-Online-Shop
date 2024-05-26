@@ -1,17 +1,19 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="<?=base_url('assets/Diamond Ring.ico')?>" type="image/x-icon">
-    <title>Nasser Jewelry - Sales Report</title>
+    <title>Order History</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap"
-      rel="stylesheet"/>
+      rel="stylesheet"
+    />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="<?=base_url('assets/css/styles.css')?>" />
+    <link rel="stylesheet" href="<?=base_url('assets/css/queries.css')?>" />
     <style>
       :root {
         --main-color: #262626;
@@ -83,51 +85,18 @@
         transition: all 0.3s ease;
         border-radius: 1rem;
       }
-
-      .nav__side__icon {
-        transition: all 0.3s ease;
+      .nav__list:hover {
+        background-color: #262626;
+        color: #fff;
+        cursor: pointer;
       }
-
       .nav__links {
         transition: all 0.3s ease;
         cursor: pointer;
-        display: flex;
-        align-items: center;
-        border-radius: 1rem;
       }
-      .hidden .nav__links {
-        justify-content: center;
-      }
-      .nav__links:hover {
-        background-color: #262626;
-        color: #fff;
-
-        cursor: pointer;
-      }
-      .nav__links.active {
-        background-color: #262626;
-        color: #fff;
-
-        cursor: pointer;
-      }
-      .active .nav__list {
+      .nav__list:hover .nav__links {
         color: #fff;
       }
-      .active .nav__side__icon {
-        color: #fff;
-      }
-
-      .nav__links:hover .nav__list {
-        color: #fff;
-      }
-      .nav__links:hover .nav__side__icon {
-        color: #fff;
-      }
-
-      .nav__list.hidden {
-        display: none;
-      }
-
       .side__button {
         font-family: "Inter", sans-serif;
         color: #fff;
@@ -156,8 +125,6 @@
       .nav__links:visited {
         color: var(--main-color);
         text-decoration: none;
-        display: flex;
-        gap: 1rem;
       }
       .nav__links:hover,
       .nav__links:active {
@@ -170,8 +137,6 @@
         display: flex;
         align-items: center;
         gap: 1rem;
-      }
-      .nav__links {
         padding: 1.5rem 1rem;
       }
 
@@ -358,197 +323,47 @@
         font-size: 1.5rem;
         margin-top: 0.5rem;
       }
-
-      /*  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *ADMIN PANEL CSS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-      /*  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *ADMIN PANEL CSS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-      /*  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *ADMIN PANEL CSS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-      /*  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *ADMIN PANEL CSS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-      /*  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *ADMIN PANEL CSS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-      /*  * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *ADMIN PANEL CSS * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * */
-
-      .tab__search {
-        display: flex;
-        justify-content: space-between;
+      .active{background-color: #262626;color:#fff;}
+      .badge {
+        padding: 4px 8px;
+        text-align: center;
+        border-radius: 5px;
       }
-
-      .navigation__tabs {
-        display: flex;
-        gap: 0.3rem;
-        background-color: #d4d4d4;
-        padding: 0.4rem;
-        border-radius: 0.8rem;
-        align-items: center;
-      }
-
-      .navigation__item {
-        padding: 0.5rem 1rem;
-        background-color: #d4d4d4;
-        border-radius: 0.4rem;
+      .bg-default,.btn-default{background-color:#262626;color:#fff;}
+      .bg-success{background-color:limegreen;color:#fff;}
+      .bg-danger{background-color:crimson;color:#fff;}
+      .btn {
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 12px;
+        margin: 2px 2px;
         cursor: pointer;
       }
-      .navigation__item.active {
-        background-color: #fff;
-      }
-      .input__search {
-        border: 1px solid gray;
-        padding: 0.5rem 1.5rem;
-        border-radius: 0.5rem;
-        height: 4rem;
-        width: 30rem;
-        font-size: 1.6rem;
-      }
-
-      .first__row {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr 1fr;
-        gap: 3.2rem;
-        margin-top: 3.2rem;
-      }
-      .second__row {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        margin-top: 3.2rem;
-        gap: 3.2rem;
-      }
-      .third__row {
-        display: grid;
-        grid-template-columns: 0.8fr 1.2fr;
-        margin-top: 3.2rem;
-        gap: 3.2rem;
-      }
-
-      .charts,
-      .table__container {
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-        padding: 2rem;
-        border-radius: 1rem;
-      }
-
-      .card {
-        display: flex;
-        flex-direction: column;
-        gap: 2rem;
-        padding: 2.4rem;
-        border-radius: 1rem;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-      }
-
-      .card__heading__number {
-        font-size: 3rem;
-        text-align: center;
-      }
-      .card__textdescription {
-        font-size: 1.2rem;
-        color: #7e7e7e;
-        text-align: center;
-      }
-      .image__table {
-        width: 8rem;
-        border-radius: 50%;
-        margin: 0 auto;
-        display: flex;
-      }
-
-      .table {
-        width: 100%;
-      }
-
-      th,
-      td {
-        padding: 2rem 0.5rem;
-      }
-
-      .charts {
-        width: 100%;
-        height: 100%;
-      }
-
-      /* QUERY */
-
-      /* 1440 px */
-      @media (max-width: 90em) {
-        html {
-          font-size: 55%;
-        }
-        .order__details__box {
-          flex-wrap: wrap;
-          gap: 3rem;
-        }
-      }
-      /* 1230 px */
-      @media (max-width: 76.875em) {
-        html {
-          font-size: 50%;
-        }
-        .table__image {
-          width: 10rem;
-          height: 10rem;
-        }
-      }
-      @media (max-width: 62.5em) {
-        .first__row {
-          grid-template-columns: 1fr 1fr;
-        }
-      }
-      /* 870px */
-
-      @media (max-width: 54.375em) {
-        table {
-          font-size: 1.4rem;
-        }
-        body {
-          font-size: 1.6rem;
-        }
-        .order__item__subtitle {
-          font-size: 1rem;
-        }
-        .table__image {
-          width: 6rem;
-          height: 6rem;
-        }
-
-        .second__row,
-        .third__row {
-          grid-template-columns: 1fr 1fr;
-        }
-        .image__table {
-          width: 5rem;
-        }
-        th,
-        td {
-          padding: 1rem 0.5rem;
-        }
-
-        .charts,
-        .table__container {
-          padding: 1rem;
-        }
-
-        .order__box {
-          padding: 5rem 2rem;
-        }
-      }
-      /* 600px */
-      @media (max-width: 37.5em) {
-        html {
-          font-size: 50%;
-        }
-        .table {
-          width: 100%;
-        }
-      }
-      /* 530px */
-      @media (max-width: 33.125em) {
-        .first__row,
-        .second__row,
-        .third__row {
-          grid-template-columns: 1fr;
-        }
+      .form-control{padding:10px 18px;}
+      .row-form{
+          display: grid;
+          grid-template-columns: auto;
+          grid-gap: 10px;
+          padding: 10px;
       }
       .row{
           display: flex;
           grid-template-columns: 1fr 1fr;
           grid-column-gap:20px;
+      }
+      #customers td, #customers th {
+        border: 1px solid #262626;
+        padding: 8px;
+      }
+      #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #262626;
+        color: white;
       }
       .tableFixHead thead th { position: sticky; top: 0; z-index: 1;}
       .col-1 {width: 8.33%;}
@@ -567,41 +382,7 @@
       .bg-default,.btn-default{background-color:#262626;color:#fff;}
       .bg-success,.btn-success{background-color:limegreen;color:#fff;}
       .bg-danger,.btn-danger{background-color:crimson;color:#fff;}
-      .btn {
-        border: none;border-radius: 10px 10px;
-        padding: 15px 20px;
-        text-align: center;
-        text-decoration: none;
-        display: inline-block;
-        font-size: 12px;
-        margin: 2px 2px;
-        cursor: pointer;
-      }
-      .btn-sm{padding:12px 18px;}
-      .row-form{
-          display: grid;
-          grid-template-columns: auto;
-          grid-gap: 10px;
-          padding: 10px;
-      }
-      .full-card
-      {
-        padding: 2.4rem;
-        border-radius: 1rem;
-        width:100%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
-      }
-      #report td, #customers th {
-        border: 1px solid #262626;
-        padding: 8px;
-      }
-      #report th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
-        background-color: #262626;
-        color: white;
-      }
+      .btn-outline-default,.bg-outline-default{background-color: #fff;color:#262626;border:1px #262626 solid;}
     </style>
   </head>
   <body>
@@ -621,8 +402,8 @@
             name="chevron-down-outline"
           ></ion-icon>
           <div class="drop__down__menu">
-            <a href="<?=site_url('account-settings')?>" class="drop__down__menu__item">My Account</a>
-            <a href="<?=site_url('log-out')?>" class="drop__down__menu__item">Logout</a>
+            <a href="<?=site_url('account')?>" class="drop__down__menu__item">My Account</a>
+            <a href="<?=site_url('sign-out')?>" class="drop__down__menu__item">Logout</a>
           </div>
         </div>
       </nav>
@@ -634,94 +415,108 @@
           class="sidebar__menu"
           name="menu-outline"
         ></ion-icon>
+        <a href="<?=site_url('shop')?>" style="text-decoration:none;" class="side__button margin_top_2">
+          <ion-icon class="side__icon white" name="cart-outline"></ion-icon
+          ><span class="side__button__text">Shop</span>
+        </a>
         <ul class="nav__list__container">
-          <a href="<?=site_url('dashboard')?>" class="nav__links margin_top_2">
-            <ion-icon class="nav__side__icon" name="home-outline"></ion-icon>
-            <li class="nav__list">Dashboard</li></a
-          >
-          <a href="<?=site_url('products')?>" class="nav__links">
-            <ion-icon class="nav__side__icon" name="diamond-outline"></ion-icon>
-            <li class="nav__list">Products</li></a
-          >
-          <a href="<?=site_url('customer-orders')?>" class="nav__links">
+          <li class="nav__list margin_top_2">
+            <ion-icon class="nav__side__icon" name="bag-handle-outline"></ion-icon>
+            <a href="<?=site_url('orders')?>" class="nav__links">My Orders</a>
+          </li>
+
+          <li class="nav__list active">
             <ion-icon
               class="nav__side__icon"
-              name="trending-up-outline"
+              name="bag-handle-outline"
             ></ion-icon>
-            <li class="nav__list">Orders</li></a
-          >
-          <a href="<?=site_url('sales-report')?>" class="nav__links active">
-            <ion-icon
-              class="nav__side__icon"
-              name="file-tray-full-outline"
-            ></ion-icon>
-            <li class="nav__list">Reports</li></a
-          >
+            <a href="javascript:void(0);" class="nav__links" style="color:#fff;">View Orders</a>
+          </li>
         </ul>
-        <p class="nav__list side__text margin_top_2">Tools</p>
+        <p class="nav__links side__text margin_top_2">Tools</p>
         <ul class="nav__list__container">
-          <a href="<?=site_url('settings')?>" class="nav__links margin_top_2">
-            <ion-icon
-              class="nav__side__icon"
-              name="help-circle-outline"
-            ></ion-icon>
-            <li class="nav__list">Settings</li></a
-          >
-          <?php if(session()->get('sess_role')=="Administrator"){ ?>
-          <a href="<?=site_url('members')?>" class="nav__links">
+          <li class="nav__list margin_top_2">
             <ion-icon class="nav__side__icon" name="person-outline"></ion-icon>
-            <li class="nav__list">Users</li></a>
-          <?php } ?>
-          <a href="<?=site_url('log-out')?>" class="nav__links">
-            <ion-icon class="nav__side__icon" name="log-in-outline"></ion-icon>
-            <li class="nav__list">Logout</li></a
-          >
+            <a href="<?=site_url('account')?>" class="nav__links">My Account</a>
+          </li>
+          <li class="nav__list">
+            <ion-icon name="log-in-outline"></ion-icon>
+            <a href="<?=site_url('sign-out')?>" class="nav__links">Sign out</a>
+          </li>
         </ul>
       </aside>
+
       <div class="container">
-        <div class="content">
+        <a href="<?=site_url('history')?>" class="btn btn-default btn-sm" style="float:right;">Back</a>
+        <div class="order__heading__box">
+          <ion-icon class="order__icon" name="reader-outline"></ion-icon>
+          <p class="order__heading">Order  : Trxn No : <?=$id ?></p>         
+        </div>
+        <div>  
+          <div class="order__box margin_top_4">
             <div class="row">
-              <div class="col-12">
-              <h4>Sales Report</h4>
-              </div>
-            </div>
-            <br/>
-            <div class="full-card">
-              <div class="row-form">
-                <div class="col-12">
-                  <form class="row" method="GET" id="frmReport">
-                    <div class="col-2">
-                      <input type="date" class="form-control" name="fromdate"/>
-                    </div> 
-                    <div class="col-2">
-                      <input type="date" class="form-control" name="todate"/>
-                    </div>   
-                    <div class="col-8">
-                      <button type="submit" class="btn btn-default btn-sm" id="btnSearch"><ion-icon name="search-outline"></ion-icon>&nbsp;Search</button>
-                      <a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="Print()"><ion-icon name="print-outline"></ion-icon>&nbsp;Print<a/>
-                    </div> 
-                  </form>
+                <div class="col-6 tableFixHead">
+                    <h4>Orders</h4>
+                    <table class="table" id="customers"  style="width:100%;font-size:13px;">
+                        <thead>
+                            <th>Product Name</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Total Price</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach($order as $row):?>
+                                <tr>
+                                    <td><?php echo $row['productName'] ?></td>
+                                    <td><?php echo $row['Qty'] ?></td>
+                                    <td><?php echo number_format($row['price'],2) ?></td>
+                                    <td><?php echo number_format($row['price']*$row['Qty'],2) ?></td>
+                                </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-12 tableFixHead" style="height:500px;overflow-y:auto;font-size:13px;" id="pdf">
-                  <table class="table" id="report">
-                    <thead>
-                      <th>Date</th>
-                      <th>Trxn No</th>
-                      <th>Customer's Name</th>
-                      <th>Payment Method</th>
-                      <th>Total Amount</th>
-                    </thead>
-                    <tbody id="result"></tbody>
-                  </table>
+                <div class="col-6">
+                    <h4>Customer Details</h4>
+                    <?php foreach($payment as $row): ?>
+                    <form class="row-form" class="POST" id="frmPayment">
+                        <input type="hidden" name="paymentID" value="<?php echo $row->paymentID ?>"/>
+                        <input type="hidden" name="customerID" value="<?php echo $row->customerID ?>"/>
+                        <div class="col-12">
+                            <p>Customer's Name</p>
+                            <input type="text" class="form-control" value="<?php echo $row->Fullname ?>"/>
+                        </div>
+                        <div class="col-12">
+                            <p>Shipping Address</p>
+                            <input type="text" class="form-control" value="<?php echo $row->DeliveryAddress ?>"/>
+                        </div>
+                        <div class="col-12">
+                            <p>Total Amount</p>
+                            <input type="text" class="form-control" value="<?php echo number_format($row->Total,2) ?>"/>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>Contact No</p>
+                                    <input type="text" class="form-control" value="<?php echo $row->ContactNo ?>"/>
+                                </div>
+                                <div class="col-6">
+                                    <p>Payment Method</p>
+                                    <input type="text" class="form-control" value="<?php echo $row->paymentDetails ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <?php endforeach;?>
                 </div>
-              </div>
             </div>
+          </div>
         </div>
       </div>
       <footer></footer>
     </main>
-    <script>
-      document.addEventListener("DOMContentLoaded", function () {
+    <script src="<?=base_url('assets/js/script.js')?>">
+            document.addEventListener("DOMContentLoaded", function () {
         const dropdownIcons = document.querySelectorAll(".order__drop__down");
 
         function toggleTable() {
@@ -750,7 +545,7 @@
       document.addEventListener("DOMContentLoaded", function () {
         const sideBarMenu = document.getElementById("sideBarMenu");
         const sideBarContainer = document.getElementById("sideBarContainer");
-        const links = document.querySelectorAll(".nav__list");
+        const links = document.querySelectorAll(".nav__links");
         const mainElement = document.querySelector("main");
         const sideButton = document.querySelector(".side__button");
         const sideButtonText = document.querySelector(".side__button__text");
@@ -779,7 +574,7 @@
       function checkViewportWidth() {
         const main = document.querySelector("main");
         const sideBar = document.querySelector(".side__bar"); // Fixed selector
-        const links = document.querySelectorAll(".nav__list");
+        const links = document.querySelectorAll(".nav__links");
         const sideButtonText = document.querySelector(".side__button__text");
 
         if (window.innerWidth >= 1000) {
@@ -813,34 +608,43 @@
       nomodule
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
-    <script>
-      function Print() {
-          var printContents = document.getElementById("pdf").innerHTML;
-          var originalContents = document.body.innerHTML;
-          document.body.innerHTML = printContents;
-          window.print();
-          document.body.innerHTML = originalContents;
-      }
-      
-      $('#frmReport').on('submit',function(e){
-        e.preventDefault();
-        var data = $(this).serialize();
-        $('#result').html("<tr><td colspan='5'><center>Loading...</center></td></tr>");
-        $.ajax({
-          url:"<?=site_url('generate-report')?>",method:"GET",
-          data:data,success:function(response)
-          {
-            if(response==="")
-            {
-              $('#result').html("<tr><td colspan='5'><center>No Record(s)</center></td></tr>");
-            }
-            else
-            {
-              $('#result').html(response);
-            }
-          }
-        });
-      });
-    </script>
-  </body>
+  <!-- Code injected by live-server -->
+<script>
+	// <![CDATA[  <-- For SVG support
+	if ('WebSocket' in window) {
+		(function () {
+			function refreshCSS() {
+				var sheets = [].slice.call(document.getElementsByTagName("link"));
+				var head = document.getElementsByTagName("head")[0];
+				for (var i = 0; i < sheets.length; ++i) {
+					var elem = sheets[i];
+					var parent = elem.parentElement || head;
+					parent.removeChild(elem);
+					var rel = elem.rel;
+					if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
+						var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
+						elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
+					}
+					parent.appendChild(elem);
+				}
+			}
+			var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
+			var address = protocol + window.location.host + window.location.pathname + '/ws';
+			var socket = new WebSocket(address);
+			socket.onmessage = function (msg) {
+				if (msg.data == 'reload') window.location.reload();
+				else if (msg.data == 'refreshcss') refreshCSS();
+			};
+			if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
+				console.log('Live reload enabled.');
+				sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
+			}
+		})();
+	}
+	else {
+		console.error('Upgrade your browser. This Browser is NOT supported WebSocket for Live-Reloading.');
+	}
+	// ]]>
+</script>
+</body>
 </html>

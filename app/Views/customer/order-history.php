@@ -329,7 +329,7 @@
         text-align: center;
         border-radius: 5px;
       }
-      .bg-default{background-color:#262626;color:#fff;}
+      .bg-default,.btn-default{background-color:#262626;color:#fff;}
       .bg-success{background-color:limegreen;color:#fff;}
       .bg-danger{background-color:crimson;color:#fff;}
       .btn {
@@ -439,9 +439,11 @@
                   </p>
                   <p class="order__text__date">Payment Status: 
                     <?php if($row['Status']==1){ ?>
-                      <span class="badge bg-success">Paid</span>
+                      <span class="badge bg-default">Confirmed</span>
                     <?php }else if($row['Status']==2){?>
-                      <span class="badge bg-danger">UnPaid</span>
+                      <span class="badge bg-danger">Cancelled</span>
+                    <?php }else{ ?>
+                      <span class="badge bg-success">Paid</span>
                     <?php } ?>
                   </p>
                 </div>
@@ -452,12 +454,7 @@
                 <div class="order__text__box">
                   <p class="order__text__heading">&nbsp;</p>
                   <br/>
-                  <?php if($row['Remarks']=="CANCELLED"){ ?>
-                    <button type="button" class="btn">View</button>
-                  <?php }else{?>
-                    <button type="button" class="btn">Print</button>
-                    <button type="button" class="btn">View</button>
-                  <?php } ?>
+                  <a href="<?=site_url('view-order/')?><?php echo $row['TransactionNo'] ?>" class="btn btn-default">View</a>
                 </div>
               </div>
               <?php endforeach; ?>

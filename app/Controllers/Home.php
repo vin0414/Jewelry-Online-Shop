@@ -241,25 +241,37 @@ class Home extends BaseController
         $file = $this->request->getFile('file');
         $originalName = $file->getClientName();
         //save the records
-        if($featured=="Yes")
+        $validation = $this->validate([
+            'productName'=>'is_unique[tblproduct.productName]'
+        ]);
+
+        if(!$validation)
         {
-            $values = ['productName'=>$pName,'Description'=>$desc,'Image'=>$originalName,
-                            'ItemUnit'=>$itemUnit,'Qty'=>$qty,'UnitPrice'=>$unitPrice,'DateCreated'=>date('Y-m-d'),
-                            'Product_Type'=>$type,'categoryID'=>$category,
-                            'feature'=>'Yes','onSales'=>$onsales,'Discount'=>($discount/100)];
-            $productModel->save($values);
+            session()->setFlashdata('fail',"Invalid !".$pName." already exist.");
+            return redirect()->to('/new')->withInput();
         }
         else
         {
-            $values = ['productName'=>$pName,'Description'=>$desc,'Image'=>$originalName,
-                'ItemUnit'=>$itemUnit,'Qty'=>$qty,'UnitPrice'=>$unitPrice,'DateCreated'=>date('Y-m-d'),
-                'Product_Type'=>$type,'categoryID'=>$category,
-                'feature'=>'No','onSales'=>$onsales,'Discount'=>($discount/100)];
-            $productModel->save($values);
+            if($featured=="Yes")
+            {
+                $values = ['productName'=>$pName,'Description'=>$desc,'Image'=>$originalName,
+                                'ItemUnit'=>$itemUnit,'Qty'=>$qty,'UnitPrice'=>$unitPrice,'DateCreated'=>date('Y-m-d'),
+                                'Product_Type'=>$type,'categoryID'=>$category,
+                                'feature'=>'Yes','onSales'=>$onsales,'Discount'=>($discount/100)];
+                $productModel->save($values);
+            }
+            else
+            {
+                $values = ['productName'=>$pName,'Description'=>$desc,'Image'=>$originalName,
+                    'ItemUnit'=>$itemUnit,'Qty'=>$qty,'UnitPrice'=>$unitPrice,'DateCreated'=>date('Y-m-d'),
+                    'Product_Type'=>$type,'categoryID'=>$category,
+                    'feature'=>'No','onSales'=>$onsales,'Discount'=>($discount/100)];
+                $productModel->save($values);
+            }
+            $file->move('assets/images/product/',$originalName);
+            session()->setFlashdata('success',"Great! Successfully added");
+            return redirect()->to('/new')->withInput();
         }
-        $file->move('assets/images/product/',$originalName);
-        session()->setFlashdata('success',"Great! Successfully added");
-        return redirect()->to('/new')->withInput();
     }
 
     public function updateProduct()
@@ -492,6 +504,104 @@ class Home extends BaseController
         return view('admin/orders',$data);
     }
 
+    public function viewOrder($id)
+    {
+        $builder = $this->db->table('tblpayment a');
+        $builder->select('a.*,b.Fullname');
+        $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
+        $builder->WHERE('a.TransactionNo',$id);
+        $payment = $builder->get()->getResult();
+        //items
+        $orderModel = new \App\Models\orderModel();
+        $order = $orderModel->WHERE('TransactionNo',$id)->findAll();
+        //collect
+        $data = ['id'=>$id,'payment'=>$payment,'order'=>$order];
+        return view('admin/view-orders',$data);
+    }
+
+    public function updatePayment()
+    {
+        $paymentModel = new \App\Models\PaymentModel();
+        $customerModel = new \App\Models\customerModel();
+        //data
+        $id = $this->request->getPost('paymentID');
+        $status = $this->request->getPost('status');
+        $remarks = $this->request->getPost('remarks');
+        $customerID = $this->request->getPost('customerID');
+        $payment = $paymentModel->WHERE('paymentID',$id)->first();
+        $customer = $customerModel->WHERE('customerID',$customerID)->first();
+        if($status==2)
+        {
+            $values = ['Status'=>$status,'Remarks'=>$remarks];
+            $paymentModel->update($id,$values);
+
+            if($remarks=="Out of Stocks")
+            {
+                $email = \Config\Services::email();
+                $email->setTo($customer['Email']);
+                $email->setFrom("vinmogate@gmail.com","Nasser Goldsmith and Jewelry");
+                $template = "Dear ".$customer['Fullname'].",<br/><br/>
+                We hope this email finds you well. We regret to inform you that your order # ".$payment['TransactionNo']." has been cancelled.<br/> 
+                Unfortunately, this item is currently out of stock and we are unable to fulfill your order at this time.<br/>
+                We apologize for any inconvenience caused. As a token of our appreciation for your understanding.<br/>
+                Please feel free to reach out to us if you have any further questions or require assistance with finding an alternative product.<br/>
+                 We value your support and look forward to serving you in the future.<br/><br/>
+                Best regards,<br/><br/>
+                Nasser Goldsmith and Jewelry";
+                $subject = "Cancellation Due to Out-of-Stock Item";
+                $email->setSubject($subject);
+                $email->setMessage($template);
+                $email->send();
+            }
+            else
+            {
+                $email = \Config\Services::email();
+                $email->setTo($customer['Email']);
+                $email->setFrom("vinmogate@gmail.com","Nasser Goldsmith and Jewelry");
+                $template = "Dear ".$customer['Fullname'].",<br/><br/>
+                We hope this email finds you well. We regret to inform you that we have been unable to process and ship your order #".$payment['TransactionNo']." due to unforeseen shipping constraints.<br/>
+                We understand the frustration this may cause and would like to offer you two options. Firstly, we can issue a full refund for your order amount. <br/>
+                Alternatively, if you would like to wait, we anticipate being able to fulfill your order within the next 2-3 business days and will expedite the shipping at no additional cost to you.<br/>
+                Please let us know your preference, and we will ensure your request is promptly handled. Our sincerest apologies once again, and thank you for your understanding and patience.<br/>
+                Warm regards,<br/><br/>
+                Nasser Goldsmith and Jewelry";
+                $subject = "Cancellation Due to Shipping Issues";
+                $email->setSubject($subject);
+                $email->setMessage($template);
+                $email->send();
+            }
+        }
+        else if($status==1)
+        {
+            $values = ['Status'=>$status,'Remarks'=>$remarks];
+            $paymentModel->update($id,$values);
+            //send email
+            $email = \Config\Services::email();
+            $email->setTo($customer['Email']);
+            $email->setFrom("vinmogate@gmail.com","Nasser Goldsmith and Jewelry");
+            $template = "Dear ".$customer['Fullname'].",<br/><br/>
+            Thank you for placing your order with us!<br/>
+                
+            We will now process your order and get it ready for shipment.<br/> 
+            You can expect to receive the items along with the estimated delivery date within the next few days.<br/>
+            If you have any questions or need further assistance, please don't hesitate to reach out to our customer support team.<br/>
+                
+            Thank you once again for choosing us. We greatly appreciate your business!<br/>
+            Warm regards,<br/><br/>
+            Nasser Goldsmith and Jewelry";
+            $subject = "Order Confirmation";
+            $email->setSubject($subject);
+            $email->setMessage($template);
+            $email->send();
+        }
+        else
+        {
+            $values = ['Status'=>$status,'Remarks'=>$remarks];
+            $paymentModel->update($id,$values);
+        }
+        echo "success";
+    }
+
     public function searchOrders()
     {
         $text = "%".$this->request->getGet('keyword')."%";
@@ -528,8 +638,7 @@ class Home extends BaseController
                     <div class="dropdown">
                         <button class="dropbtn btn-sm"><ion-icon name="reorder-three-outline"></ion-icon>&nbsp;Action</button>
                         <div class="dropdown-content">
-                        <a href="#">View Orders</a>
-                        <a href="#">Add Remarks</a>
+                        <a href="<?=site_url('view/')?><?php echo $row->TransactionNo ?>">View Orders</a>
                         </div>
                     </div>
                 </td>
@@ -574,8 +683,7 @@ class Home extends BaseController
                     <div class="dropdown">
                         <button class="dropbtn btn-sm"><ion-icon name="reorder-three-outline"></ion-icon>&nbsp;Action</button>
                         <div class="dropdown-content">
-                        <a href="#">View Orders</a>
-                        <a href="#">Add Remarks</a>
+                        <a href="<?=site_url('view/')?><?php echo $row->TransactionNo ?>">View Orders</a>
                         </div>
                     </div>
                 </td>
@@ -620,7 +728,7 @@ class Home extends BaseController
                 <h4 class="card__heading"><center><?php echo $row->Fullname ?></center></h4>
                 <span class="card__textdescription"><?php echo $row->Role ?></span>
                 <center>
-                  <a href="<?=site_url('edit-account/')?><?php echo $row['accountID'] ?>" class="btn bg-default">Edit Account</a>
+                  <a href="<?=site_url('edit-account/')?><?php echo $row->accountID ?>" class="btn bg-default">Edit Account</a>
                   <button type="button" class="btn bg-default reset" value="<?php echo $row->accountID ?>">Reset</button>
                 </cente>
               </div>
@@ -677,6 +785,40 @@ class Home extends BaseController
     public function salesReport()
     {
         return view('admin/sales-report');
+    }
+
+    public function generateReport()
+    {
+        $output="";
+        $status = [0,2];
+        $fromdate = $this->request->getGet('fromdate');
+        $todate = $this->request->getGet('todate');
+        $builder = $this->db->table('tblpayment a');
+        $builder->select('a.*,b.Fullname');
+        $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
+        $builder->WHERE('a.DateCreated>=',$fromdate)->WHERE('a.DateCreated<=',$todate);
+        $builder->WHERENOTIN('a.Status',$status);
+        $data = $builder->get();
+        foreach($data->getResult() as $row)
+        {
+            $output.="<tr>
+                        <td>".$row->DateCreated."</td>
+                        <td>".$row->TransactionNo."</td>
+                        <td>".$row->Fullname."</td>
+                        <td>".$row->paymentDetails."</td>
+                        <td style='text-align:right;'>".number_format($row->Total,2)."</td>
+                    </tr>";
+        }
+        $builder = $this->db->table('tblpayment a');
+        $builder->select('SUM(a.Total)Total');
+        $builder->WHERE('a.DateCreated>=',$fromdate)->WHERE('a.DateCreated<=',$todate);
+        $builder->WHERENOTIN('a.Status',$status);
+        $data = $builder->get();
+        if($row = $data->getRow())
+        {
+            $output.="<tr style='font-weight:bold;'><td colspan='4'>Total</td><td style='text-align:right;'>".number_format($row->Total,2)."</td></tr>";
+        }
+        echo $output;
     }
 
     public function settings()
@@ -1109,7 +1251,7 @@ class Home extends BaseController
                 $email = \Config\Services::email();
                 $email->setTo($emailadd);
                 $email->setFrom("vinmogate@gmail.com","Nasser Goldsmith and Jewelry");
-                $imgURL = "assets/images/logo/LOGO2-Photoroom.jpg";
+                $imgURL = "assets/images/logo/LOGO2.jpg";
                 $email->attach($imgURL);
                 $cid = $email->setAttachmentCID($imgURL);
                 $template = "<center>

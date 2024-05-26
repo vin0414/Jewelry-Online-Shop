@@ -59,6 +59,8 @@ $routes->get('search-by-type','Home::searchByType');
 $routes->post('save-category','Home::saveCategory');
 $routes->get('download','Download::downloadFile');
 $routes->post('restore','RestoreDB::RestoreData');
+$routes->get('generate-report','Home::generateReport');
+$routes->post('update-payment','Home::updatePayment');
 //cart controller
 $routes->get('cart/details/(:any)','Cart::productDetails/$1');
 $routes->post('buy/(:any)','Cart::buy/$1');
@@ -75,6 +77,7 @@ $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
     $routes->get('dashboard','Home::dashboard');
     $routes->get('customer-orders','Home::orders');
+    $routes->get('view/(:any)','Home::viewOrder/$1');
     $routes->get('products','Home::products');
     $routes->get('new','Home::newProduct');
     $routes->get('edit/(:any)','Home::editProduct/$1');
@@ -95,6 +98,7 @@ $routes->group('',['filter'=>'customerAuthCheck'],function($routes)
     $routes->get('check-out','Cart::checkOut');
     $routes->get('orders','Cart::orders');
     $routes->get('history','Cart::orderHistory');
+    $routes->get('view-order/(:any)','Cart::viewOrder/$1');
     $routes->get('account','Cart::account');
 });
 

@@ -5,7 +5,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" href="<?=base_url('assets/Diamond Ring.ico')?>" type="image/x-icon">
-    <title>Nasser Jewelry - Sales Report</title>
+    <title>Nasser Jewelry - Orders</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -260,6 +260,8 @@
         border-collapse: collapse;
         /* width: 300px; */
         table-layout: fixed;
+        font-size:13px;
+        border:2px solid #262626;
       }
       td,
       th {
@@ -435,12 +437,10 @@
 
       .card__heading__number {
         font-size: 3rem;
-        text-align: center;
       }
       .card__textdescription {
-        font-size: 1.2rem;
+        font-size: 1.7rem;
         color: #7e7e7e;
-        text-align: center;
       }
       .image__table {
         width: 8rem;
@@ -545,10 +545,23 @@
           grid-template-columns: 1fr;
         }
       }
-      .row{
-          display: flex;
-          grid-template-columns: 1fr 1fr;
-          grid-column-gap:20px;
+      .full-card
+      {
+        padding: 2.4rem;
+        border-radius: 1rem;
+        width:100%;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      }
+      #customers td, #customers th {
+        border: 1px solid #262626;
+        padding: 8px;
+      }
+      #customers th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: #262626;
+        color: white;
       }
       .tableFixHead thead th { position: sticky; top: 0; z-index: 1;}
       .col-1 {width: 8.33%;}
@@ -567,8 +580,9 @@
       .bg-default,.btn-default{background-color:#262626;color:#fff;}
       .bg-success,.btn-success{background-color:limegreen;color:#fff;}
       .bg-danger,.btn-danger{background-color:crimson;color:#fff;}
+      .btn-outline-default,.bg-outline-default{background-color: #fff;color:#262626;border:1px #262626 solid;}
       .btn {
-        border: none;border-radius: 10px 10px;
+        border-radius: 10px 10px;
         padding: 15px 20px;
         text-align: center;
         text-decoration: none;
@@ -584,23 +598,56 @@
           grid-gap: 10px;
           padding: 10px;
       }
-      .full-card
-      {
-        padding: 2.4rem;
-        border-radius: 1rem;
-        width:100%;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.08);
+      .row{
+          display: flex;
+          grid-template-columns: 1fr 1fr;
+          grid-column-gap:20px;
       }
-      #report td, #customers th {
-        border: 1px solid #262626;
-        padding: 8px;
-      }
-      #report th {
-        padding-top: 12px;
-        padding-bottom: 12px;
-        text-align: left;
+      /* Style The Dropdown Button */
+      .dropbtn {
         background-color: #262626;
         color: white;
+        padding: 12px;
+        font-size: 13px;
+        border: none;
+        cursor: pointer;
+      }
+
+      /* The container <div> - needed to position the dropdown content */
+      .dropdown {
+        position: relative;
+        display: inline-block;
+      }
+
+      /* Dropdown Content (Hidden by Default) */
+      .dropdown-content {
+        display: none;
+        position: absolute;
+        background-color: #f9f9f9;
+        min-width: 160px;
+        box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+        z-index: 1;
+      }
+
+      /* Links inside the dropdown */
+      .dropdown-content a {
+        color: black;
+        padding: 10px 12px;
+        text-decoration: none;
+        display: block;
+      }
+
+      /* Change color of dropdown links on hover */
+      .dropdown-content a:hover {background-color: #f1f1f1}
+
+      /* Show the dropdown menu on hover */
+      .dropdown:hover .dropdown-content {
+        display: block;
+      }
+
+      /* Change the background color of the dropdown button when the dropdown content is shown */
+      .dropdown:hover .dropbtn {
+        background-color: #262626;
       }
     </style>
   </head>
@@ -643,14 +690,14 @@
             <ion-icon class="nav__side__icon" name="diamond-outline"></ion-icon>
             <li class="nav__list">Products</li></a
           >
-          <a href="<?=site_url('customer-orders')?>" class="nav__links">
+          <a href="javascript:void(0);" class="nav__links active">
             <ion-icon
               class="nav__side__icon"
               name="trending-up-outline"
             ></ion-icon>
-            <li class="nav__list">Orders</li></a
+            <li class="nav__list">View Order</li></a
           >
-          <a href="<?=site_url('sales-report')?>" class="nav__links active">
+          <a href="<?=site_url('sales-report')?>" class="nav__links">
             <ion-icon
               class="nav__side__icon"
               name="file-tray-full-outline"
@@ -678,44 +725,103 @@
           >
         </ul>
       </aside>
+
       <div class="container">
         <div class="content">
+          <div class="row">
+            <div class="col-11">
+            <h4>Orders  : Trxn No : <?=$id ?></h4>
+            </div>
+            <div class="col-1">
+              <a href="<?=site_url('customer-orders')?>" class="btn btn-default form-control btn-sm">Back</a>
+            </div>
+          </div>
+          <br/>
+          <div class="full-card"> 
             <div class="row">
-              <div class="col-12">
-              <h4>Sales Report</h4>
-              </div>
-            </div>
-            <br/>
-            <div class="full-card">
-              <div class="row-form">
-                <div class="col-12">
-                  <form class="row" method="GET" id="frmReport">
-                    <div class="col-2">
-                      <input type="date" class="form-control" name="fromdate"/>
-                    </div> 
-                    <div class="col-2">
-                      <input type="date" class="form-control" name="todate"/>
-                    </div>   
-                    <div class="col-8">
-                      <button type="submit" class="btn btn-default btn-sm" id="btnSearch"><ion-icon name="search-outline"></ion-icon>&nbsp;Search</button>
-                      <a href="javascript:void(0);" class="btn btn-default btn-sm" onclick="Print()"><ion-icon name="print-outline"></ion-icon>&nbsp;Print<a/>
-                    </div> 
-                  </form>
+                <div class="col-6 tableFixHead">
+                    <h4>Orders</h4>
+                    <table class="table" id="customers">
+                        <thead>
+                            <th>Product Name</th>
+                            <th>Qty</th>
+                            <th>Unit Price</th>
+                            <th>Total Price</th>
+                        </thead>
+                        <tbody>
+                            <?php foreach($order as $row):?>
+                                <tr>
+                                    <td><?php echo $row['productName'] ?></td>
+                                    <td><?php echo $row['Qty'] ?></td>
+                                    <td><?php echo number_format($row['price'],2) ?></td>
+                                    <td><?php echo number_format($row['price']*$row['Qty'],2) ?></td>
+                                </tr>
+                            <?php endforeach;?>
+                        </tbody>
+                    </table>
                 </div>
-                <div class="col-12 tableFixHead" style="height:500px;overflow-y:auto;font-size:13px;" id="pdf">
-                  <table class="table" id="report">
-                    <thead>
-                      <th>Date</th>
-                      <th>Trxn No</th>
-                      <th>Customer's Name</th>
-                      <th>Payment Method</th>
-                      <th>Total Amount</th>
-                    </thead>
-                    <tbody id="result"></tbody>
-                  </table>
+                <div class="col-6">
+                    <h4>Customer Details</h4>
+                    <?php foreach($payment as $row): ?>
+                    <form class="row-form" class="POST" id="frmPayment">
+                        <input type="hidden" name="paymentID" value="<?php echo $row->paymentID ?>"/>
+                        <input type="hidden" name="customerID" value="<?php echo $row->customerID ?>"/>
+                        <div class="col-12">
+                            <p>Customer's Name</p>
+                            <input type="text" class="form-control" value="<?php echo $row->Fullname ?>"/>
+                        </div>
+                        <div class="col-12">
+                            <p>Shipping Address</p>
+                            <input type="text" class="form-control" value="<?php echo $row->DeliveryAddress ?>"/>
+                        </div>
+                        <div class="col-12">
+                            <p>Total Amount</p>
+                            <input type="text" class="form-control" value="<?php echo number_format($row->Total,2) ?>"/>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>Contact No</p>
+                                    <input type="text" class="form-control" value="<?php echo $row->ContactNo ?>"/>
+                                </div>
+                                <div class="col-6">
+                                    <p>Payment Method</p>
+                                    <input type="text" class="form-control" value="<?php echo $row->paymentDetails ?>"/>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-6">
+                                    <p>Payment Status</p>
+                                    <select class="form-control" name="status">
+                                        <option value="">Choose</option>
+                                        <option value="1">Confirmed</option>
+                                        <option value="2">Cancelled</option>
+                                        <option value="3">Paid</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <p>Add Remarks</p>
+                                    <select class="form-control" name="remarks">
+                                        <option>For Delivery</option>
+                                        <option>Delivered</option>
+                                        <option>Out of Stocks</option>
+                                        <option>Shipping Issues</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <?php if($row->Status==1||$row->Status==0){ ?>
+                        <div class="col-12">
+                            <button type="submit" class="btn btn-default">Save Changes</button>
+                        </div>
+                        <?php } ?>
+                    </form>
+                    <?php endforeach;?>
                 </div>
-              </div>
             </div>
+          </div>
         </div>
       </div>
       <footer></footer>
@@ -814,33 +920,25 @@
       src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"
     ></script>
     <script>
-      function Print() {
-          var printContents = document.getElementById("pdf").innerHTML;
-          var originalContents = document.body.innerHTML;
-          document.body.innerHTML = printContents;
-          window.print();
-          document.body.innerHTML = originalContents;
-      }
-      
-      $('#frmReport').on('submit',function(e){
-        e.preventDefault();
-        var data = $(this).serialize();
-        $('#result').html("<tr><td colspan='5'><center>Loading...</center></td></tr>");
-        $.ajax({
-          url:"<?=site_url('generate-report')?>",method:"GET",
-          data:data,success:function(response)
-          {
-            if(response==="")
-            {
-              $('#result').html("<tr><td colspan='5'><center>No Record(s)</center></td></tr>");
-            }
-            else
-            {
-              $('#result').html(response);
-            }
-          }
+        $('#frmPayment').on('submit',function(e){
+            e.preventDefault();
+            var data = $(this).serialize();
+            $.ajax({
+                url:"<?=site_url('update-payment')?>",method:"POST",
+                data:data,success:function(response)
+                {
+                    if(response==="success")
+                    {
+                        alert("Great!Successfully applied changes");
+                        window.location.href="/customer-orders";
+                    }
+                    else
+                    {
+                        alert(response);
+                    }
+                }
+            });
         });
-      });
     </script>
   </body>
 </html>

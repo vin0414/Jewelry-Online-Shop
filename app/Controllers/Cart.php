@@ -233,9 +233,11 @@ class Cart extends BaseController
                   </p>
                   <p class="order__text__date">Payment Status: 
                     <?php if($row->Status==1){ ?>
-                      <span class="badge bg-success">Paid</span>
+                      <span class="badge bg-default">Confirmed</span>
                     <?php }else if($row->Status==2){?>
-                      <span class="badge bg-danger">UnPaid</span>
+                      <span class="badge bg-danger">Cancelled</span>
+                    <?php }else{ ?>
+                      <span class="badge bg-success">Paid</span>
                     <?php } ?>
                   </p>
                 </div>
@@ -246,16 +248,26 @@ class Cart extends BaseController
                 <div class="order__text__box">
                   <p class="order__text__heading">&nbsp;</p>
                   <br/>
-                  <?php if($row->Remarks=="CANCELLED"){ ?>
-                    <button type="button" class="btn">View</button>
-                  <?php }else{?>
-                    <button type="button" class="btn">Print</button>
-                    <button type="button" class="btn">View</button>
-                  <?php } ?>
+                  <a href="<?=site_url('view-order/')?><?php echo $row->TransactionNo ?>" class="btn btn-default">View</a>
                 </div>
               </div>
             <?php
         }
+    }
+
+    public function viewOrder($id)
+    {
+        $builder = $this->db->table('tblpayment a');
+        $builder->select('a.*,b.Fullname');
+        $builder->join('tblcustomer b','b.customerID=a.customerID','LEFT');
+        $builder->WHERE('a.TransactionNo',$id);
+        $payment = $builder->get()->getResult();
+        //items
+        $orderModel = new \App\Models\orderModel();
+        $order = $orderModel->WHERE('TransactionNo',$id)->findAll();
+        //collect
+        $data = ['id'=>$id,'payment'=>$payment,'order'=>$order];
+        return view('customer/view-order',$data);
     }
 
     public function updateAccount()
