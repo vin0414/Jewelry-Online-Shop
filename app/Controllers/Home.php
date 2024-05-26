@@ -521,8 +521,9 @@ class Home extends BaseController
 
     public function updatePayment()
     {
-        $paymentModel = new \App\Models\PaymentModel();
+        $paymentModel = new \App\Models\paymentModel();
         $customerModel = new \App\Models\customerModel();
+        $productModel = new \App\Models\productModel();
         //data
         $id = $this->request->getPost('paymentID');
         $status = $this->request->getPost('status');
@@ -570,36 +571,62 @@ class Home extends BaseController
                 $email->setMessage($template);
                 $email->send();
             }
+            echo "success";
         }
         else if($status==1)
         {
-            $values = ['Status'=>$status,'Remarks'=>$remarks];
-            $paymentModel->update($id,$values);
-            //send email
-            $email = \Config\Services::email();
-            $email->setTo($customer['Email']);
-            $email->setFrom("vinmogate@gmail.com","Nasser Goldsmith and Jewelry");
-            $template = "Dear ".$customer['Fullname'].",<br/><br/>
-            Thank you for placing your order with us!<br/>
-                
-            We will now process your order and get it ready for shipment.<br/> 
-            You can expect to receive the items along with the estimated delivery date within the next few days.<br/>
-            If you have any questions or need further assistance, please don't hesitate to reach out to our customer support team.<br/>
-                
-            Thank you once again for choosing us. We greatly appreciate your business!<br/>
-            Warm regards,<br/><br/>
-            Nasser Goldsmith and Jewelry";
-            $subject = "Order Confirmation";
-            $email->setSubject($subject);
-            $email->setMessage($template);
-            $email->send();
+            $validation = $this->validate([
+                'Remarks'=>'is_unique[tblpayment.Remarks]'
+            ]);
+            if(!$validation)
+            {
+                echo "Invalid! Already tagged as ".$remarks;
+            }
+            else
+            {
+                $values = ['Status'=>$status,'Remarks'=>$remarks];
+                $paymentModel->update($id,$values);
+                if($remarks=="For Delivery")
+                {
+                    $builder = $this->db->table('tblorders');
+                    $builder->select('productName,Qty');
+                    $builder->WHERE('TransactionNo',$payment['TransactionNo']);
+                    $data = $builder->get();
+                    foreach($data->getResult() as $row)
+                    {
+                        $product = $productModel->WHERE('productName',$row->productName)->first();
+                        $newQty = $product['Qty']-$row->Qty;
+                        $values = ['Qty'=>$newQty];
+                        $productModel->update($product['productID'],$values);
+                    }
+                }
+                //send email
+                $email = \Config\Services::email();
+                $email->setTo($customer['Email']);
+                $email->setFrom("vinmogate@gmail.com","Nasser Goldsmith and Jewelry");
+                $template = "Dear ".$customer['Fullname'].",<br/><br/>
+                Thank you for placing your order with us!<br/>
+                    
+                We will now process your order and get it ready for shipment.<br/> 
+                You can expect to receive the items along with the estimated delivery date within the next few days.<br/>
+                If you have any questions or need further assistance, please don't hesitate to reach out to our customer support team.<br/>
+                    
+                Thank you once again for choosing us. We greatly appreciate your business!<br/>
+                Warm regards,<br/><br/>
+                Nasser Goldsmith and Jewelry";
+                $subject = "Order Confirmation";
+                $email->setSubject($subject);
+                $email->setMessage($template);
+                $email->send();
+                echo "success";
+            }
         }
         else
         {
             $values = ['Status'=>$status,'Remarks'=>$remarks];
             $paymentModel->update($id,$values);
+            echo "success";
         }
-        echo "success";
     }
 
     public function searchOrders()
