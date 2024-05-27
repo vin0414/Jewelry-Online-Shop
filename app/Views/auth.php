@@ -43,7 +43,7 @@
                     <button type="submit" class="btn btn-primary" id="btnLogin">Sign-In</button>
                 </div>
                 <div class="col-12">
-                    <label>Forgot Password? Click <a href="/forgot-password">here</a></label>
+                    <label>Forgot Password? Click <a href="/request-new-password">here</a></label>
                 </div>
             </form>
         </div>

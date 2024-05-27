@@ -33,7 +33,7 @@
                 </div>
             <?php endif; ?>
             <h1>Forgot Password</h1>
-            <form method="post" class="row" id="frmLogin" action="<?=base_url('reset-password')?>">
+            <form method="post" class="row" id="frmLogin" action="<?=base_url('request-password')?>">
                 <div class="col-12 form-group">
                 Enter the email address associated with your account to reset your password.
                 </div>
@@ -45,7 +45,7 @@
                     <button type="submit" class="btn btn-primary" id="btnLogin">Submit</button>
                 </div>
                 <div class="col-12">
-                    <label>Already have an account? Sign In <a href="/sign-in">here</a></label>
+                    <label>Already have an account? Sign In <a href="/auth">here</a></label>
                 </div>
             </form>
         </div>

@@ -158,6 +158,7 @@
                                                 <a href="<?=site_url('shop')?>">Shop Now</a>
                                             </li>
                                             <li><a href="<?=site_url('AboutUs')?>">About Us</a></li>
+                                            <li><a href="<?=site_url('frequently-asked-question')?>">FAQ's</a></li>
                                         </ul>
                                     </nav>
                                 </div>

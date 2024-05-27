@@ -18,6 +18,11 @@ class Home extends BaseController
         return view('auth');
     }
 
+    public function Faq()
+    {
+        return view('faq');
+    }
+
     public function validateUser()
     {
         $email = $this->request->getPost('email');
@@ -1239,6 +1244,11 @@ class Home extends BaseController
         return view('forgot-password');
     }
 
+    public function requestNewPassword()
+    {
+        return view('request-new-password');
+    }
+
     public function createAccount()
     {
         $customerModel = new \App\Models\customerModel();
@@ -1365,6 +1375,73 @@ class Home extends BaseController
             session()->remove('sess_id');
             session()->destroy();
             return redirect()->to('/sign-in?access=out')->with('fail', 'You are logged out!');
+        }
+    }
+
+    public function requestPassword()
+    {
+        $emailAddress = $this->request->getPost('email');
+        $table = $this->db->table('tblaccount');
+        $table->select('accountID, Fullname');
+        $table->WHERE('Email', $emailAddress);
+        $rows = $table->get();
+        $data = $rows->getResult();
+        
+        if(empty($emailAddress)){
+            session()->setFlashdata('fail','Invalid! Please enter your email address');
+            return redirect()->to('/request-new-password')->withInput();
+        }
+        else{
+            if(count($data) != 0)
+            {
+                //generate password
+                // String of all alphanumeric character
+                $str_result = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
+             
+                // Shuffle the $str_result and returns substring
+                // of specified length
+                $password = substr(str_shuffle($str_result),0,8);
+                
+                //send email
+                if($row = $rows->getRow())
+                {                   
+                    $accountModel = new \App\Models\accountModel();
+                    $values = ['Password'=>Hash::make($password),];
+                    $accountModel->update($row->accountID,$values);
+                
+                    $email = \Config\Services::email();
+                    $email->setTo($emailAddress);
+                    $email->setFrom("vinmogate@gmail.com","NASSER GOLDSMITH & JEWELRY STORE");
+                    $template = "
+                    <p>Dear " . $row->Fullname . ",</p>
+                    <p>We hope this email finds you well. This message is to inform you that your password has been successfully reset. Your new password is: " . $password  . ".</p>
+                    <p>For security purposes, we strongly advise you to change this password once you log in to our website. To do so, please follow these steps:</p>
+                    <ol>
+                    <li>Visit our website at <a href='https://nassergoldsmithandjewelryshop.online/'>NASSER GOLDSMITH & JEWELRY STORE</a>.</li>
+                    <li>Log in to your account.</li>
+                    <li>Navigate to the \"My Account\" section.</li>
+                    <li>Enter your new password and confirm it.</li>
+                    <li>Save the changes.</li>
+                    </ol>
+                    <p>If you did not request this password reset, or if you encounter any issues, please contact our team at nassergoldsmithjewelry@gmail.com immediately.</p>
+                    <p>Thank you for choosing our services. If you have any questions or need further assistance, feel free to reach out to us.</p>
+                    <p>Best regards,</p>
+                    <p>NASSER GOLDSMITH & JEWELRY STORE Team</p>
+                    ";
+                    $subject = "Password Successfully Reset";
+                    $email->setSubject($subject);
+                    $email->setMessage($template);
+                    $email->send();
+                    session()->setFlashdata('success','Password Successfully reset. Please login');
+                    return redirect()->to('/request-new-password')->withInput();
+                }
+            }
+            else
+            {
+                session()->setFlashdata('fail','No Record(s) found');
+                return redirect()->to('/request-new-password')->withInput();
+            }
+        
         }
     }
 }

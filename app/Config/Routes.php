@@ -33,8 +33,10 @@ $routes->get('/', 'Home::index');
 $routes->get('/shop', 'Home::store');
 $routes->get('/search-products', 'Home::searchProducts');
 $routes->get('/AboutUs', 'Home::about');
+$routes->get('/frequently-asked-question', 'Home::Faq');
 $routes->get('/register', 'Home::register');
 $routes->get('/forgot-password','Home::forgotPassword');
+$routes->get('/request-new-password','Home::requestNewPassword');
 $routes->post('create-account','Home::createAccount');
 $routes->post('/login','Home::Login');
 $routes->post('/validate','Home::validateUser');
@@ -61,6 +63,7 @@ $routes->get('download','Download::downloadFile');
 $routes->post('restore','RestoreDB::RestoreData');
 $routes->get('generate-report','Home::generateReport');
 $routes->post('update-payment','Home::updatePayment');
+$routes->post('request-password','Home::requestPassword');
 //cart controller
 $routes->get('cart/details/(:any)','Cart::productDetails/$1');
 $routes->post('buy/(:any)','Cart::buy/$1');
@@ -72,6 +75,7 @@ $routes->get('search-customer-orders','Cart::searchOrders');
 $routes->post('cancel-order','Cart::cancelOrder');
 $routes->post('save-changes','Cart::updateAccount');
 $routes->post('update-password','Cart::updatePassword');
+$routes->post('reset-password','Cart::resetPassword');
 
 $routes->group('',['filter'=>'AuthCheck'],function($routes)
 {
