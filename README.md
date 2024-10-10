@@ -1,10 +1,15 @@
 # Online Shop - Jewelry
 # Features
+* Featured Products
+* Adding of Discounts
+* Product Management
+* Order Management
+* Customer Management
 * Cart System
 * Stocks Monitoring
 * Generation of Income Report
-* Email Verification - Customer Registration
-* Email Notification
+* Email Verification and Notification
+* Back-up and Restore
 
 # Languages
 * PHP/CodeIgniter 4
