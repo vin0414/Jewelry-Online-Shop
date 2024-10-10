@@ -18,3 +18,9 @@
 * JavaScript
 * JSON
 * HTML/CSS
+* SweetAlert
+
+# Security
+* Password Hash - Password B_CRYPT
+* Tokenization
+* Session Management
