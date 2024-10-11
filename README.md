@@ -1,5 +1,5 @@
 # Online Shop - Jewelry
-# Features
+## Features
 * Featured Products
 * Adding of Discounts
 * Product Management
@@ -11,7 +11,7 @@
 * Email Verification and Notification
 * Back-up and Restore
 
-# Languages
+## Languages
 * PHP/CodeIgniter 4
 * MySQL/MariaDB
 * Ajax-jQuery
@@ -20,7 +20,7 @@
 * HTML/CSS
 * SweetAlert
 
-# Security
+## Security
 * Password Hash - Password B_CRYPT
 * Tokenization
 * Session Management
