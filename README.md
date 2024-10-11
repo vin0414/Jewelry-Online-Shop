@@ -10,6 +10,7 @@
 * Generation of Income Report
 * Email Verification and Notification
 * Back-up and Restore
+* System logs
 
 ## Languages
 * PHP/CodeIgniter 4
@@ -17,7 +18,7 @@
 * Ajax-jQuery
 * JavaScript
 * JSON
-* HTML/CSS
+* HTML/CSS/Bootstrap
 * SweetAlert
 
 ## Security
